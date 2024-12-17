@@ -5,7 +5,7 @@ plugins {
 }
 
 version = '0.0.1-1.19'
-group = 'net.oppakolba.test' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+group = 'net.oppakolba.oppamod' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'oppamod'
 
 // Mojang ships Java 17 to end users in 1.18+, so your mod should target Java 17.
@@ -123,6 +123,7 @@ repositories {
     // flatDir {
     //     dir 'libs'
     // }
+
 }
 
 dependencies {
@@ -142,6 +143,7 @@ dependencies {
     // For more info...
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
+
 }
 
 // Example for how to get properties into the manifest for reading at runtime.
@@ -179,5 +181,6 @@ publishing {
 }
 
 tasks.withType(JavaCompile).configureEach {
+    options.compilerArgs << "-Xlint:deprecation"
     options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
 }

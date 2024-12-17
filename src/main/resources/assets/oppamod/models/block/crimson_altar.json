@@ -1,0 +1,10 @@
+{
+  "parent": "oppamod:block/template_crimson_altar",
+  "textures": {
+    "particle": "oppamod:block/crimson_altar_bottom",
+    "bottom": "oppamod:block/crimson_altar_bottom",
+    "side": "oppamod:block/crimson_altar_side",
+    "top": "oppamod:block/crimson_altar_top",
+    "middle": "oppamod:block/crimson_altar_middle"
+  }
+}
