@@ -11,14 +11,18 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.oppakolba.oppamod.Oppamod;
 import net.oppakolba.oppamod.item.Custom.EyeItem;
+import net.oppakolba.oppamod.item.Custom.OrangeItem;
 
 public class ModItems {
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, Oppamod.MOD_ID);
 
     public static final RegistryObject<Item> ORANGE = ITEMS.register("orange",
-            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.OPPA_TAB).food(new FoodProperties.Builder()
-                    .nutrition(2).saturationMod(0.5f).build())));
+            () -> new OrangeItem(new Item.Properties().tab(ModCreativeModeTab.OPPA_TAB).food(new FoodProperties.Builder()
+                            .nutrition(2)
+                            .saturationMod(0.5f)
+                            .build())));
+
     public static final RegistryObject<Item> GOLDEN_ORANGE = ITEMS.register("golden_orange",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.OPPA_TAB).food(new FoodProperties.Builder()
                     .nutrition(6).saturationMod(1.2f)

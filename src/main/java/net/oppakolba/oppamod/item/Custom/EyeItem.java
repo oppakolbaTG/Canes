@@ -22,8 +22,8 @@ public class EyeItem extends Item {
     @Override
     public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component> components, TooltipFlag tooltipFlag) {
         if(Screen.hasShiftDown()){
-            components.add(Component.literal("артефакте, что пробуждает ужас лишь ночью. Днём он остаётся бесполезным, будто ждёт своего часа. Говорят, его нельзя обмануть: если вызвать не вовремя или зря потревожить, " +
-                    "он просто наблюдает... и ждёт. \n\n Oppakolba").withStyle(ChatFormatting.GRAY));
+            components.add(Component.literal("\n\nАртефакте, что пробуждает ужас лишь ночью. Днём он остаётся бесполезным, будто ждёт своего часа. Говорят, его нельзя обмануть: если вызвать не вовремя или зря потревожить, " +
+                "он просто наблюдает... и ждёт.").withStyle(ChatFormatting.YELLOW).withStyle(ChatFormatting.ITALIC));
         }
         else {
             components.add(Component.literal("Призывает Глаз Ктулху").withStyle(ChatFormatting.WHITE));
