@@ -14,6 +14,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.oppakolba.oppamod.Oppamod;
+import net.oppakolba.oppamod.block.custom.LampBlock;
 import net.oppakolba.oppamod.block.custom.SuperBlock;
 import net.oppakolba.oppamod.item.ModCreativeModeTab;
 import net.oppakolba.oppamod.item.ModItems;
@@ -24,6 +25,7 @@ public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS =
             DeferredRegister.create(ForgeRegistries.BLOCKS, Oppamod.MOD_ID);
 
+
     public static final RegistryObject<Block> CRIMSON_ALTAR = registerBlock("crimson_altar",
             () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE)
                     .strength( 40f)
@@ -31,15 +33,17 @@ public class ModBlocks {
                     .requiresCorrectToolForDrops(),
                     UniformInt.of(3, 5)), ModCreativeModeTab.OPPA_TAB);
 
-    public static final RegistryObject<Block> DEMONIC_ALTAR = registerBlock("demonic_altar",
-            () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE).strength( 56f).requiresCorrectToolForDrops(),
-                    UniformInt.of(3, 5)), ModCreativeModeTab.OPPA_TAB);
     public static final RegistryObject<Block> SUPER_BLOCK = registerBlock("t_super_block",
             () -> new SuperBlock(BlockBehaviour.Properties.of(Material.STONE)
-                    .strength( 56f).requiresCorrectToolForDrops()), ModCreativeModeTab.OPPA_TAB);
+                    .strength( 56f)
+                    .requiresCorrectToolForDrops()), ModCreativeModeTab.OPPA_TAB);
 
+    public static final RegistryObject<Block> LAMP_BLOCK = registerBlock("t_lamp_block",
+            () -> new LampBlock(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(10f)
+                    .lightLevel(state -> state.getValue(LampBlock.LIT) ? 15 : 0)
+                    .requiresCorrectToolForDrops()), ModCreativeModeTab.OPPA_TAB);
 
-//commit
 
 
     private static <I extends Block> RegistryObject<I> registerBlock(String name, Supplier<I> block, CreativeModeTab tab) {

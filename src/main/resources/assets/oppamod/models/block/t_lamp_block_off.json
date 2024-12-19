@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "oppamod:block/t_lamp_block_off"
+}
+}

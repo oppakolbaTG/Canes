@@ -6,6 +6,9 @@
   "block.oppamod.crimson_altar": "Crimson Altar",
   "block.oppamod.demonic_altar": "Demonic Altar",
   "block.oppamod.t_super_block": "Super Block",
+  "block.oppamod.t_lamp_block": "Lamp Block",
+
+  "entity.minecraft.villager.t_super_villager": "Super Villager",
 
   "itemGroup.oppamodtab": "Terraria"
 }

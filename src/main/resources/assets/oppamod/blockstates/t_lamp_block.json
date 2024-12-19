@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "lit=true": { "model": "oppamod:block/t_lamp_block_on" },
+    "lit=false": { "model": "oppamod:block/t_lamp_block_off" }
+  }
+}

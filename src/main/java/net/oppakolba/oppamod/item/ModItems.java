@@ -18,13 +18,15 @@ public class ModItems {
             DeferredRegister.create(ForgeRegistries.ITEMS, Oppamod.MOD_ID);
 
     public static final RegistryObject<Item> ORANGE = ITEMS.register("orange",
-            () -> new OrangeItem(new Item.Properties().tab(ModCreativeModeTab.OPPA_TAB).food(new FoodProperties.Builder()
+            () -> new OrangeItem(new Item.Properties().tab(ModCreativeModeTab.OPPA_TAB)
+                    .food(new FoodProperties.Builder()
                             .nutrition(2)
                             .saturationMod(0.5f)
                             .build())));
 
     public static final RegistryObject<Item> GOLDEN_ORANGE = ITEMS.register("golden_orange",
-            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.OPPA_TAB).food(new FoodProperties.Builder()
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.OPPA_TAB)
+                    .food(new FoodProperties.Builder()
                     .nutrition(6).saturationMod(1.2f)
                     .effect(() -> new MobEffectInstance(MobEffects.REGENERATION, 600, 1), 1.0f)
                     .effect(() -> new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 2000, 1), 1.0f)
