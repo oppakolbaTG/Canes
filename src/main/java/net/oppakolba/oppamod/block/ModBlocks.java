@@ -16,6 +16,7 @@ import net.minecraftforge.registries.RegistryObject;
 import net.oppakolba.oppamod.Oppamod;
 import net.oppakolba.oppamod.block.custom.LampBlock;
 import net.oppakolba.oppamod.block.custom.SuperBlock;
+import net.oppakolba.oppamod.block.custom.WaterLeafBlock;
 import net.oppakolba.oppamod.item.ModCreativeModeTab;
 import net.oppakolba.oppamod.item.ModItems;
 
@@ -43,6 +44,9 @@ public class ModBlocks {
                     .strength(10f)
                     .lightLevel(state -> state.getValue(LampBlock.LIT) ? 15 : 0)
                     .requiresCorrectToolForDrops()), ModCreativeModeTab.OPPA_TAB);
+
+        public static final RegistryObject<Block> WATER_LEAF_BLOCK = BLOCKS.register("water_leaf_block",
+                () -> new WaterLeafBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT)));
 
 
 

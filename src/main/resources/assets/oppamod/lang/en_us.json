@@ -2,11 +2,14 @@
   "item.oppamod.orange": "Orange",
   "item.oppamod.golden_orange": "Golden Orange",
   "item.oppamod.summon_eye": "Suspicious Looking Eye",
+  "item.oppamod.water_leaf": "Water leaf",
+  "item.oppamod.water_leaf_seed": "Water leaf Seed",
 
   "block.oppamod.crimson_altar": "Crimson Altar",
   "block.oppamod.demonic_altar": "Demonic Altar",
   "block.oppamod.t_super_block": "Super Block",
   "block.oppamod.t_lamp_block": "Lamp Block",
+  "block.oppamod.water_leaf_block": "Water Leaf",
 
   "entity.minecraft.villager.t_super_villager": "Super Villager",
 

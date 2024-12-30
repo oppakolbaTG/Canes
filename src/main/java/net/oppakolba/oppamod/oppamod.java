@@ -12,8 +12,9 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.oppakolba.oppamod.block.ModBlocks;
 import net.oppakolba.oppamod.item.ModItems;
+import net.oppakolba.oppamod.painting.ModPainting;
 import org.slf4j.Logger;
-//errwrwerw
+
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(Oppamod.MOD_ID)
 public class Oppamod {
@@ -25,6 +26,7 @@ public class Oppamod {
 
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+        ModPainting.register(modEventBus);
 
 
         modEventBus.addListener(this::commonSetup);
@@ -40,7 +42,8 @@ public class Oppamod {
     @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class ClientModEvents {
         @SubscribeEvent
-        public static void onClientSetup(FMLClientSetupEvent event) { 
+        public static void onClientSetup(FMLClientSetupEvent event) {
+            ItemBlockRenderTypes.setRenderLayer(ModBlocks.WATER_LEAF_BLOCK.get(), RenderType.cutout());
         }
     }
 }
