@@ -46,6 +46,7 @@ public class Oppamod {
     @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class ClientModEvents {
         @SubscribeEvent
+        @Deprecated
         public static void onClientSetup(FMLClientSetupEvent event) {
             ItemBlockRenderTypes.setRenderLayer(ModBlocks.WATER_LEAF_BLOCK.get(), RenderType.cutout());
         }

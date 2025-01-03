@@ -18,6 +18,7 @@ import net.oppakolba.oppamod.Oppamod;
 import net.oppakolba.oppamod.block.ModBlocks;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.function.Supplier;
 
 public class ModConfiguredFeatures {
@@ -27,9 +28,14 @@ public class ModConfiguredFeatures {
     public static final Supplier<List<OreConfiguration.TargetBlockState>> OVERWORLD_CRIMSON_ALTAR = Suppliers.memoize(() -> List.of(
             OreConfiguration.target(OreFeatures.STONE_ORE_REPLACEABLES, ModBlocks.CRIMSON_ALTAR.get().defaultBlockState()),
             OreConfiguration.target(OreFeatures.DEEPSLATE_ORE_REPLACEABLES, ModBlocks.CRIMSON_ALTAR.get().defaultBlockState())));
+    public static final Supplier<List<OreConfiguration.TargetBlockState>> OVERWORLD_PLATINUM_ORE = Suppliers.memoize(() -> List.of(
+            OreConfiguration.target(OreFeatures.STONE_ORE_REPLACEABLES, ModBlocks.PLATINUM_ORE.get().defaultBlockState())));
+
 
     public static final RegistryObject<ConfiguredFeature<?, ?>> CRIMSON_ALTAR = CONFIGURED_FEATURE.register("crimson_altar",
             () -> new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(OVERWORLD_CRIMSON_ALTAR.get(), 4)));
+    public static final RegistryObject<ConfiguredFeature<?, ?>> PLATINUM_ORE = CONFIGURED_FEATURE.register("platinum_ore",
+            () -> new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(OVERWORLD_PLATINUM_ORE.get(), 8)));
 
     public static void register(IEventBus eventBus) {
         CONFIGURED_FEATURE.register(eventBus);

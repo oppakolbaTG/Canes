@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "cooking_time": 200,
+  "experience": 1.0,
+  "group": "platinum_bar",
+  "ingredient": {
+    "item": "oppamod:platinum_ore"
+  },
+  "result": "oppamod:platinum_bar"
+}

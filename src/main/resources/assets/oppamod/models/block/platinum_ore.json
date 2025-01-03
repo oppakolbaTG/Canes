@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "oppamod:block/t_super_block"
-}
+    "all": "oppamod:block/platinum_ore"
+  }
 }

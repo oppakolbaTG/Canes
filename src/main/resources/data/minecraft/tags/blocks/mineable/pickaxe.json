@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
-    "oppamod:crimson_altar"
+    "oppamod:crimson_altar",
+    "oppamod:platinum_ore",
+    "oppamod:platinum_block"
   ]
 }

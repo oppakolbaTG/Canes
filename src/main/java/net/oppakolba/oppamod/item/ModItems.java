@@ -19,18 +19,11 @@ public class ModItems {
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, Oppamod.MOD_ID);
 
-    public static final RegistryObject<Item> ORANGE = ITEMS.register("orange",
-            () -> new OrangeItem(new Item.Properties().tab(ModCreativeModeTab.OPPA_TAB)
-                    .food(new FoodProperties.Builder()
-                            .nutrition(2)
-                            .saturationMod(0.5f)
-                            .build())));
+
 
     public static final RegistryObject<Item> SUMMON_EYE = ITEMS.register("summon_eye",
             () -> new EyeItem(new Item.Properties().tab(ModCreativeModeTab.OPPA_TAB).stacksTo(1)));
 
-
-//below common item
     public static final RegistryObject<Item> GOLDEN_ORANGE = ITEMS.register("golden_orange",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.OPPA_TAB)
                     .food(new FoodProperties.Builder()
@@ -39,11 +32,24 @@ public class ModItems {
                             .effect(() -> new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 2000, 1), 1.0f)
                             .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_BOOST, 2000, 1),1.0f).alwaysEat().build())));
 
+
+//below common item
+
+ public static final RegistryObject<Item> ORANGE = ITEMS.register("orange",
+            () -> new OrangeItem(new Item.Properties().tab(ModCreativeModeTab.OPPA_TAB)
+                    .food(new FoodProperties.Builder()
+                            .nutrition(2)
+                            .saturationMod(0.5f)
+                            .build())));
+
     public static final RegistryObject<Item> WATER_LEAF_SEED = ITEMS.register("water_leaf_seed",
             () -> new ItemNameBlockItem(ModBlocks.WATER_LEAF_BLOCK.get(),
                     new Item.Properties().tab(ModCreativeModeTab.OPPA_TAB)));
 
     public static final RegistryObject<Item> WATER_LEAF = ITEMS.register("water_leaf",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.OPPA_TAB)));
+
+    public static final RegistryObject<Item> PLATINUM_BAR = ITEMS.register("platinum_bar",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.OPPA_TAB)));
 
     public static void register(IEventBus eventBus) {

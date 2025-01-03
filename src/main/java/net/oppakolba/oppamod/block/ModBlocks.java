@@ -15,7 +15,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.oppakolba.oppamod.Oppamod;
 import net.oppakolba.oppamod.block.custom.LampBlock;
-import net.oppakolba.oppamod.block.custom.SuperBlock;
 import net.oppakolba.oppamod.block.custom.WaterLeafBlock;
 import net.oppakolba.oppamod.item.ModCreativeModeTab;
 import net.oppakolba.oppamod.item.ModItems;
@@ -27,6 +26,12 @@ public class ModBlocks {
             DeferredRegister.create(ForgeRegistries.BLOCKS, Oppamod.MOD_ID);
 
 
+public static final RegistryObject<Block> PLATINUM_ORE = registerBlock("platinum_ore",
+        () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE)
+                .strength(5f)
+                .requiresCorrectToolForDrops(),
+                UniformInt.of(3,5)), ModCreativeModeTab.OPPA_TAB);
+
     public static final RegistryObject<Block> CRIMSON_ALTAR = registerBlock("crimson_altar",
             () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE)
                     .strength( 40f)
@@ -34,9 +39,9 @@ public class ModBlocks {
                     .requiresCorrectToolForDrops(),
                     UniformInt.of(3, 5)), ModCreativeModeTab.OPPA_TAB);
 
-    public static final RegistryObject<Block> SUPER_BLOCK = registerBlock("t_super_block",
-            () -> new SuperBlock(BlockBehaviour.Properties.of(Material.STONE)
-                    .strength( 56f)
+    public static final RegistryObject<Block> PLATINUM_BLOCK = registerBlock("platinum_block",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(5f)
                     .requiresCorrectToolForDrops()), ModCreativeModeTab.OPPA_TAB);
 
     public static final RegistryObject<Block> LAMP_BLOCK = registerBlock("t_lamp_block",
@@ -65,3 +70,19 @@ public class ModBlocks {
         BLOCKS.register(eventBus);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
