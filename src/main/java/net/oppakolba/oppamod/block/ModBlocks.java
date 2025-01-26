@@ -34,6 +34,7 @@ public static final RegistryObject<Block> PLATINUM_ORE = registerBlock("platinum
 
     public static final RegistryObject<Block> CRIMSON_ALTAR = registerBlock("crimson_altar",
             () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE)
+                    .noOcclusion()
                     .strength( 40f)
                     .lightLevel(state -> 13)
                     .requiresCorrectToolForDrops(),
@@ -70,19 +71,3 @@ public static final RegistryObject<Block> PLATINUM_ORE = registerBlock("platinum
         BLOCKS.register(eventBus);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -3,8 +3,15 @@
   "textures": {
     "particle": "oppamod:block/crimson_altar_bottom",
     "bottom": "oppamod:block/crimson_altar_bottom",
+    "top_side": "oppamod:block/crimson_altar_top_side",
     "side": "oppamod:block/crimson_altar_side",
     "top": "oppamod:block/crimson_altar_top",
-    "middle": "oppamod:block/crimson_altar_middle"
+    "top1": "oppamod:block/crimson_altar_top1",
+    "top2": "oppamod:block/crimson_altar_top2",
+    "deeper_side1": "oppamod:block/crimson_altar_deeper_side1",
+    "middle": "oppamod:block/crimson_altar_middle",
+    "middle2": "oppamod:block/crimson_altar_middle2",
+    "middle1": "oppamod:block/crimson_altar_middle1",
+    "eye": "oppamod:block/crimson_altar_eye"
   }
 }
