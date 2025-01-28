@@ -5,19 +5,26 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class EyeItem extends Item {
-    public EyeItem(Properties properties) {
-        super(properties);
+public class EyeItem extends SpawnEggItem{
+    public EyeItem(EntityType<? extends Mob> defaultType, int backgroundColor, int highlightColor, Properties properties) {
+        super(defaultType, backgroundColor, highlightColor, properties);
+
     }
+
+
+
 
     @Override
     public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component> components, TooltipFlag tooltipFlag) {

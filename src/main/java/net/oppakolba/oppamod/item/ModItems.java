@@ -2,10 +2,12 @@ package net.oppakolba.oppamod.item;
 
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemNameBlockItem;
+import net.minecraft.world.item.SpawnEggItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -22,7 +24,7 @@ public class ModItems {
 
 
     public static final RegistryObject<Item> SUMMON_EYE = ITEMS.register("summon_eye",
-            () -> new EyeItem(new Item.Properties().tab(ModCreativeModeTab.OPPA_TAB).stacksTo(1)));
+            () -> new EyeItem(EntityType.WARDEN, 15132362, 10682368, (new Item.Properties()).tab(ModCreativeModeTab.OPPA_TAB)));
 
     public static final RegistryObject<Item> GOLDEN_ORANGE = ITEMS.register("golden_orange",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.OPPA_TAB)
