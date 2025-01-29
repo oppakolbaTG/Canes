@@ -24,7 +24,7 @@ public class ModItems {
 
 
     public static final RegistryObject<Item> SUMMON_EYE = ITEMS.register("summon_eye",
-            () -> new EyeItem(EntityType.WARDEN, 15132362, 10682368, (new Item.Properties()).tab(ModCreativeModeTab.OPPA_TAB)));
+            () -> new EyeItem(EntityType.WARDEN, 15132362, 10682368, (new Item.Properties().stacksTo(1)).tab(ModCreativeModeTab.OPPA_TAB)));
 
     public static final RegistryObject<Item> GOLDEN_ORANGE = ITEMS.register("golden_orange",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.OPPA_TAB)
