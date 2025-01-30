@@ -69,7 +69,7 @@ public class ItemtoSummonBoss extends SpawnEggItem {
                 BlockPos pos = context.getClickedPos();
                 LightningBolt lightningBolt = EntityType.LIGHTNING_BOLT.create(serverLevel);
                 if (lightningBolt != null) {
-                    lightningBolt.moveTo(pos.getX() + 30, pos.getY(), pos.getZ());
+                    lightningBolt.moveTo(pos.getX() + 35, pos.getY(), pos.getZ());
                     serverLevel.addFreshEntity(lightningBolt);
                     player.getCooldowns().addCooldown(this, 80);
                 }
@@ -78,9 +78,9 @@ public class ItemtoSummonBoss extends SpawnEggItem {
 
                 // Спавним моба перед игроком (на 5 блоков вперед)
                 Vec3 lookVec = player.getLookAngle();
-                Vec3 spawnVec = player.position().add(lookVec.scale(30));
+                Vec3 spawnVec = player.position().add(lookVec.scale(5));
 
-                spawnVec = spawnVec.add(0, 10, 0);
+                spawnVec = spawnVec.add(30, 15, 0);
                 BlockPos spawnPos = new BlockPos((int) Math.round(spawnVec.x), (int) Math.round(spawnVec.y), (int) Math.round(spawnVec.z));
 
                 // Получаем тип сущности из яйца спавна
