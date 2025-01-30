@@ -1,0 +1,19 @@
+{
+  "item.oppamod.orange": "Апельсин",
+  "item.oppamod.golden_orange": "Золотой апельсин",
+  "item.oppamod.summon_eye": "Подозрительно выглядящий глаз",
+  "item.oppamod.water_leaf": "Воднолист",
+  "item.oppamod.water_leaf_seed": "Семя воднолиста",
+  "item.oppamod.platinum_bar": "Платиновый слиток",
+
+  "block.oppamod.crimson_altar": "Багряный алтарь",
+  "block.oppamod.demonic_altar": "Демонический алтарь",
+  "block.oppamod.water_leaf_block": "Воднолист",
+  "block.oppamod.t_lamp_block": "Блок лампа",
+  "block.oppamod.platinum_ore": "Платиновая руда",
+  "block.oppamod.platinum_block": "Платиновый блок",
+  "entity.minecraft.villager.t_super_villager": "Супер житель",
+
+  "itemGroup.oppamodtab": "Террария"
+
+}
