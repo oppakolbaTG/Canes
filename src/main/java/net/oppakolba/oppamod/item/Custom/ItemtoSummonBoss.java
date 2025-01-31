@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
@@ -23,6 +24,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+import net.oppakolba.oppamod.sound.ModSounds;
 
 
 public class ItemtoSummonBoss extends SpawnEggItem {
@@ -69,6 +71,7 @@ public class ItemtoSummonBoss extends SpawnEggItem {
                 if (lightningBolt != null) {
                     lightningBolt.moveTo(pos.getX() + 35, pos.getY(), pos.getZ());
                     serverLevel.addFreshEntity(lightningBolt);
+                    level.playSound(null, pos, ModSounds.BOSS_SUMMON.get(), SoundSource.HOSTILE, 1.0f,1.0f);
                     player.getCooldowns().addCooldown(this, 80);
                 }
 

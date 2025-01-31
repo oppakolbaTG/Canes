@@ -13,6 +13,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.oppakolba.oppamod.block.ModBlocks;
 import net.oppakolba.oppamod.item.ModItems;
 import net.oppakolba.oppamod.painting.ModPainting;
+import net.oppakolba.oppamod.sound.ModSounds;
 import net.oppakolba.oppamod.world.feature.ModConfiguredFeatures;
 import net.oppakolba.oppamod.world.feature.ModPlacedFeatures;
 import org.slf4j.Logger;
@@ -32,6 +33,8 @@ public class Oppamod {
 
         ModConfiguredFeatures.register(modEventBus);
         ModPlacedFeatures.register(modEventBus);
+
+        ModSounds.SOUNDS.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 

@@ -1,0 +1,11 @@
+{
+  "boss_summon": {
+    "sounds": [
+      {
+      "name": "oppamod:boss_summon",
+        "volume": 1.0,
+        "pitch": 1.0
+      }
+    ]
+  }
+}
