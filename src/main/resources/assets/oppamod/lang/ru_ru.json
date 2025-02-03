@@ -5,6 +5,7 @@
   "item.oppamod.water_leaf": "Воднолист",
   "item.oppamod.water_leaf_seed": "Семя воднолиста",
   "item.oppamod.platinum_bar": "Платиновый слиток",
+  "item.oppamod.mana_crystal": "Кристал Маны",
 
   "block.oppamod.crimson_altar": "Багряный алтарь",
   "block.oppamod.demonic_altar": "Демонический алтарь",
@@ -14,6 +15,8 @@
   "block.oppamod.platinum_block": "Платиновый блок",
   "entity.minecraft.villager.t_super_villager": "Супер житель",
 
-  "itemGroup.oppamodtab": "Террария"
+  "itemGroup.oppamodtab": "Террария",
 
+  "key.category.oppamod.oppaterra": "ОппаТерраМод",
+  "key.oppamod.mana_use": "Использовать Ману"
 }

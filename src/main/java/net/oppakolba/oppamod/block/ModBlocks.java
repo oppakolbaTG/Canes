@@ -52,7 +52,7 @@ public static final RegistryObject<Block> PLATINUM_ORE = registerBlock("platinum
                     .requiresCorrectToolForDrops()), ModCreativeModeTab.OPPA_TAB);
 
         public static final RegistryObject<Block> WATER_LEAF_BLOCK = BLOCKS.register("water_leaf_block",
-                () -> new WaterLeafBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT)));
+                () -> new WaterLeafBlock(BlockBehaviour.Properties.copy(Blocks.SWEET_BERRY_BUSH)));
 
 
 

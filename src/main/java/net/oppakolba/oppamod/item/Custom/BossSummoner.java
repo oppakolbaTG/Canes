@@ -27,9 +27,9 @@ import net.minecraft.world.level.Level;
 import net.oppakolba.oppamod.sound.ModSounds;
 
 
-public class ItemtoSummonBoss extends SpawnEggItem {
-    public ItemtoSummonBoss(EntityType<? extends Mob> defaultType, int backgroundColor, int highlightColor, Properties properties) {
-        super(defaultType, backgroundColor, highlightColor, properties);
+public class BossSummoner extends SpawnEggItem {
+    public BossSummoner(EntityType<? extends Mob> entityType, Properties properties) {
+        super(entityType, 0xFFFFFF, 0xFFFFFFF, properties);
 
     }
     private void OutPut(Player player){
@@ -96,6 +96,7 @@ public class ItemtoSummonBoss extends SpawnEggItem {
             } else {
                 if (player != null) {
                     OutPut(player);
+                    player.getCooldowns().addCooldown(this, 80);
                 } else {
                     System.out.println("Ошибка 1");
                 }

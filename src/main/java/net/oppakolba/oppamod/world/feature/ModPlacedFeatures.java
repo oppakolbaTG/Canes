@@ -1,6 +1,7 @@
 package net.oppakolba.oppamod.world.feature;
 
 import net.minecraft.core.Registry;
+import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.placement.*;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -22,6 +23,10 @@ public static final RegistryObject<PlacedFeature> CRIMSON_ALTAR_PLACED = PLACED_
 public static final RegistryObject<PlacedFeature> PLATINUM_ORE_PLACED = PLACED_FEATURES.register("platinum_ore_placed",
         () -> new PlacedFeature(ModConfiguredFeatures.PLATINUM_ORE.getHolder().get(), commonOrePlacement(8,
                         HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.belowTop(80)))));
+
+public static final RegistryObject<PlacedFeature> WATER_LEAF_PLACED = PLACED_FEATURES.register("water_leaf_placed",
+        () -> new PlacedFeature(ModConfiguredFeatures.WATER_LEAF.getHolder().get(), List.of(RarityFilter.onAverageOnceEvery(8),
+                InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome())));
 
     private static List<PlacementModifier> orePlacement(PlacementModifier p_195347_, PlacementModifier p_195348_) {
         return List.of(p_195347_, InSquarePlacement.spread(), p_195348_, BiomeFilter.biome());

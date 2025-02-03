@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/tinted_cross",
   "textures": {
-    "cross": "oppamod:block/water_leaf_block0"
+    "cross": "oppamod:block/water_leaf_block3"
   }
 }

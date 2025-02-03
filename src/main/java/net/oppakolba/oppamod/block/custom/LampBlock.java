@@ -20,6 +20,7 @@ public class LampBlock extends Block {
         super(properties);
     }
 
+    @Deprecated
     @Override
     public InteractionResult use(BlockState state, Level level, BlockPos blockPos,
                                  Player player, InteractionHand hand, BlockHitResult result) {

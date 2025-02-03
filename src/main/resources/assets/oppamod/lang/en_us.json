@@ -5,6 +5,7 @@
   "item.oppamod.water_leaf": "Water leaf",
   "item.oppamod.water_leaf_seed": "Water leaf Seed",
   "item.oppamod.platinum_bar": "Platinum Bar",
+  "item.oppamod.mana_crystal": "Mana Crystal",
 
   "block.oppamod.crimson_altar": "Crimson Altar",
   "block.oppamod.demonic_altar": "Demonic Altar",
@@ -14,5 +15,8 @@
   "block.oppamod.platinum_block": "Platinum Block",
   "entity.minecraft.villager.t_super_villager": "Super Villager",
 
-  "itemGroup.oppamodtab": "Terraria"
+  "itemGroup.oppamodtab": "Terraria",
+
+  "key.category.oppamod.oppaterra": "OppaTerraMod",
+  "key.oppamod.mana_use": "MANA_USE"
 }

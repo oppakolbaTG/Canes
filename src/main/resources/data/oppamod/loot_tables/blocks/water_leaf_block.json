@@ -1,9 +1,13 @@
 {
   "type": "minecraft:block",
+  "functions": [
+    {
+      "function": "minecraft:explosion_decay"
+    }
+  ],
   "pools": [
     {
-      "rolls": 1.0,
-      "bonus_rolls": 0.0,
+      "bonus_rolls": 0,
       "entries": [
         {
           "type": "minecraft:alternatives",
@@ -12,10 +16,10 @@
               "type": "minecraft:item",
               "conditions": [
                 {
-                  "condition": "minecraft:block_state_property",
                   "block": "oppamod:water_leaf_block",
+                  "condition": "minecraft:block_state_property",
                   "properties": {
-                    "age": "2"
+                    "age": "3"
                   }
                 }
               ],
@@ -27,42 +31,38 @@
             }
           ]
         }
-      ]
+      ],
+      "rolls": 1
     },
     {
-      "rolls": 1.0,
-      "bonus_rolls": 0.0,
+      "bonus_rolls": 0,
+      "conditions": [
+        {
+          "block": "oppamod:water_leaf_block",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "age": "3"
+          }
+        }
+      ],
       "entries": [
         {
           "type": "minecraft:item",
           "functions": [
             {
-              "function": "minecraft:apply_bonus",
               "enchantment": "minecraft:fortune",
               "formula": "minecraft:binomial_with_bonus_count",
+              "function": "minecraft:apply_bonus",
               "parameters": {
-                "extra": 1,
-                "probability": 0.4
+                "extra": 3,
+                "probability": 0.5714286
               }
             }
           ],
           "name": "oppamod:water_leaf_seed"
         }
       ],
-      "conditions": [
-        {
-          "condition": "minecraft:block_state_property",
-          "block": "oppamod:water_leaf_block",
-          "properties": {
-            "age": "2"
-          }
-        }
-      ]
-    }
-  ],
-  "functions": [
-    {
-      "function": "minecraft:explosion_decay"
+      "rolls": 1
     }
   ]
 }
