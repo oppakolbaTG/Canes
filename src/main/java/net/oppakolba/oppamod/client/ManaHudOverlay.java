@@ -20,13 +20,13 @@ public class ManaHudOverlay {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0f, 1.0f,1.0f,1.0f);
         RenderSystem.setShaderTexture(0, MANA_SHELL);
-        GuiComponent.blit(poseStack, width - 30, 11, 0, 0 , 30, 71, 30, 71);
+        GuiComponent.blit(poseStack, width - 335, 175, 0, 0 , 30, 71, 30, 71);
 
 
         RenderSystem.setShaderTexture(0, MANA_TRAIT);
         for(int i = 0; i < 100; i += 4){
             if(ClientManaData.getplayerMana() > i){
-                GuiComponent.blit(poseStack, width - 35 , 59 - (i /4) * 2, 0, 0, 40, 22, 40, 22);
+                GuiComponent.blit(poseStack, width - 340 , 223 - (i /4) * 2, 0, 0, 40, 22, 40, 22);
             }
             else{
                 break;

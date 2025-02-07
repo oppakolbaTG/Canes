@@ -57,7 +57,6 @@ public class ModEvents {
 
 
                     ModMessage.sendToPlayer(new ManaDataSyncC2SPacket(mana.getMana()), ((ServerPlayer) event.player));
-                    event.player.sendSystemMessage(Component.literal("added 1 mana" + mana.getMana()));
                     lastManaUpdateTime = currentTime;
                     if(mana.getMana() > 100){
                         int rem = mana.getMana() - 100;
