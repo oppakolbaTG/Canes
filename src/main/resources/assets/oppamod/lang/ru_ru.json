@@ -17,6 +17,9 @@
 
   "itemGroup.oppamodtab": "Террария",
 
+  "message.oppamod.mana_use": "Вы можете получить ману",
+  "message.oppamod.mana_no_use": "Вы не можете получить ману",
+
   "key.category.oppamod.oppaterra": "ОппаТерраМод",
   "key.oppamod.mana_use": "Использовать Ману"
 }

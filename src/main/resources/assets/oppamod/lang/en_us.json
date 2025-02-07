@@ -17,6 +17,9 @@
 
   "itemGroup.oppamodtab": "Terraria",
 
+  "message.oppamod.mana_use": "You can get mana",
+  "message.oppamod.mana_no_use": "You can not get mana",
+
   "key.category.oppamod.oppaterra": "OppaTerraMod",
   "key.oppamod.mana_use": "MANA_USE"
 }

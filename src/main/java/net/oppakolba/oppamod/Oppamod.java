@@ -12,6 +12,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.oppakolba.oppamod.block.ModBlocks;
 import net.oppakolba.oppamod.item.ModItems;
+import net.oppakolba.oppamod.networking.ModMessage;
 import net.oppakolba.oppamod.painting.ModPainting;
 import net.oppakolba.oppamod.sound.ModSounds;
 import net.oppakolba.oppamod.world.feature.ModConfiguredFeatures;
@@ -42,7 +43,7 @@ public class Oppamod {
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-
+        ModMessage.register();
     }
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent

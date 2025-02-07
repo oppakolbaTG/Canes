@@ -7,5 +7,14 @@
         "pitch": 1.0
       }
     ]
+  },
+  "mana_use": {
+    "sounds": [
+      {
+        "name": "oppamod:mana_use",
+        "volume": 1.0,
+        "pitch": 1.0
+      }
+    ]
   }
 }
