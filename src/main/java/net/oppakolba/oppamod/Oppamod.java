@@ -43,7 +43,10 @@ public class Oppamod {
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-        ModMessage.register();
+        event.enqueueWork(() -> {
+            ModMessage.register();
+        });
+
     }
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
