@@ -17,7 +17,7 @@ public class PlayerMana {
     public void addMana(int add){
         this.mana = Math.max(mana + add, MIN_MANA);
     }
-    public void updateMana(int upd){this.MAX_MANA = Math.max(MAX_MANA + upd, MIN_MANA);}
+    public void updateMana(int upd) {this.MAX_MANA = Math.max(MAX_MANA + upd, MIN_MANA);}
     public void subMana(int sub){
         this.mana = Math.min(mana - sub, MAX_MANA);
     }
