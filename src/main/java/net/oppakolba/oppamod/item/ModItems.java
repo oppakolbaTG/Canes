@@ -13,6 +13,7 @@ import net.minecraftforge.registries.RegistryObject;
 import net.oppakolba.oppamod.Oppamod;
 import net.oppakolba.oppamod.block.ModBlocks;
 import net.oppakolba.oppamod.item.Custom.EyeItem;
+import net.oppakolba.oppamod.item.Custom.Majicwand;
 import net.oppakolba.oppamod.item.Custom.ManaCrystal;
 import net.oppakolba.oppamod.item.Custom.OrangeItem;
 
@@ -55,6 +56,9 @@ public class ModItems {
 
     public static final RegistryObject<Item> PLATINUM_BAR = ITEMS.register("platinum_bar",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.OPPA_TAB)));
+
+    public static final RegistryObject<Item> MAGIC_WAND = ITEMS.register("magic_wand",
+            () -> new Majicwand(new Item.Properties().tab(ModCreativeModeTab.OPPA_TAB)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

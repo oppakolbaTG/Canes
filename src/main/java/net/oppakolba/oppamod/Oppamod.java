@@ -11,6 +11,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.oppakolba.oppamod.block.ModBlocks;
+import net.oppakolba.oppamod.entity.ModEntities;
 import net.oppakolba.oppamod.item.ModItems;
 import net.oppakolba.oppamod.networking.ModMessage;
 import net.oppakolba.oppamod.painting.ModPainting;
@@ -38,6 +39,7 @@ public class Oppamod {
         ModSounds.SOUNDS.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
+        ModEntities.ENTITIES.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
     }
