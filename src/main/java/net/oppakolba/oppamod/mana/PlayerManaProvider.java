@@ -12,13 +12,12 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class PlayerManaProvider implements ICapabilityProvider, INBTSerializable<CompoundTag> {
-    public static Capability<PlayerMana> PLAYER_MANA = CapabilityManager.get(new CapabilityToken<PlayerMana>() { });
-
+    public static Capability<PlayerMana> PLAYER_MANA = CapabilityManager.get(new CapabilityToken<PlayerMana>() {  });
 
     private PlayerMana mana = null;
     private final LazyOptional<PlayerMana> optional = LazyOptional.of(this::createPlayerMana);
 
-    private @NotNull PlayerMana createPlayerMana() {
+    private PlayerMana createPlayerMana() {
         if(this.mana == null){
             this.mana = new PlayerMana();
         }
@@ -28,16 +27,17 @@ public class PlayerManaProvider implements ICapabilityProvider, INBTSerializable
 
     @Override
     public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-        if(cap == PLAYER_MANA) return optional.cast();
+        if(cap == PLAYER_MANA){
+            return optional.cast();
+        }
         return LazyOptional.empty();
     }
-
 
     @Override
     public CompoundTag serializeNBT() {
         CompoundTag nbt = new CompoundTag();
         createPlayerMana().saveNBTData(nbt);
-        return  nbt;
+        return nbt;
     }
 
     @Override
