@@ -1,0 +1,17 @@
+package net.oppakolba.oppamod.client.renderer;
+
+
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.EntityRenderersEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.oppakolba.oppamod.Oppamod;
+import net.oppakolba.oppamod.entity.ModEntities;
+
+@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, modid = Oppamod.MOD_ID, value = Dist.CLIENT)
+public class MobEntitiesRenderer {
+    @SubscribeEvent
+    public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event){
+        event.registerEntityRenderer(ModEntities.CUSTOM_FIREBALL.get(), CustomFireballRenderer::new);
+    }
+}

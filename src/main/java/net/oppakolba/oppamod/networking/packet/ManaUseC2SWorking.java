@@ -45,7 +45,7 @@ public class ManaUseC2SWorking {
                         level.playSound(null, player.getOnPos(), ModSounds.MANA_USE.get(), SoundSource.PLAYERS, 0.5f, level.random.nextFloat() * 0.1f + 0.9f);
                         mana.addMana(20);
                         player.getInventory().contains(new ItemStack(ModItems.MANA_CRYSTAL.get()));
-                        ModMessage.sendToPlayer(new ManaDataSyncC2SPacket(mana.getMana()), player);
+                        ModMessage.sendToPlayer(new ManaDataSyncS2CPacket(mana.getMana()), player);
                         if(mana.getMana() > 100){
                             int rem = mana.getMana() - 100;
                             mana.subMana(rem);
@@ -53,7 +53,7 @@ public class ManaUseC2SWorking {
                     }
 
                     else{
-                        ModMessage.sendToPlayer(new ManaDataSyncC2SPacket(mana.getMana()), player);
+                        ModMessage.sendToPlayer(new ManaDataSyncS2CPacket(mana.getMana()), player);
                     }
             });
         });

@@ -7,14 +7,14 @@ import net.oppakolba.oppamod.client.ClientManaData;
 
 import java.util.function.Supplier;
 
-public class ManaDataSyncC2SPacket {
+public class ManaDataSyncS2CPacket {
     private final int mana;
 
 
-    public ManaDataSyncC2SPacket(int mana){
+    public ManaDataSyncS2CPacket(int mana){
         this.mana = mana;
     }
-    public ManaDataSyncC2SPacket(FriendlyByteBuf buf){
+    public ManaDataSyncS2CPacket(FriendlyByteBuf buf){
         this.mana = buf.readInt();
     }
 

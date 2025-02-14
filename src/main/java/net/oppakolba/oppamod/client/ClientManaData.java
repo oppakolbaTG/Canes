@@ -6,7 +6,7 @@ public class ClientManaData {
     public static void set(int mana){
         ClientManaData.playerMana = mana;
     }
-    public static int getplayerMana(){
+    public static int getPlayerMana(){
         return playerMana;
     }
 }

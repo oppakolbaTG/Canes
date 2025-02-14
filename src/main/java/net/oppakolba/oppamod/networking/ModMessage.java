@@ -7,7 +7,7 @@ import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.PacketDistributor;
 import net.minecraftforge.network.simple.SimpleChannel;
 import net.oppakolba.oppamod.Oppamod;
-import net.oppakolba.oppamod.networking.packet.ManaDataSyncC2SPacket;
+import net.oppakolba.oppamod.networking.packet.ManaDataSyncS2CPacket;
 import net.oppakolba.oppamod.networking.packet.ManaUseC2SWorking;
 
 public class  ModMessage {
@@ -34,10 +34,10 @@ public class  ModMessage {
                 .consumerMainThread(ManaUseC2SWorking::handle)
                 .add();
 
-        net.messageBuilder(ManaDataSyncC2SPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
-                .decoder(ManaDataSyncC2SPacket::new)
-                .encoder(ManaDataSyncC2SPacket::toByte)
-                .consumerMainThread(ManaDataSyncC2SPacket::handle)
+        net.messageBuilder(ManaDataSyncS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(ManaDataSyncS2CPacket::new)
+                .encoder(ManaDataSyncS2CPacket::toByte)
+                .consumerMainThread(ManaDataSyncS2CPacket::handle)
                 .add();
     }
 

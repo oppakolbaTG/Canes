@@ -1,4 +1,4 @@
-package net.oppakolba.oppamod.client.gui;
-
-public class StatsScreen {
-}
+//package net.oppakolba.oppamod.client.gui;
+//
+//public class StatsScreen {
+//}

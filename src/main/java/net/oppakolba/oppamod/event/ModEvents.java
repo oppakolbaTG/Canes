@@ -1,6 +1,5 @@
 package net.oppakolba.oppamod.event;
 
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
@@ -17,7 +16,7 @@ import net.oppakolba.oppamod.Oppamod;
 import net.oppakolba.oppamod.mana.PlayerMana;
 import net.oppakolba.oppamod.mana.PlayerManaProvider;
 import net.oppakolba.oppamod.networking.ModMessage;
-import net.oppakolba.oppamod.networking.packet.ManaDataSyncC2SPacket;
+import net.oppakolba.oppamod.networking.packet.ManaDataSyncS2CPacket;
 
 @Mod.EventBusSubscriber(modid = Oppamod.MOD_ID)
 public class ModEvents {
@@ -56,7 +55,7 @@ public class ModEvents {
             mana.addMana(1);
 
 
-                    ModMessage.sendToPlayer(new ManaDataSyncC2SPacket(mana.getMana()), ((ServerPlayer) event.player));
+                    ModMessage.sendToPlayer(new ManaDataSyncS2CPacket(mana.getMana()), ((ServerPlayer) event.player));
                     lastManaUpdateTime = currentTime;
                     if(mana.getMana() > 100){
                         int rem = mana.getMana() - 100;
@@ -71,7 +70,7 @@ public class ModEvents {
         if(!event.getLevel().isClientSide){
             if(event.getEntity() instanceof ServerPlayer player){
                 player.getCapability(PlayerManaProvider.PLAYER_MANA).ifPresent(mana -> {
-                    ModMessage.sendToPlayer(new ManaDataSyncC2SPacket(mana.getMana()), player);
+                    ModMessage.sendToPlayer(new ManaDataSyncS2CPacket(mana.getMana()), player);
                 });
             }
         }
