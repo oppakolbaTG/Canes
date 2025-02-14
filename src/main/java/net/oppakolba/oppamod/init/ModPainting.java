@@ -1,4 +1,4 @@
-package net.oppakolba.oppamod.painting;
+package net.oppakolba.oppamod.init;
 
 import net.minecraft.world.entity.decoration.PaintingVariant;
 import net.minecraftforge.eventbus.api.IEventBus;

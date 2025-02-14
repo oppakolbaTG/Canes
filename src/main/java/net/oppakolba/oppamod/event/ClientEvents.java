@@ -33,7 +33,7 @@ public class ClientEvents {
         @SubscribeEvent
         public static void registerGuiOverlays(RegisterGuiOverlaysEvent event){
             event.registerAboveAll("mana", ManaHudOverlay.HUD_MANA);
-            System.out.println("HUD маны зарегистрирован!");
+
     }
 
     }

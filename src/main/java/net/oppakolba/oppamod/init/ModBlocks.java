@@ -1,4 +1,4 @@
-package net.oppakolba.oppamod.block;
+package net.oppakolba.oppamod.init;
 
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
@@ -17,7 +17,6 @@ import net.oppakolba.oppamod.Oppamod;
 import net.oppakolba.oppamod.block.custom.LampBlock;
 import net.oppakolba.oppamod.block.custom.WaterLeafBlock;
 import net.oppakolba.oppamod.item.ModCreativeModeTab;
-import net.oppakolba.oppamod.item.ModItems;
 
 import java.util.function.Supplier;
 

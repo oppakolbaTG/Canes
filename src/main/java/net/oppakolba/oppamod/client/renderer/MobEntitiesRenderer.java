@@ -6,7 +6,7 @@ import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.oppakolba.oppamod.Oppamod;
-import net.oppakolba.oppamod.entity.ModEntities;
+import net.oppakolba.oppamod.init.ModEntities;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, modid = Oppamod.MOD_ID, value = Dist.CLIENT)
 public class MobEntitiesRenderer {

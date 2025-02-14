@@ -49,7 +49,7 @@ public class CustomFireball extends AbstractHurtingProjectile  {
     protected void onHitEntity(EntityHitResult result) {
         super.onHitEntity(result);
         if(!this.level.isClientSide()){
-            result.getEntity().hurt(DamageSource.indirectMagic(this, this.getOwner()), getPower());
+            this.level.explode(null , this.getX(), this.getY(), this.getZ(),getPower() / 2.0f, Explosion.BlockInteraction.DESTROY);
             this.discard();
         }
     }

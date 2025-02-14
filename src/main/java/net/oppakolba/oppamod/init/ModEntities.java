@@ -1,4 +1,4 @@
-package net.oppakolba.oppamod.entity;
+package net.oppakolba.oppamod.init;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
@@ -9,7 +9,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.oppakolba.oppamod.Oppamod;
 import net.oppakolba.oppamod.entity.custom.CustomFireball;
-import org.apache.http.util.EntityUtils;
 
 public class ModEntities {
     public static final DeferredRegister<EntityType<?>> ENTITIES =

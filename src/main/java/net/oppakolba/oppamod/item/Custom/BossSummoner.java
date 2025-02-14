@@ -24,7 +24,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
-import net.oppakolba.oppamod.sound.ModSounds;
+import net.oppakolba.oppamod.init.ModSounds;
 
 
 public class BossSummoner extends SpawnEggItem {

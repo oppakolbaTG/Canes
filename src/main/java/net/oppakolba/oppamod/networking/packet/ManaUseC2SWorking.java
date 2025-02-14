@@ -7,10 +7,10 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.network.NetworkEvent;
-import net.oppakolba.oppamod.item.ModItems;
+import net.oppakolba.oppamod.init.ModItems;
 import net.oppakolba.oppamod.mana.PlayerManaProvider;
 import net.oppakolba.oppamod.networking.ModMessage;
-import net.oppakolba.oppamod.sound.ModSounds;
+import net.oppakolba.oppamod.init.ModSounds;
 
 import java.util.function.Supplier;
 
@@ -34,7 +34,7 @@ public class ManaUseC2SWorking {
             ServerPlayer player = context.getSender();
             ServerLevel level = player.getLevel();
             player.getCapability(PlayerManaProvider.PLAYER_MANA).ifPresent(mana ->{
-                    if(ManaCrystalIsSelected(player, level) && mana.getMana() < 100) {
+                    if(ManaCrystalIsSelected(player, level) && mana.getMana() < mana.getMMana()) {
                         for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
                             ItemStack stack = player.getInventory().getItem(i);
                             if (stack.getItem() == ModItems.MANA_CRYSTAL.get() && !stack.isEmpty()) {
@@ -46,8 +46,8 @@ public class ManaUseC2SWorking {
                         mana.addMana(20);
                         player.getInventory().contains(new ItemStack(ModItems.MANA_CRYSTAL.get()));
                         ModMessage.sendToPlayer(new ManaDataSyncS2CPacket(mana.getMana()), player);
-                        if(mana.getMana() > 100){
-                            int rem = mana.getMana() - 100;
+                        if(mana.getMana() > mana.getMMana()){
+                            int rem = mana.getMana() - mana.getMMana();
                             mana.subMana(rem);
                         }
                     }

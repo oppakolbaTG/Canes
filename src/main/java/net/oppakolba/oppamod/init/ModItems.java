@@ -1,4 +1,4 @@
-package net.oppakolba.oppamod.item;
+package net.oppakolba.oppamod.init;
 
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -11,11 +11,11 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.oppakolba.oppamod.Oppamod;
-import net.oppakolba.oppamod.block.ModBlocks;
 import net.oppakolba.oppamod.item.Custom.EyeItem;
 import net.oppakolba.oppamod.item.Custom.FireballCane;
 import net.oppakolba.oppamod.item.Custom.ManaCrystal;
 import net.oppakolba.oppamod.item.Custom.OrangeItem;
+import net.oppakolba.oppamod.item.ModCreativeModeTab;
 
 public class ModItems {
     public static final DeferredRegister<Item> ITEMS =
@@ -58,7 +58,7 @@ public class ModItems {
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.OPPA_TAB)));
 
    public static final RegistryObject<Item> FIREBALL_CANE = ITEMS.register("fireball_cane",
-            () -> new FireballCane(new Item.Properties().tab(ModCreativeModeTab.OPPA_TAB)));
+            () -> new FireballCane(new Item.Properties().tab(ModCreativeModeTab.OPPA_TAB).stacksTo(1)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

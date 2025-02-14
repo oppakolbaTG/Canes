@@ -5,6 +5,7 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -13,8 +14,11 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.oppakolba.oppamod.init.ModSounds;
 import net.oppakolba.oppamod.mana.PlayerMana;
 import net.oppakolba.oppamod.mana.PlayerManaProvider;
+import net.oppakolba.oppamod.networking.ModMessage;
+import net.oppakolba.oppamod.networking.packet.ManaDataSyncS2CPacket;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -24,13 +28,30 @@ public class ManaCrystal extends Item {
         super(p_41383_);
     }
 
-
     @Override
-    public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component> components, TooltipFlag tooltipFlag) {
-        if(Screen.hasShiftDown()){
-            components.add(Component.literal("\n\n Навсегда увеличивает максимальный запас маны на 20"
-            ).withStyle(ChatFormatting.YELLOW).withStyle(ChatFormatting.ITALIC));
+    public InteractionResult useOn(UseOnContext context) {
+        ItemStack itemStack = context.getItemInHand();
+        Level level = context.getLevel();
+        Player player = context.getPlayer();
+        if (player != null && !level.isClientSide()) {
+            player.getCapability(PlayerManaProvider.PLAYER_MANA).ifPresent(mana -> {
+                int maxMana = mana.getMMana();
+                int currentMana = mana.getMana();
+                mana.addMana(20);
+                if (mana.getMana() > maxMana) {
+                    int excessMana = mana.getMana() - maxMana;
+                    mana.subMana(excessMana);
+                }
+                if (mana.getMana() != currentMana) {
+                    if (player instanceof ServerPlayer serverPlayer) {
+                        ModMessage.sendToPlayer(new ManaDataSyncS2CPacket(mana.getMana()), serverPlayer);
+                    }
+                }
+                level.playSound(null, player.getOnPos(), ModSounds.MANA_USE.get(), SoundSource.PLAYERS, 0.5f, level.random.nextFloat() * 0.1f + 0.9f);
+                itemStack.shrink(1);
+                player.getCooldowns().addCooldown(this, 40);
+            });
         }
-        super.appendHoverText(itemStack, level, components, tooltipFlag);
+        return InteractionResult.CONSUME;
     }
 }

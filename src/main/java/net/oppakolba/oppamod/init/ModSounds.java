@@ -1,6 +1,5 @@
-package net.oppakolba.oppamod.sound;
+package net.oppakolba.oppamod.init;
 
-import net.minecraft.client.resources.sounds.Sound;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraftforge.registries.DeferredRegister;
