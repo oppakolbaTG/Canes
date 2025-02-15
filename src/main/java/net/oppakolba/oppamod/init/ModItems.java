@@ -57,6 +57,9 @@ public class ModItems {
     public static final RegistryObject<Item> PLATINUM_BAR = ITEMS.register("platinum_bar",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.OPPA_TAB)));
 
+    public static final RegistryObject<Item> SAMPLE_CANE = ITEMS.register("sample_cane",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.OPPA_TAB)));
+
    public static final RegistryObject<Item> FIREBALL_CANE = ITEMS.register("fireball_cane",
             () -> new FireballCane(new Item.Properties().tab(ModCreativeModeTab.OPPA_TAB).stacksTo(1)));
 

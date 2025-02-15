@@ -1,5 +1,7 @@
 package net.oppakolba.oppamod.entity.custom;
 
+import net.minecraft.core.particles.ParticleType;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializer;
@@ -14,6 +16,7 @@ import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.NetworkHooks;
 import org.checkerframework.checker.units.qual.C;
 
@@ -37,13 +40,14 @@ public class CustomFireball extends AbstractHurtingProjectile  {
 
     @Override
     public void tick() {
-        super.tick();
-        if(this.isInWater()) this.discard();
+        super.tick();;
+
     }
 
     public float getPower(){
         return this.entityData.get(POWER);
     }
+
 
     @Override
     protected void onHitEntity(EntityHitResult result) {
