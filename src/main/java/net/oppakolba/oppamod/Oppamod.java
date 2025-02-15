@@ -32,15 +32,11 @@ public class Oppamod {
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
         ModPainting.register(modEventBus);
-
         ModConfiguredFeatures.register(modEventBus);
         ModPlacedFeatures.register(modEventBus);
-
         ModSounds.SOUNDS.register(modEventBus);
-
         modEventBus.addListener(this::commonSetup);
         ModEntities.ENTITIES.register(modEventBus);
-
         MinecraftForge.EVENT_BUS.register(this);
     }
 

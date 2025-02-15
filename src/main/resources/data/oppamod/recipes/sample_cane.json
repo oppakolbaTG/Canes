@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key":{
+  "#": {"item": "oppamod:platinum_bar"},
+    "&": {"item": "minecraft:iron_ingot"}
+
+},
+  "pattern": [
+    " # ",
+    " & ",
+    " & "
+  ],
+
+  "result": {
+    "item": "oppamod:sample_cane"
+  }
+}
