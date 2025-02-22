@@ -13,6 +13,13 @@ public class PlayerMana {
     public int getMMana(){
         return MAX_MANA;
     }
+    public void setMana(int mana){
+        this.mana = mana;
+    }
+    public void setMMana(int MaxMana){
+        this.MAX_MANA = MaxMana;
+    }
+
 
     public void addMana(int add){
         this.mana = Math.max(mana + add, MIN_MANA);
@@ -24,11 +31,11 @@ public class PlayerMana {
     public void copyFrom(PlayerMana source){
         this.mana = source.mana;
     }
-      public void saveNBTData(CompoundTag nbt){
+    public void saveNBTData(CompoundTag nbt){
         nbt.putInt("mana", mana);
-      }
-      public void loadNBTData(CompoundTag nbt){
+    }
+    public void loadNBTData(CompoundTag nbt){
         nbt.getInt("mana");
-      }
+    }
 
 }

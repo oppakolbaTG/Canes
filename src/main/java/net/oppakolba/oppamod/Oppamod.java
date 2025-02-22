@@ -1,6 +1,7 @@
 package net.oppakolba.oppamod;
 
 import com.mojang.logging.LogUtils;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraftforge.common.MinecraftForge;
@@ -10,12 +11,9 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.oppakolba.oppamod.init.ModBlocks;
-import net.oppakolba.oppamod.init.ModEntities;
-import net.oppakolba.oppamod.init.ModItems;
+import net.oppakolba.oppamod.init.*;
 import net.oppakolba.oppamod.networking.ModMessage;
-import net.oppakolba.oppamod.init.ModPainting;
-import net.oppakolba.oppamod.init.ModSounds;
+import net.oppakolba.oppamod.screen.AlterioTableScreen;
 import net.oppakolba.oppamod.world.feature.ModConfiguredFeatures;
 import net.oppakolba.oppamod.world.feature.ModPlacedFeatures;
 import org.slf4j.Logger;
@@ -35,8 +33,10 @@ public class Oppamod {
         ModConfiguredFeatures.register(modEventBus);
         ModPlacedFeatures.register(modEventBus);
         ModSounds.SOUNDS.register(modEventBus);
-        modEventBus.addListener(this::commonSetup);
         ModEntities.ENTITIES.register(modEventBus);
+        ModBlockEntities.BLOCK_ENTITIES.register(modEventBus);
+        ModMenuTypes.MENUS.register(modEventBus);
+        modEventBus.addListener(this::commonSetup);
         MinecraftForge.EVENT_BUS.register(this);
     }
 
@@ -54,6 +54,7 @@ public class Oppamod {
         @SuppressWarnings("removal")
         public static void onClientSetup(FMLClientSetupEvent event) {
             ItemBlockRenderTypes.setRenderLayer(ModBlocks.WATER_LEAF_BLOCK.get(), RenderType.cutout());
+            MenuScreens.register(ModMenuTypes.ALTERIO_TABLE_MENU.get(), AlterioTableScreen::new);
         }
     }
 }

@@ -14,6 +14,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.oppakolba.oppamod.Oppamod;
+import net.oppakolba.oppamod.block.custom.AlterionatingTableBlock;
 import net.oppakolba.oppamod.block.custom.LampBlock;
 import net.oppakolba.oppamod.block.custom.WaterLeafBlock;
 import net.oppakolba.oppamod.item.ModCreativeModeTab;
@@ -31,13 +32,11 @@ public static final RegistryObject<Block> PLATINUM_ORE = registerBlock("platinum
                 .requiresCorrectToolForDrops(),
                 UniformInt.of(3,5)), ModCreativeModeTab.OPPA_TAB);
 
-    public static final RegistryObject<Block> CRIMSON_ALTAR = registerBlock("crimson_altar",
-            () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE)
+    public static final RegistryObject<Block> AlTERIONATING_TABLE = registerBlock("alterionating_table",
+            () -> new AlterionatingTableBlock(BlockBehaviour.Properties.of(Material.STONE)
                     .noOcclusion()
-                    .strength( 40f)
-                    .lightLevel(state -> 13)
-                    .requiresCorrectToolForDrops(),
-                    UniformInt.of(3, 5)), ModCreativeModeTab.OPPA_TAB);
+                    .strength( 30f)
+                    .requiresCorrectToolForDrops()), ModCreativeModeTab.OPPA_TAB);
 
     public static final RegistryObject<Block> PLATINUM_BLOCK = registerBlock("platinum_block",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)

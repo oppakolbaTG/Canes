@@ -49,25 +49,18 @@ public class  FireballCane extends Item {
                 return;
             }
 
-            // Проверяем наличие маны
             LazyOptional<PlayerMana> manaOptional = player.getCapability(PlayerManaProvider.PLAYER_MANA);
             if (manaOptional.isPresent()) {
                 PlayerMana mana = manaOptional.orElseThrow(IllegalAccessError::new);
                 if (mana.getMana() >= 10) {
                     mana.subMana(10);
 
-                    // Создание кастомного fireball
                     CustomFireball customFireball = new CustomFireball(ModEntities.CUSTOM_FIREBALL.get(), level, player,
-                            player.getLookAngle().x, player.getLookAngle().y, player.getLookAngle().z, 6.0f);
+                            player.getLookAngle().x, player.getLookAngle().y , player.getLookAngle().z, 6.0f);
                     level.addFreshEntity(customFireball);
+                    player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 40 , 5));
 
-                    // Накладываем эффект сопротивления урону
-                    player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 40, 5));
-
-                    // Добавляем откат на предмет
                     player.getCooldowns().addCooldown(this, 40);
-
-                    // Синхронизируем ману с клиентом
                     if (player instanceof ServerPlayer serverPlayer) {
                         ModMessage.sendToPlayer(new ManaDataSyncS2CPacket(mana.getMana()), serverPlayer);
                     }
@@ -81,7 +74,10 @@ public class  FireballCane extends Item {
     @Override
     public void onUseTick(Level world, LivingEntity entity, ItemStack stack, int count) {
         if (world.isClientSide) {
-            world.addParticle(ParticleTypes.FLAME, entity.getX(), entity.getEyeY(), entity.getZ(), 0, 0, 0);
+            for (int i = 0; i < 2; i++){
+                world.addParticle(ParticleTypes.FLAME, entity.getX() + 2 * Math.pow(-1, i), entity.getEyeY(), entity.getZ(), 0, 0, 0);
+                world.addParticle(ParticleTypes.FLAME, entity.getX(), entity.getEyeY(), entity.getZ() + 2 * Math.pow(-1, i), 0, 0, 0);
+            }
         }
     }
 

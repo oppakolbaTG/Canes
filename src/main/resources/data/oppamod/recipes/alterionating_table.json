@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "minecraft:crying_obsidian"
+    },
+    "D": {
+      "item": "minecraft:gold_ingot"
+    }
+  },
+  "pattern": [
+    "D#D",
+    "###"
+  ],
+  "result": {
+    "item": "oppamod:alterionating_table"
+  }
+}

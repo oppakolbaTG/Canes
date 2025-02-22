@@ -10,12 +10,13 @@
   "item.oppamod.sample_cane": "Sample Cane",
 
 
-  "block.oppamod.crimson_altar": "Crimson Altar",
-  "block.oppamod.demonic_altar": "Demonic Altar",
   "block.oppamod.t_lamp_block": "Lamp Block",
   "block.oppamod.water_leaf_block": "Water Leaf",
   "block.oppamod.platinum_ore": "Platinum Ore",
   "block.oppamod.platinum_block": "Platinum Block",
+  "block.oppamod.alterionating_table": "Alterio Table",
+
+
   "entity.minecraft.villager.t_super_villager": "Super Villager",
 
   "itemGroup.oppamodtab": "Terraria",

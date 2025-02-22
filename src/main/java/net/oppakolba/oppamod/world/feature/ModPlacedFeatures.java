@@ -16,10 +16,6 @@ public class ModPlacedFeatures {
     public static final DeferredRegister<PlacedFeature> PLACED_FEATURES =
             DeferredRegister.create(Registry.PLACED_FEATURE_REGISTRY, Oppamod.MOD_ID);
 
-public static final RegistryObject<PlacedFeature> CRIMSON_ALTAR_PLACED = PLACED_FEATURES.register("crimson_altar_placed",
-        () -> new PlacedFeature(ModConfiguredFeatures.CRIMSON_ALTAR.getHolder().get(), commonOrePlacement(20, //Veins per chunks
-                        HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.belowTop(80)))));
-
 public static final RegistryObject<PlacedFeature> PLATINUM_ORE_PLACED = PLACED_FEATURES.register("platinum_ore_placed",
         () -> new PlacedFeature(ModConfiguredFeatures.PLATINUM_ORE.getHolder().get(), commonOrePlacement(8,
                         HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.belowTop(80)))));
