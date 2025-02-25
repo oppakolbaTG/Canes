@@ -1,0 +1,11 @@
+{
+  "type": "oppamod:alterio_table",
+  "ingredient": [
+    {
+      "item": "oppamod:sample_cane"
+    }
+  ],
+  "output": {
+    "item": "oppamod:fireball_cane"
+  }
+}

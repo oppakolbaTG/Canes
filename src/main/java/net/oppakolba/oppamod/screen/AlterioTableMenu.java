@@ -9,12 +9,13 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
-import net.oppakolba.oppamod.block.entity.AlterionatingTableEntity;
+import net.oppakolba.oppamod.block.entity.AlterioTableEntity;
 import net.oppakolba.oppamod.init.ModBlocks;
 import net.oppakolba.oppamod.init.ModMenuTypes;
+import org.jetbrains.annotations.NotNull;
 
 public class AlterioTableMenu extends AbstractContainerMenu {
-    public static AlterionatingTableEntity blockEntity;
+    public static AlterioTableEntity blockEntity;
     private static Level level;
     private static ContainerData data;
 
@@ -24,17 +25,17 @@ public class AlterioTableMenu extends AbstractContainerMenu {
     public AlterioTableMenu(int id, Inventory inv, BlockEntity entity, ContainerData data){
         super(ModMenuTypes.ALTERIO_TABLE_MENU.get(), id);
         checkContainerSize(inv, 3);
-        blockEntity = (AlterionatingTableEntity) entity;
+        blockEntity = (AlterioTableEntity) entity;
         this.level = inv.player.level;
         this.data = data;
 
-        addPlayerInvenory(inv);
+        addPlayerInventory(inv);
         addPlayerHotbar(inv);
 
         this.blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
             this.addSlot(new SlotItemHandler(handler, 0, 12 ,15));
-            this.addSlot(new SlotItemHandler(handler, 1, 86,15));
-            this.addSlot(new SlotItemHandler(handler, 2, 86 ,60));
+            this.addSlot(new SlotItemHandler(handler, 1, 105,15));
+            this.addSlot(new SlotItemHandler(handler, 2, 105,60));
         });
      }
 
@@ -62,7 +63,7 @@ public class AlterioTableMenu extends AbstractContainerMenu {
     private static final int TE_INVENTORY_SLOT_COUNT = 3;  // must be the number of slots you have!
 
     @Override
-    public ItemStack quickMoveStack(Player playerIn, int index) {
+    public @NotNull ItemStack quickMoveStack(Player playerIn, int index) {
         Slot sourceSlot = slots.get(index);
         if (sourceSlot == null || !sourceSlot.hasItem()) return ItemStack.EMPTY;  //EMPTY_ITEM
         ItemStack sourceStack = sourceSlot.getItem();
@@ -94,10 +95,10 @@ public class AlterioTableMenu extends AbstractContainerMenu {
         return copyOfSourceStack;
     }
     @Override
-    public boolean stillValid(Player player) {
-        return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()), player, ModBlocks.AlTERIONATING_TABLE.get());
+    public boolean stillValid(@NotNull Player player) {
+        return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()), player, ModBlocks.AlTERIO_TABLE.get());
     }
-    private void addPlayerInvenory(Inventory playerInventory){
+    private void addPlayerInventory(Inventory playerInventory){
         for(int i = 0; i < 3; i++){
             for(int l = 0; l < 9; l++){
                 this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 86 + i * 18));

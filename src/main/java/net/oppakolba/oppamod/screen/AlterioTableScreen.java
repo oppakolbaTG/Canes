@@ -11,7 +11,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.oppakolba.oppamod.Oppamod;
 
 public class AlterioTableScreen extends AbstractContainerScreen<AlterioTableMenu> {
-    private static final ResourceLocation TEXTURE = new ResourceLocation(Oppamod.MOD_ID, "textures/gui/alterionating_table_screen.png");
+    private static final ResourceLocation TEXTURE = new ResourceLocation(Oppamod.MOD_ID, "textures/gui/alterio_table_screen.png");
 
     public AlterioTableScreen(AlterioTableMenu menu, Inventory inventory, Component component) {
         super(menu, inventory, component);
@@ -23,28 +23,28 @@ public class AlterioTableScreen extends AbstractContainerScreen<AlterioTableMenu
     }
 
     @Override
-    protected void renderBg(PoseStack stack, float partialTick, int MouseX, int MouseY) {
+    protected void renderBg(PoseStack pstack, float pPartialTick, int pMouseX, int pMouseY) {
         RenderSystem.setShader(GameRenderer::getPositionShader);
         RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
         RenderSystem.setShaderTexture(0, TEXTURE);
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
 
-        this.blit(stack, x, y, 0, 0, imageWidth, imageHeight);
+        this.blit(pstack, x, y, 0, 0, imageWidth, imageHeight);
 
-        renderProgressArrow(stack, x, y);
+        renderProgressArrow(pstack, x, y);
     }
 
-    private void renderProgressArrow(PoseStack poseStack, int x, int y){
+    private void renderProgressArrow(PoseStack pPoseStack, int x, int y){
         if(menu.isCrafting()){
-            blit(poseStack, x + 105, y + 33, 176, 0, 8, menu.getScaledProgress());
+            blit(pPoseStack, x + 105, y + 53, 176, 0, 8, menu.getScaledProgress());
         }
     }
 
     @Override
-    public void render(PoseStack stack, int MouseX, int MouseY, float delta) {
-        renderBackground(stack);
-        super.render(stack, MouseX, MouseY, delta);
-        renderTooltip(stack, MouseX, MouseY);
+    public void render(PoseStack pPoseStack, int MouseX, int MouseY, float delta) {
+        renderBackground(pPoseStack);
+        super.render(pPoseStack, MouseX, MouseY, delta);
+        renderTooltip(pPoseStack, MouseX, MouseY);
     }
 }

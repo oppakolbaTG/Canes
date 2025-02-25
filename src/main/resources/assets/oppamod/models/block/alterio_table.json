@@ -2,7 +2,7 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [64, 64],
 	"textures": {
-		"1": "oppamod:block/alterionating_details"
+		"1": "oppamod:block/alterio_details"
 	},
 	"elements": [
 		{

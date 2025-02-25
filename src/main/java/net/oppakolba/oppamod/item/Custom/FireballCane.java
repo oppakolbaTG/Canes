@@ -15,6 +15,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.util.LazyOptional;
+import net.oppakolba.oppamod.entity.custom.FireballSeal;
 import net.oppakolba.oppamod.init.ModEntities;
 import net.oppakolba.oppamod.entity.custom.CustomFireball;
 import net.oppakolba.oppamod.mana.PlayerMana;
@@ -36,16 +37,16 @@ public class  FireballCane extends Item {
 
     @Override
     public int getUseDuration(ItemStack stack) {
-        return 1000; // Максимальное время зарядки (как у лука)
+        return 1000;
     }
 
     @Override
     public void releaseUsing(ItemStack stack, Level level, LivingEntity entity, int timeLeft) {
         if (!level.isClientSide && entity instanceof Player player) {
-            int charge = 1000 - timeLeft; // Теперь правильно вычисляем длительность зарядки
+            int charge = 1000 - timeLeft;
 
-            if (charge < 20) {
-                player.sendSystemMessage(Component.literal("Зарядка слишком короткая!")); // Предупреждение
+            if (charge < 40) {
+                player.sendSystemMessage(Component.literal("Зарядка слишком короткая!"));
                 return;
             }
 
@@ -57,6 +58,7 @@ public class  FireballCane extends Item {
 
                     CustomFireball customFireball = new CustomFireball(ModEntities.CUSTOM_FIREBALL.get(), level, player,
                             player.getLookAngle().x, player.getLookAngle().y , player.getLookAngle().z, 6.0f);
+
                     level.addFreshEntity(customFireball);
                     player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 40 , 5));
 
@@ -72,11 +74,16 @@ public class  FireballCane extends Item {
     }
 
     @Override
-    public void onUseTick(Level world, LivingEntity entity, ItemStack stack, int count) {
-        if (world.isClientSide) {
+    public void onUseTick(Level level, LivingEntity entity, ItemStack stack, int count) {
+        if (level.isClientSide) {
             for (int i = 0; i < 2; i++){
-                world.addParticle(ParticleTypes.FLAME, entity.getX() + 2 * Math.pow(-1, i), entity.getEyeY(), entity.getZ(), 0, 0, 0);
-                world.addParticle(ParticleTypes.FLAME, entity.getX(), entity.getEyeY(), entity.getZ() + 2 * Math.pow(-1, i), 0, 0, 0);
+                if(entity instanceof Player player) {
+                    FireballSeal fireballSeal = new FireballSeal(ModEntities.FIREBALL_SEAL.get(), level, player);
+                    level.addFreshEntity(fireballSeal);
+                    level.addParticle(ParticleTypes.FLAME, entity.getX() + 2 * Math.pow(-1, i), entity.getEyeY(), entity.getZ(), 0, 0, 0);
+                    level.addParticle(ParticleTypes.FLAME, entity.getX(), entity.getEyeY(), entity.getZ() + 2 * Math.pow(-1, i), 0, 0, 0);
+                    System.out.println("kdjfkj" + fireballSeal.getX() + "," + fireballSeal.getY() + "," + fireballSeal.getZ());
+                }
             }
         }
     }

@@ -17,6 +17,7 @@ import net.oppakolba.oppamod.util.KeyBinding;
 public class ClientEvents {
     @Mod.EventBusSubscriber(modid = Oppamod.MOD_ID, value = Dist.CLIENT)
     public static class ClientForgeEvents {
+
         @SubscribeEvent
         public static void onKeyInput(InputEvent.Key event) {
             if (KeyBinding.MANA_USING_KEY.consumeClick()) {
@@ -26,6 +27,7 @@ public class ClientEvents {
     }
     @Mod.EventBusSubscriber(modid = Oppamod.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class ClientMobBusEvents{
+
         @SubscribeEvent
         public static void onKeyRegister(RegisterKeyMappingsEvent event){
             event.register(KeyBinding.MANA_USING_KEY);
