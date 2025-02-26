@@ -25,7 +25,7 @@ public class ModEntities {
     public static final RegistryObject<EntityType<FireballSeal>> FIREBALL_SEAL =
             ENTITIES.register("fireball_seal",
                     () -> EntityType.Builder.<FireballSeal>of(FireballSeal::new, MobCategory.MISC)
-                            .sized(1.0F, 1.0F).build("fireball_seal"));
+                            .sized(4.0F, 4.0F).build("fireball_seal"));
 
 
     public static void register(IEventBus eventBus){

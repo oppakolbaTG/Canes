@@ -15,6 +15,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.fml.common.Mod;
 import net.oppakolba.oppamod.entity.custom.FireballSeal;
 import net.oppakolba.oppamod.init.ModEntities;
 import net.oppakolba.oppamod.entity.custom.CustomFireball;
@@ -45,7 +46,7 @@ public class  FireballCane extends Item {
         if (!level.isClientSide && entity instanceof Player player) {
             int charge = 1000 - timeLeft;
 
-            if (charge < 40) {
+            if (charge < 20) {
                 player.sendSystemMessage(Component.literal("Зарядка слишком короткая!"));
                 return;
             }
@@ -66,8 +67,6 @@ public class  FireballCane extends Item {
                     if (player instanceof ServerPlayer serverPlayer) {
                         ModMessage.sendToPlayer(new ManaDataSyncS2CPacket(mana.getMana()), serverPlayer);
                     }
-                } else {
-                    player.sendSystemMessage(Component.literal("Мало маны!"));
                 }
             }
         }
@@ -75,18 +74,14 @@ public class  FireballCane extends Item {
 
     @Override
     public void onUseTick(Level level, LivingEntity entity, ItemStack stack, int count) {
-        if (level.isClientSide) {
-            for (int i = 0; i < 2; i++){
-                if(entity instanceof Player player) {
-                    FireballSeal fireballSeal = new FireballSeal(ModEntities.FIREBALL_SEAL.get(), level, player);
-                    level.addFreshEntity(fireballSeal);
-                    level.addParticle(ParticleTypes.FLAME, entity.getX() + 2 * Math.pow(-1, i), entity.getEyeY(), entity.getZ(), 0, 0, 0);
-                    level.addParticle(ParticleTypes.FLAME, entity.getX(), entity.getEyeY(), entity.getZ() + 2 * Math.pow(-1, i), 0, 0, 0);
-                    System.out.println("kdjfkj" + fireballSeal.getX() + "," + fireballSeal.getY() + "," + fireballSeal.getZ());
-                }
+        if(!level.isClientSide){
+            if(entity instanceof Player player){
+                FireballSeal fireballSeal = new FireballSeal(ModEntities.FIREBALL_SEAL.get(), level, player);
+                level.addFreshEntity(fireballSeal);
             }
         }
     }
+
 
     @Override
     public UseAnim getUseAnimation(ItemStack stack) {

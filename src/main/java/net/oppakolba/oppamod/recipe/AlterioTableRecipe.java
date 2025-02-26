@@ -1,5 +1,6 @@
 package net.oppakolba.oppamod.recipe;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import net.minecraft.core.NonNullList;
@@ -31,7 +32,7 @@ public class AlterioTableRecipe implements Recipe<SimpleContainer> {
         if(level.isClientSide) {
             return false;
         }
-        return recipeItem.get(0).test(simpleContainer.getItem(1));
+        return recipeItem.get(0).test(simpleContainer.getItem(0)) && recipeItem.get(1).test(simpleContainer.getItem(1));
     }
 
     @Override
@@ -78,8 +79,8 @@ public class AlterioTableRecipe implements Recipe<SimpleContainer> {
         public AlterioTableRecipe fromJson(ResourceLocation resourceLocation, JsonObject jsonObject) {
             ItemStack output = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(jsonObject, "output"));
 
-            JsonArray Ingredient = GsonHelper.getAsJsonArray(jsonObject, "ingredient");
-            NonNullList<Ingredient> inputs = NonNullList.withSize(1, net.minecraft.world.item.crafting.Ingredient.EMPTY);
+            JsonArray Ingredient = GsonHelper.getAsJsonArray(jsonObject, "ingredients");
+            NonNullList<Ingredient> inputs = NonNullList.withSize(2, net.minecraft.world.item.crafting.Ingredient.EMPTY);
             for(int i = 0; i < inputs.size(); i++){
                 inputs.set(i, net.minecraft.world.item.crafting.Ingredient.fromJson(Ingredient.get(i)));
             }
@@ -88,8 +89,8 @@ public class AlterioTableRecipe implements Recipe<SimpleContainer> {
 
         @Override
         public @Nullable AlterioTableRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
-            NonNullList<Ingredient> inputs = NonNullList.withSize(buf.readInt(), Ingredient.EMPTY);
-             for(int i = 0; i < inputs.size(); i++){
+            NonNullList<Ingredient> inputs = NonNullList.withSize(2, Ingredient.EMPTY);
+             for(int i = 0; i < 2; i++){
                  inputs.set(i, Ingredient.fromNetwork(buf));
              }
              ItemStack output = buf.readItem();
@@ -98,7 +99,7 @@ public class AlterioTableRecipe implements Recipe<SimpleContainer> {
 
         @Override
         public void toNetwork(FriendlyByteBuf buf, AlterioTableRecipe recipe) {
-            buf.writeInt(recipe.getIngredients().size());
+            buf.writeInt(2);
 
             for(Ingredient ing : recipe.getIngredients()){
                 ing.toNetwork(buf);

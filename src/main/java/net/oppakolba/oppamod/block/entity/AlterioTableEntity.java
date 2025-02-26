@@ -154,6 +154,8 @@ public class AlterioTableEntity extends BlockEntity implements MenuProvider {
         Optional<AlterioTableRecipe> recipe = level.getRecipeManager().getRecipeFor(AlterioTableRecipe.Type.INSTANCE, inventory, level);
 
         if(hasRecipe(entity)){
+            System.out.println("has recipe");
+            entity.itemHandler.extractItem(0, 1, false);
             entity.itemHandler.extractItem(1, 1, false);
             entity.itemHandler.setStackInSlot(2, new ItemStack(recipe.get().getResultItem().getItem(), entity.itemHandler.getStackInSlot(2).getCount() + 1));
             entity.resetProgress();

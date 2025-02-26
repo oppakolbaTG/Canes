@@ -1,8 +1,11 @@
 {
   "type": "oppamod:alterio_table",
-  "ingredient": [
+  "ingredients": [
     {
       "item": "oppamod:sample_cane"
+    },
+    {
+      "item": "minecraft:fire_charge"
     }
   ],
   "output": {

@@ -25,6 +25,7 @@ public class FireballSealRenderer extends EntityRenderer<FireballSeal> {
 
     @Override
     public void render(FireballSeal pEntity, float pEntityYaw, float pPartialTick, PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight) {
+        pPoseStack.scale(4.0f, 4.0f, 4.0f);
         model.renderToBuffer(pPoseStack, pBuffer.getBuffer(RenderType.entityCutout(TEXTURE)), pPackedLight, OverlayTexture.NO_OVERLAY, 1f, 1f, 1f, 1f);
     }
 

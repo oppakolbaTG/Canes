@@ -15,9 +15,9 @@ import net.oppakolba.oppamod.init.ModMenuTypes;
 import org.jetbrains.annotations.NotNull;
 
 public class AlterioTableMenu extends AbstractContainerMenu {
-    public static AlterioTableEntity blockEntity;
-    private static Level level;
-    private static ContainerData data;
+    public final AlterioTableEntity blockEntity;
+    private final Level level;
+    private final ContainerData data;
 
     public AlterioTableMenu(int id, Inventory inv, FriendlyByteBuf extraData){
         this(id, inv, inv.player.level.getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(2));
@@ -37,6 +37,8 @@ public class AlterioTableMenu extends AbstractContainerMenu {
             this.addSlot(new SlotItemHandler(handler, 1, 105,15));
             this.addSlot(new SlotItemHandler(handler, 2, 105,60));
         });
+
+        addDataSlots(data);
      }
 
      public boolean isCrafting(){
@@ -44,9 +46,10 @@ public class AlterioTableMenu extends AbstractContainerMenu {
      }
 
      public int getScaledProgress(){
-        int progress = this.data.get(0);
-        int maxProgress = this.data.get(1);
+        int progress = data.get(0);
+        int maxProgress = data.get(1);
         int progressArrowSize = 26;
+
         return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / maxProgress : 0;
      }
 
