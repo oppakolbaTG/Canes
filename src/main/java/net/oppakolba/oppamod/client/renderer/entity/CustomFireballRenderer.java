@@ -26,6 +26,7 @@ public class CustomFireballRenderer extends EntityRenderer<CustomFireball> {
 
     @Override
     public void render(CustomFireball entity, float entityYaw, float partialTick, PoseStack poseStack, MultiBufferSource buffer, int packedLight) {
+        //poseStack.translate(0,8, 0);
         poseStack.mulPose(Vector3f.YP.rotationDegrees(entity.tickCount + 15f));
         poseStack.mulPose(Vector3f.XP.rotationDegrees(entity.tickCount + 15f));
         model.renderToBuffer(poseStack, buffer.getBuffer(RenderType.entityCutout(TEXTURE)), packedLight, OverlayTexture.NO_OVERLAY, 1f, 1f, 1f, 1f);

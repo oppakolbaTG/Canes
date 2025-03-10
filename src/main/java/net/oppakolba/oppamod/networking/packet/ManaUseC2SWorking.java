@@ -34,7 +34,7 @@ public class ManaUseC2SWorking {
             ServerPlayer player = context.getSender();
             ServerLevel level = player.getLevel();
             player.getCapability(PlayerManaProvider.PLAYER_MANA).ifPresent(mana ->{
-                    if(ManaCrystalIsSelected(player, level) && mana.getMana() < mana.getMMana()) {
+                    if(ManaCrystalIsSelected(player, level) && mana.getMana() < mana.getMAX_MANA()) {
                         for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
                             ItemStack stack = player.getInventory().getItem(i);
                             if (stack.getItem() == ModItems.MANA_CRYSTAL.get() && !stack.isEmpty()) {
@@ -46,12 +46,11 @@ public class ManaUseC2SWorking {
                         mana.addMana(20);
                         player.getInventory().contains(new ItemStack(ModItems.MANA_CRYSTAL.get()));
                         ModMessage.sendToPlayer(new ManaDataSyncS2CPacket(mana.getMana()), player);
-                        if(mana.getMana() > mana.getMMana()){
-                            int rem = mana.getMana() - mana.getMMana();
+                        if(mana.getMana() > mana.getMAX_MANA()){
+                            int rem = mana.getMana() - mana.getMAX_MANA();
                             mana.subMana(rem);
                         }
                     }
-
                     else{
                         ModMessage.sendToPlayer(new ManaDataSyncS2CPacket(mana.getMana()), player);
                     }

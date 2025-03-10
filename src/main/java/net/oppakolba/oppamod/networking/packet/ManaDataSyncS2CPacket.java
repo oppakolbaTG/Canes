@@ -27,7 +27,7 @@ public class ManaDataSyncS2CPacket {
         NetworkEvent.Context context = supplier.get();
         context.enqueueWork(() -> {
             // Все что здесь происходит на клиенте
-            ClientManaData.set(mana);
+            ClientManaData.setPlayerMana(mana);
     });
         return true;
 

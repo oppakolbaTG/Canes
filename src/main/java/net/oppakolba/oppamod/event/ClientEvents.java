@@ -12,6 +12,7 @@ import net.oppakolba.oppamod.Oppamod;
 import net.oppakolba.oppamod.client.ManaHudOverlay;
 import net.oppakolba.oppamod.networking.ModMessage;
 import net.oppakolba.oppamod.networking.packet.ManaUseC2SWorking;
+import net.oppakolba.oppamod.screen.TerraMenuScreen;
 import net.oppakolba.oppamod.util.KeyBinding;
 
 public class ClientEvents {
@@ -23,6 +24,9 @@ public class ClientEvents {
             if (KeyBinding.MANA_USING_KEY.consumeClick()) {
                 ModMessage.sendToServer(new ManaUseC2SWorking());
             }
+            if (KeyBinding.OPENING_GUI_KEY.consumeClick()) {
+                Minecraft.getInstance().setScreen(new TerraMenuScreen(Component.empty()));
+            }
         }
     }
     @Mod.EventBusSubscriber(modid = Oppamod.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -31,6 +35,7 @@ public class ClientEvents {
         @SubscribeEvent
         public static void onKeyRegister(RegisterKeyMappingsEvent event){
             event.register(KeyBinding.MANA_USING_KEY);
+            event.register(KeyBinding.OPENING_GUI_KEY);
         }
         @SubscribeEvent
         public static void registerGuiOverlays(RegisterGuiOverlaysEvent event){

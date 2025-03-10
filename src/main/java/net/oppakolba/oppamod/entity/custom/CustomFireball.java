@@ -23,7 +23,7 @@ public class CustomFireball extends AbstractHurtingProjectile  {
     public CustomFireball(EntityType<? extends CustomFireball> entityType, Level level, LivingEntity entity, double xP, double yP, double zP, float power){
         super(entityType, entity, xP, yP, zP, level);
         this.entityData.set(POWER, power);
-        this.setPos(this.getX(), this.getY() + 2, this.getZ());
+        this.setPos(this.getX(), this.getY() + 4, this.getZ());
     }
 
     @Override

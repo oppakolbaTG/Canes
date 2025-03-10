@@ -37,7 +37,6 @@ public class AlterioTableScreen extends AbstractContainerScreen<AlterioTableMenu
 
     private void renderProgressArrow(PoseStack pPoseStack, int x, int y){
         if(menu.isCrafting()){
-            System.out.println(menu.getScaledProgress());
             blit(pPoseStack, x + 124, y + 33, 176, 0, 8, menu.getScaledProgress());
         }
     }

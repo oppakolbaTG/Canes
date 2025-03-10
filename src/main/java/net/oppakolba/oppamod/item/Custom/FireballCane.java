@@ -73,6 +73,7 @@ public class  FireballCane extends Item {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public void onUseTick(Level level, LivingEntity entity, ItemStack stack, int count) {
         if(!level.isClientSide){
             if(entity instanceof Player player){

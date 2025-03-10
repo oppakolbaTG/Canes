@@ -1,16 +1,15 @@
 {
   "item.oppamod.orange": "Orange",
   "item.oppamod.golden_orange": "Golden Orange",
-  "item.oppamod.summon_eye": "Suspicious Looking Eye",
   "item.oppamod.water_leaf": "Water leaf",
   "item.oppamod.water_leaf_seed": "Water leaf Seed",
   "item.oppamod.platinum_bar": "Platinum Bar",
   "item.oppamod.mana_crystal": "Mana Crystal",
+  "item.oppamod.fallen_star": "Fallen Star",
   "item.oppamod.fireball_cane": "Fireball Cane",
   "item.oppamod.sample_cane": "Sample Cane",
 
 
-  "block.oppamod.t_lamp_block": "Lamp Block",
   "block.oppamod.water_leaf_block": "Water Leaf",
   "block.oppamod.platinum_ore": "Platinum Ore",
   "block.oppamod.platinum_block": "Platinum Block",
@@ -25,5 +24,6 @@
   "message.oppamod.mana_no_use": "You can not get mana",
 
   "key.category.oppamod.oppaterra": "OppaTerraMod",
-  "key.oppamod.mana_use": "MANA_USE"
+  "key.oppamod.mana_use": "Mana Use",
+  "key.oppamod.open_gui": "Open Screen"
 }

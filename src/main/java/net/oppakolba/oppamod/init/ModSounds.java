@@ -11,8 +11,7 @@ public class ModSounds {
     public static final DeferredRegister<SoundEvent> SOUNDS =
             DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, Oppamod.MOD_ID);
 
-    public static final RegistryObject<SoundEvent> BOSS_SUMMON =
-            registerSound("boss_summon");
+
 
     public static final RegistryObject<SoundEvent> MANA_USE =
             registerSound("mana_use");

@@ -25,12 +25,11 @@ public class ManaHudOverlay {
             "textures/mana/mana_shell1.png");
 
     public static final IGuiOverlay HUD_MANA = ((gui, poseStack, partialTick, width, height) -> {
-        PlayerMana mana = Minecraft.getInstance().player.getCapability(PlayerManaProvider.PLAYER_MANA).orElse(null);
-        int shellX = width - 27; // 30 – ширина, 10 – отступ
+        int shellX = width - 27;
         int shellY = height - 66;
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0f, 1.0f,1.0f,1.0f);
-        switch(mana.getMMana()){
+        switch(ClientManaData.getPlayerMaxMana()){
             case 20:
                 RenderSystem.setShaderTexture(0, MANA_SHELL1);
                 GuiComponent.blit(poseStack, width - 27, height - 44, 0, 0 , 30, 45, 30, 45);
@@ -57,8 +56,8 @@ public class ManaHudOverlay {
 
         RenderSystem.setShaderTexture(0, MANA_TRAIT);
 
-        for(int i = 0; i < mana.getMMana(); i += 4){
-            int traitX = shellX - 5; // Смещаем немного вправо относительно оболочки
+        for(int i = 0; i < ClientManaData.getPlayerMaxMana(); i += 4){
+            int traitX = shellX - 5;
             int traitY = shellY + 48;
             if(ClientManaData.getPlayerMana() > i){
                 GuiComponent.blit(poseStack, traitX, traitY - (i /4) * 2, 0, 0, 40, 22, 40, 22);

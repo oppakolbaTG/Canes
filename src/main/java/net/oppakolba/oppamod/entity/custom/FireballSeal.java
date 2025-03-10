@@ -21,7 +21,7 @@ public class FireballSeal extends Entity {
     public FireballSeal(EntityType<? extends FireballSeal> entityType, Level level, Player player) {
         super(entityType, level);
         this.playerUID = player.getUUID();
-        this.setPos(player.getX(), player.getY(), player.getZ());
+        this.setPos(player.getX(), player.getY() - 2, player.getZ());
     }
 
     @Override

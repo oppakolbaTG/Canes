@@ -15,7 +15,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.oppakolba.oppamod.Oppamod;
 import net.oppakolba.oppamod.block.custom.AlterioTableBlock;
-import net.oppakolba.oppamod.block.custom.LampBlock;
 import net.oppakolba.oppamod.block.custom.WaterLeafBlock;
 import net.oppakolba.oppamod.item.ModCreativeModeTab;
 
@@ -43,11 +42,6 @@ public static final RegistryObject<Block> PLATINUM_ORE = registerBlock("platinum
                     .strength(5f)
                     .requiresCorrectToolForDrops()), ModCreativeModeTab.OPPA_TAB);
 
-    public static final RegistryObject<Block> LAMP_BLOCK = registerBlock("t_lamp_block",
-            () -> new LampBlock(BlockBehaviour.Properties.of(Material.STONE)
-                    .strength(10f)
-                    .lightLevel(state -> state.getValue(LampBlock.LIT) ? 15 : 0)
-                    .requiresCorrectToolForDrops()), ModCreativeModeTab.OPPA_TAB);
 
         public static final RegistryObject<Block> WATER_LEAF_BLOCK = BLOCKS.register("water_leaf_block",
                 () -> new WaterLeafBlock(BlockBehaviour.Properties.copy(Blocks.SWEET_BERRY_BUSH)));

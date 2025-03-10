@@ -1,12 +1,14 @@
 package net.oppakolba.oppamod.client;
 
-public class ClientManaData {
-    private static int playerMana;
+import lombok.Getter;
+import lombok.Setter;
 
-    public static void set(int mana){
-        ClientManaData.playerMana = mana;
-    }
-    public static int getPlayerMana(){
-        return playerMana;
-    }
+public class ClientManaData {
+    @Getter
+    @Setter
+    private static int playerMana;
+    public static final int INT = 20;
+    @Getter
+    @Setter
+    private static int playerMaxMana = INT;
 }

@@ -1,16 +1,15 @@
 {
   "item.oppamod.orange": "Апельсин",
   "item.oppamod.golden_orange": "Золотой апельсин",
-  "item.oppamod.summon_eye": "Подозрительно выглядящий глаз",
   "item.oppamod.water_leaf": "Воднолист",
   "item.oppamod.water_leaf_seed": "Семя воднолиста",
   "item.oppamod.platinum_bar": "Платиновый слиток",
   "item.oppamod.mana_crystal": "Кристал Маны",
+  "item.oppamod.fallen_star": "Упавшая Звезда",
   "item.oppamod.fireball_cane": "Посох Огненного Шара",
   "item.oppamod.sample_cane": "Макет Посоха",
 
   "block.oppamod.water_leaf_block": "Воднолист",
-  "block.oppamod.t_lamp_block": "Блок лампа",
   "block.oppamod.platinum_ore": "Платиновая руда",
   "block.oppamod.platinum_block": "Платиновый блок",
   "entity.minecraft.villager.t_super_villager": "Супер житель",
@@ -22,5 +21,6 @@
   "message.oppamod.mana_no_use": "Вы не можете получить ману",
 
   "key.category.oppamod.oppaterra": "ОппаТерраМод",
-  "key.oppamod.mana_use": "Использовать Ману"
+  "key.oppamod.mana_use": "Использовать Ману",
+  "key.oppamod.open_gui": "Отрыть Окно"
 }

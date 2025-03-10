@@ -16,6 +16,7 @@ public class ModMenuTypes {
     public static final DeferredRegister<MenuType<?>> MENUS =
             DeferredRegister.create(ForgeRegistries.MENU_TYPES, Oppamod.MOD_ID);
 
+
     public static final RegistryObject<MenuType<AlterioTableMenu>> ALTERIO_TABLE_MENU =
             registerMenuType(AlterioTableMenu::new, "alterio_table_menu");
 

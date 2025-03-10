@@ -20,7 +20,7 @@ public class ModEntities {
     public static final RegistryObject<EntityType<CustomFireball>> CUSTOM_FIREBALL =
             ENTITIES.register("custom_fireball", () ->
                     EntityType.Builder.<CustomFireball>of(CustomFireball::new, MobCategory.MISC)
-                            .sized(4f, 2f).build(new ResourceLocation(Oppamod.MOD_ID, "custom_fireball").toString()));
+                            .sized(1f, 1f).build(new ResourceLocation(Oppamod.MOD_ID, "custom_fireball").toString()));
 
     public static final RegistryObject<EntityType<FireballSeal>> FIREBALL_SEAL =
             ENTITIES.register("fireball_seal",

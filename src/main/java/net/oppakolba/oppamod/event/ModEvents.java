@@ -51,7 +51,7 @@ public class ModEvents {
     public static void onPlayerTick(TickEvent.PlayerTickEvent event){
         long currentTime = System.currentTimeMillis();
         event.player.getCapability(PlayerManaProvider.PLAYER_MANA).ifPresent(mana -> {
-        if(event.side == LogicalSide.SERVER && currentTime - lastManaUpdateTime >= 800 && mana.getMana() < mana.getMMana()) {
+        if(event.side == LogicalSide.SERVER && currentTime - lastManaUpdateTime >= 800 && mana.getMana() < mana.getMAX_MANA()) {
             mana.addMana(1);
 
 

@@ -16,6 +16,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.network.NetworkHooks;
 import net.oppakolba.oppamod.block.entity.AlterioTableEntity;
 import net.oppakolba.oppamod.init.ModBlockEntities;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class AlterioTableBlock extends BaseEntityBlock {
@@ -25,11 +26,13 @@ public class AlterioTableBlock extends BaseEntityBlock {
     }
 
     @Override
-    public RenderShape getRenderShape(BlockState p_49232_) {
+    @SuppressWarnings("deprecation")
+    public @NotNull RenderShape getRenderShape(BlockState blockState) {
         return RenderShape.MODEL;
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public void onRemove(BlockState state, Level level, BlockPos blockPos, BlockState blockState, boolean b) {
         if(state.getBlock() != blockState.getBlock()){
             BlockEntity blockEntity = level.getBlockEntity(blockPos);
@@ -41,6 +44,7 @@ public class AlterioTableBlock extends BaseEntityBlock {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand hand, BlockHitResult result) {
         if(!level.isClientSide()){
             BlockEntity entity = level.getBlockEntity(blockPos);

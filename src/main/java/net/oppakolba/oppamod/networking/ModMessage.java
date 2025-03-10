@@ -7,8 +7,7 @@ import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.PacketDistributor;
 import net.minecraftforge.network.simple.SimpleChannel;
 import net.oppakolba.oppamod.Oppamod;
-import net.oppakolba.oppamod.networking.packet.ManaDataSyncS2CPacket;
-import net.oppakolba.oppamod.networking.packet.ManaUseC2SWorking;
+import net.oppakolba.oppamod.networking.packet.*;
 
 public class  ModMessage {
     private static SimpleChannel INSTANCE;
@@ -39,6 +38,21 @@ public class  ModMessage {
                 .encoder(ManaDataSyncS2CPacket::toByte)
                 .consumerMainThread(ManaDataSyncS2CPacket::handle)
                 .add();
+
+        net.messageBuilder(TerraMenuC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(TerraMenuC2SPacket::new)
+                .encoder(TerraMenuC2SPacket::toByte)
+                .consumerMainThread(TerraMenuC2SPacket::handle).add();
+
+        net.messageBuilder(TerraMenuS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(TerraMenuS2CPacket::new)
+                .encoder(TerraMenuS2CPacket::toByte)
+                .consumerMainThread(TerraMenuS2CPacket::handle).add();
+
+        net.messageBuilder(TerraMenuReloadC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(TerraMenuReloadC2SPacket::new)
+                .encoder(TerraMenuReloadC2SPacket::toByte)
+                .consumerMainThread(TerraMenuReloadC2SPacket::handle).add();
     }
 
     public static <MSG> void sendToServer(MSG message){

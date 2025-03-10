@@ -13,6 +13,7 @@ import net.oppakolba.oppamod.Oppamod;
 import net.oppakolba.oppamod.client.model.seal.FireBallSealModel;
 import net.oppakolba.oppamod.entity.custom.FireballSeal;
 
+
 @OnlyIn(Dist.CLIENT)
 public class FireballSealRenderer extends EntityRenderer<FireballSeal> {
     private static final ResourceLocation TEXTURE = new ResourceLocation(Oppamod.MOD_ID, "textures/entity/fireball_seal.png");
@@ -23,11 +24,14 @@ public class FireballSealRenderer extends EntityRenderer<FireballSeal> {
         this.model = new FireBallSealModel<>(FireBallSealModel.createBodyLayer().bakeRoot());
     }
 
+
     @Override
     public void render(FireballSeal pEntity, float pEntityYaw, float pPartialTick, PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight) {
-        pPoseStack.scale(4.0f, 4.0f, 4.0f);
-        model.renderToBuffer(pPoseStack, pBuffer.getBuffer(RenderType.entityCutout(TEXTURE)), pPackedLight, OverlayTexture.NO_OVERLAY, 1f, 1f, 1f, 1f);
-    }
+            pPoseStack.scale(10.0f, 10.0f, 10.0f);
+            model.renderToBuffer(pPoseStack, pBuffer.getBuffer(RenderType.entityCutout(TEXTURE)), pPackedLight, OverlayTexture.NO_OVERLAY, 1f, 1f, 1f, 1f);
+
+        }
+
 
     @Override
     public ResourceLocation getTextureLocation(FireballSeal pEntity) {
