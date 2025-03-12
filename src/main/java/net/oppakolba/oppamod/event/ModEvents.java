@@ -21,6 +21,10 @@ import net.oppakolba.oppamod.networking.packet.ManaDataSyncS2CPacket;
 @Mod.EventBusSubscriber(modid = Oppamod.MOD_ID)
 public class ModEvents {
 
+    /**
+     Mana drop event should be here.
+     **/
+
     @SubscribeEvent
     public static void onAttachCapabilitiesPlayer(AttachCapabilitiesEvent<Entity> event){
         if(event.getObject() instanceof Player){
@@ -51,7 +55,7 @@ public class ModEvents {
     public static void onPlayerTick(TickEvent.PlayerTickEvent event){
         long currentTime = System.currentTimeMillis();
         event.player.getCapability(PlayerManaProvider.PLAYER_MANA).ifPresent(mana -> {
-        if(event.side == LogicalSide.SERVER && currentTime - lastManaUpdateTime >= 800 && mana.getMana() < mana.getMAX_MANA()) {
+        if(event.side == LogicalSide.SERVER && currentTime - lastManaUpdateTime >= 1000 && mana.getMana() < mana.getMAX_MANA()) {
             mana.addMana(1);
 
 
@@ -63,17 +67,6 @@ public class ModEvents {
                     }
         }
         });
-    }
-
-
-    public static void onPlayerJoinWorld(EntityJoinLevelEvent event){
-        if(!event.getLevel().isClientSide){
-            if(event.getEntity() instanceof ServerPlayer player){
-                player.getCapability(PlayerManaProvider.PLAYER_MANA).ifPresent(mana -> {
-                    ModMessage.sendToPlayer(new ManaDataSyncS2CPacket(mana.getMana()), player);
-                });
-            }
-        }
     }
 }
 

@@ -13,18 +13,27 @@ import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.ItemStack;
+import net.oppakolba.oppamod.client.ClientManaData;
 import net.oppakolba.oppamod.init.ModItems;
 import net.oppakolba.oppamod.mana.PlayerManaProvider;
 import net.oppakolba.oppamod.networking.ModMessage;
 import net.oppakolba.oppamod.networking.packet.TerraMenuC2SPacket;
 import net.oppakolba.oppamod.networking.packet.TerraMenuReloadC2SPacket;
+import org.jetbrains.annotations.NotNull;
 
 public class TerraMenuScreen extends Screen {
-    private static final ResourceLocation TEXTURE = new ResourceLocation("oppamod", "textures/gui/terra_menu_screen.png");
-    private static final ResourceLocation BUTTON_TEXTURE = new ResourceLocation("oppamod", "textures/gui/button.png");
+    private static final ResourceLocation TEXTURE = new ResourceLocation("oppamod", "textures/gui/terra_menu_screen1.png");
+    private static final ResourceLocation BUTTON_TEXTURE = new ResourceLocation("oppamod", "textures/gui/upg_button.png");
     private static final ResourceLocation RBUTTON_TEXTURE = new ResourceLocation("oppamod", "textures/gui/reset_button.png");
-    private static final ResourceLocation UPG_WIDGET_TEXTURE = new ResourceLocation("oppamod", "textures/gui/upg_widget.png");
+    private static final ResourceLocation UPG_WIDGET_F_TEXTURE = new ResourceLocation("oppamod", "textures/gui/upg_widget_f.png");
+    private static final ResourceLocation UPG_WIDGET_T_TEXTURE = new ResourceLocation("oppamod", "textures/gui/upg_widget_t.png");
+    private static final ResourceLocation LEVEL_1 = new ResourceLocation("oppamod", "textures/gui/level_1.png");
+    private static final ResourceLocation LEVEL_2 = new ResourceLocation("oppamod", "textures/gui/level_2.png");
+    private static final ResourceLocation LEVEL_3 = new ResourceLocation("oppamod", "textures/gui/level_3.png");
+    private static final ResourceLocation LEVEL_4 = new ResourceLocation("oppamod", "textures/gui/level_4.png");
+    private static final ResourceLocation LEVEL_5 = new ResourceLocation("oppamod", "textures/gui/level_5.png");
     private Button upgButton;
+    private Button reloadbutton;
 
 
 
@@ -33,48 +42,92 @@ public class TerraMenuScreen extends Screen {
     }
 
 
-    private int level = 0;
+
     @Override
     protected void init() {
         LocalPlayer player = Minecraft.getInstance().player;
         if (player != null) {
-
-            upgButton = new  ImageButton(this.width / 2 - 50, this.height / 2 - 10, 20, 20,
-                    0, 0, 21, BUTTON_TEXTURE, 32, 64, button -> {
+            upgButton = new ImageButton(this.width / 2 - 50, this.height / 2 - 10, 20, 20,
+                    0, 0, 20, BUTTON_TEXTURE, 20, 40, button -> {
                 player.getCapability(PlayerManaProvider.PLAYER_MANA).ifPresent(mana -> {
                     if(haveItems(player)) {
                         ModMessage.sendToServer(new TerraMenuC2SPacket(mana.getMAX_MANA()));
-                        level += 1;
+                        System.out.println(mana.getMAX_MANA());
+
+                        for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
+                            ItemStack stack = player.getInventory().getItem(i);
+                            if (stack.getItem() == ModItems.MANA_CRYSTAL.get() && !stack.isEmpty()) {
+                                stack.shrink(3);
+                                break;
+                            }
+                        }
                     }
                 });
             });
-            this.addRenderableWidget(upgButton);
+            reloadbutton = new ImageButton(this.width/ 2 + 10, this.height /2 - 10, 20, 20,
+                    0, 0, 20, RBUTTON_TEXTURE, 20, 40, pButton -> {
+                if(ClientManaData.getPlayerMaxMana() == 100) {
+                    player.getCapability(PlayerManaProvider.PLAYER_MANA).ifPresent(mana -> {
 
-            this.addRenderableWidget(new ImageButton(this.width/ 2 + 10, this.height /2 - 10, 30, 20,
-                    0, 0, 20 , RBUTTON_TEXTURE, 32, 64, pButton -> {
-                player.getCapability(PlayerManaProvider.PLAYER_MANA).ifPresent(mana -> {
-                    ModMessage.sendToServer(new TerraMenuReloadC2SPacket());
-                });
-                player.addEffect(new MobEffectInstance(MobEffects.LUCK));
-            }));
+                        ModMessage.sendToServer(new TerraMenuReloadC2SPacket());
+                    });
+                    player.addEffect(new MobEffectInstance(MobEffects.LUCK));
+                }
+            });
+            this.addRenderableWidget(upgButton);
+            this.addRenderableWidget(reloadbutton);
         }
     }
 
 
     @Override
-    public void render(PoseStack pPoseStack, int pMouseX, int pMouseY, float pPartialTick) {
+    public void render(@NotNull PoseStack pPoseStack, int pMouseX, int pMouseY, float pPartialTick) {
+        LocalPlayer player = Minecraft.getInstance().player;
+        float scale = Math.min((float) this.width / 1920, (float) this.height / 1080);
 
+        renderBackground(pPoseStack);
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
         RenderSystem.setShaderTexture(0, TEXTURE);
-
-        this.blit(pPoseStack, width / 2 - 107, height / 2 - 107, 0, 0, 215, 215);
-
-        if(upgButton.isHoveredOrFocused()){
-            RenderSystem.setShaderTexture(0, UPG_WIDGET_TEXTURE);
-            this.blit(pPoseStack, pMouseX - 1, pMouseY - 1, 0, 0, 32, 18);
+        pPoseStack.pushPose();
+        pPoseStack.scale(scale, scale, 1.0F);
+        blit(pPoseStack, width / 2 - 170, height / 2 - 120,0, 0, 1920, 1080, 1920, 1080);
+        pPoseStack.popPose();
+        switch (ClientManaData.getPlayerMana()){
+            case 20:
+                RenderSystem.setShaderTexture(0, LEVEL_1);
+                blit(pPoseStack, width - 64, height / 2 - 60, 0, 0, 150, 75, 80,80);
+                break;
+            case 40:
+                RenderSystem.setShaderTexture(0, LEVEL_2);
+                blit(pPoseStack, width - 64, height / 2 - 60, 0, 0, 150, 75, 80,80);
+                break;
+            case 60:
+                RenderSystem.setShaderTexture(0, LEVEL_3);
+                blit(pPoseStack, width - 64, height / 2 - 60, 0, 0, 150, 75, 80,80);
+                break;
+            case 80:
+                RenderSystem.setShaderTexture(0, LEVEL_4);
+                blit(pPoseStack, width - 64, height / 2 - 60, 0, 0, 150, 75, 80,80);
+                break;
+            case 100:
+                RenderSystem.setShaderTexture(0, LEVEL_5);
+                blit(pPoseStack, width - 64, height / 2 - 60, 0, 0, 150, 75, 80,80);
+                break;
         }
+
         super.render(pPoseStack, pMouseX, pMouseY, pPartialTick);
+
+        if(player != null) {
+            if (upgButton.isHoveredOrFocused() && !(haveItems(player))) {
+                RenderSystem.setShaderTexture(0, UPG_WIDGET_F_TEXTURE);
+                blit(pPoseStack, pMouseX - 1, pMouseY - 1, 0, 32, 32, 19, 32, 32);
+            }
+            else if (upgButton.isHoveredOrFocused() && haveItems(player)){
+                RenderSystem.setShaderTexture(0, UPG_WIDGET_T_TEXTURE);
+                blit(pPoseStack, pMouseX - 1, pMouseY - 1, 0, 32, 32, 19, 32, 32);
+            }
+        }
     }
 
     @Override
@@ -84,17 +137,6 @@ public class TerraMenuScreen extends Screen {
 
 
     private boolean haveItems(LocalPlayer player) {
-        var count = 0;
-        for(ItemStack itemStack : player.getInventory().items) {
-            if (itemStack.getItem() == ModItems.MANA_CRYSTAL.get()) {
-                count += 1;
-                if(count < 3){
-                    return false;
-                }
-            }
-        }
-        return true;
+        return player.getInventory().countItem(ModItems.MANA_CRYSTAL.get()) >= 3;
     }
-
-
 }
