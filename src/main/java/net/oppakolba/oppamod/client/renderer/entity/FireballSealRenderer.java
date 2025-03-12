@@ -12,6 +12,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.oppakolba.oppamod.Oppamod;
 import net.oppakolba.oppamod.client.model.seal.FireBallSealModel;
 import net.oppakolba.oppamod.entity.custom.FireballSeal;
+import org.jetbrains.annotations.NotNull;
 
 
 @OnlyIn(Dist.CLIENT)
@@ -26,7 +27,7 @@ public class FireballSealRenderer extends EntityRenderer<FireballSeal> {
 
 
     @Override
-    public void render(FireballSeal pEntity, float pEntityYaw, float pPartialTick, PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight) {
+    public void render(@NotNull FireballSeal pEntity, float pEntityYaw, float pPartialTick, PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight) {
             pPoseStack.scale(10.0f, 10.0f, 10.0f);
             model.renderToBuffer(pPoseStack, pBuffer.getBuffer(RenderType.entityCutout(TEXTURE)), pPackedLight, OverlayTexture.NO_OVERLAY, 1f, 1f, 1f, 1f);
 
@@ -34,7 +35,7 @@ public class FireballSealRenderer extends EntityRenderer<FireballSeal> {
 
 
     @Override
-    public ResourceLocation getTextureLocation(FireballSeal pEntity) {
+    public @NotNull ResourceLocation getTextureLocation(@NotNull FireballSeal pEntity) {
         return TEXTURE;
     }
 }

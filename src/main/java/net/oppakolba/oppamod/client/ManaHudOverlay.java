@@ -1,14 +1,13 @@
 package net.oppakolba.oppamod.client;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.client.gui.overlay.IGuiOverlay;
 import net.oppakolba.oppamod.Oppamod;
-import net.oppakolba.oppamod.mana.PlayerMana;
-import net.oppakolba.oppamod.mana.PlayerManaProvider;
+
+
 
 public class ManaHudOverlay {
     public static final ResourceLocation MANA_TRAIT = new ResourceLocation(Oppamod.MOD_ID,

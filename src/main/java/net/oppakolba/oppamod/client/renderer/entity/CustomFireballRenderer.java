@@ -13,6 +13,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.oppakolba.oppamod.Oppamod;
 import net.oppakolba.oppamod.client.model.bolt.CustomFireballModel;
 import net.oppakolba.oppamod.entity.custom.CustomFireball;
+import org.jetbrains.annotations.NotNull;
 
 @OnlyIn(Dist.CLIENT)
 public class CustomFireballRenderer extends EntityRenderer<CustomFireball> {
@@ -33,7 +34,7 @@ public class CustomFireballRenderer extends EntityRenderer<CustomFireball> {
     }
     
     @Override
-    public ResourceLocation getTextureLocation(CustomFireball entity) {
+    public @NotNull ResourceLocation getTextureLocation(@NotNull CustomFireball entity) {
         return TEXTURE;
     }
 
