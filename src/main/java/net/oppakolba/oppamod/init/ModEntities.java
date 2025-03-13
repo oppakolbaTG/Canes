@@ -27,6 +27,11 @@ public class ModEntities {
                     () -> EntityType.Builder.<FireballSeal>of(FireballSeal::new, MobCategory.MISC)
                             .sized(4.0F, 4.0F).build("fireball_seal"));
 
+//    public static final RegistryObject<EntityType<ManaOrb>> MANA_ORB =
+//            ENTITIES.register("mana_orb",
+//                    () -> EntityType.Builder.<ManaOrb>of(ManaOrb::new, MobCategory.MISC)
+//                            .sized(1f, 1f).build("mana_orb"));
+
 
     public static void register(IEventBus eventBus){
         ENTITIES.register(eventBus);

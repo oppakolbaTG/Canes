@@ -6,7 +6,9 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.oppakolba.oppamod.Oppamod;
@@ -25,6 +27,10 @@ public class FireballSealRenderer extends EntityRenderer<FireballSeal> {
         this.model = new FireBallSealModel<>(FireBallSealModel.createBodyLayer().bakeRoot());
     }
 
+    @Override
+    protected int getBlockLightLevel(@NotNull FireballSeal pEntity, @NotNull BlockPos pPos) {
+        return Mth.clamp(super.getBlockLightLevel(pEntity, pPos) + 7, 0, 15);
+    }
 
     @Override
     public void render(@NotNull FireballSeal pEntity, float pEntityYaw, float pPartialTick, PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight) {

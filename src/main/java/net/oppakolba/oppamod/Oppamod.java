@@ -25,19 +25,20 @@ public class Oppamod {
     private static final Logger LOGGER = LogUtils.getLogger();
     public Oppamod()
     {
-        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        ModItems.register(modEventBus);
-        ModBlocks.register(modEventBus);
-        ModPainting.register(modEventBus);
-        ModConfiguredFeatures.register(modEventBus);
-        ModPlacedFeatures.register(modEventBus);
-        ModSounds.SOUNDS.register(modEventBus);
-        ModEntities.ENTITIES.register(modEventBus);
-        ModBlockEntities.BLOCK_ENTITIES.register(modEventBus);
-        ModMenuTypes.MENUS.register(modEventBus);
-        ModRecipe.SERIALIZER.register(modEventBus);
-        modEventBus.addListener(this::commonSetup);
+        ModItems.register(bus);
+        ModBlocks.register(bus);
+        ModPainting.register(bus);
+        ModConfiguredFeatures.register(bus);
+        ModPlacedFeatures.register(bus);
+        ModSounds.SOUNDS.register(bus);
+        ModEntities.ENTITIES.register(bus);
+        ModItemEntities.ITEM_ENTITIES.register(bus);
+        ModBlockEntities.BLOCK_ENTITIES.register(bus);
+        ModMenuTypes.MENUS.register(bus);
+        ModRecipe.SERIALIZER.register(bus);
+        bus.addListener(this::commonSetup);
         MinecraftForge.EVENT_BUS.register(this);
     }
 
