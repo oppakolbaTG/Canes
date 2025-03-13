@@ -93,7 +93,7 @@ public class TerraMenuScreen extends Screen {
         pPoseStack.scale(scale, scale, 1.0F);
         blit(pPoseStack, width / 2 - 170, height / 2 - 120,0, 0, 1920, 1080, 1920, 1080);
         pPoseStack.popPose();
-        switch (ClientManaData.getPlayerMana()){
+        switch (ClientManaData.getPlayerMaxMana()){
             case 20:
                 RenderSystem.setShaderTexture(0, LEVEL_1);
                 blit(pPoseStack, width - 64, height / 2 - 60, 0, 0, 150, 75, 80,80);
