@@ -8,7 +8,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.oppakolba.oppamod.Oppamod;
 import net.oppakolba.oppamod.client.renderer.entity.CustomFireballRenderer;
 import net.oppakolba.oppamod.client.renderer.entity.FireballSealRenderer;
-import net.oppakolba.oppamod.client.renderer.entity.ManaOrbRenderer;
 import net.oppakolba.oppamod.init.ModEntities;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, modid = Oppamod.MOD_ID, value = Dist.CLIENT)
