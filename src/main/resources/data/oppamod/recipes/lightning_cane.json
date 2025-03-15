@@ -1,0 +1,14 @@
+{
+  "type": "oppamod:alterio_table",
+  "ingredients": [
+    {
+      "item": "oppamod:sample_cane"
+    },
+    {
+      "item": "oppamod:charged_copper_ingot"
+    }
+  ],
+  "output": {
+    "item": "oppamod:lightning_cane"
+  }
+}

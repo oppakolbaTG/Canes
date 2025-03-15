@@ -4,10 +4,11 @@
   "item.oppamod.water_leaf": "Воднолист",
   "item.oppamod.water_leaf_seed": "Семя воднолиста",
   "item.oppamod.platinum_bar": "Платиновый слиток",
+  "item.oppamod.charged_copper_ingot": "Заряженный Медный слиток",
   "item.oppamod.mana_crystal": "Кристал Маны",
   "item.oppamod.fallen_star": "Упавшая Звезда",
   "item.oppamod.fireball_cane": "Посох Огненного Шара",
-  "item.oppamod.lightning_cane": "Громовержец",
+  "item.oppamod.lightning_cane": "Турель Молний",
   "item.oppamod.sample_cane": "Макет Посоха",
 
   "block.oppamod.water_leaf_block": "Воднолист",

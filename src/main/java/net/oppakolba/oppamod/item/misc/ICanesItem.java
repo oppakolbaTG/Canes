@@ -49,9 +49,5 @@ public class ICanesItem extends Item {
         level.addParticle(particle, randomX, randomY, randomZ, 0, 0.1, 0);
     }
 
-    @Override
-    public UseAnim getUseAnimation(ItemStack stack) {
-        return UseAnim.BOW;
-    }
 }
 

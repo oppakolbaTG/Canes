@@ -11,8 +11,11 @@ import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.oppakolba.oppamod.Oppamod;
 import net.oppakolba.oppamod.client.ManaHudOverlay;
+import net.oppakolba.oppamod.client.renderer.item.ICanesRenderer;
+import net.oppakolba.oppamod.init.ModItems;
 import net.oppakolba.oppamod.mana.PlayerMana;
 import net.oppakolba.oppamod.mana.PlayerManaProvider;
 import net.oppakolba.oppamod.networking.ModMessage;
@@ -54,20 +57,28 @@ public class ClientEvents {
                 }
             }
         }
+        @SubscribeEvent
+        public static void registerItemProperties(FMLClientSetupEvent event) {
+            ICanesRenderer.register(ModItems.FIREBALL_CANE.get());
+        }
+
+
+
     }
     @Mod.EventBusSubscriber(modid = Oppamod.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
-    public static class ClientMobBusEvents{
+    public static class ClientMobBusEvents {
 
         @SubscribeEvent
-        public static void onKeyRegister(RegisterKeyMappingsEvent event){
+        public static void onKeyRegister(RegisterKeyMappingsEvent event) {
             event.register(KeyBinding.MANA_USING_KEY);
             event.register(KeyBinding.OPENING_GUI_KEY);
         }
+
         @SubscribeEvent
-        public static void registerGuiOverlays(RegisterGuiOverlaysEvent event){
+        public static void registerGuiOverlays(RegisterGuiOverlaysEvent event) {
             event.registerAboveAll("mana", ManaHudOverlay.HUD_MANA);
+        }
 
     }
 
-    }
 }

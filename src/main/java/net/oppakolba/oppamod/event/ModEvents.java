@@ -15,7 +15,10 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.oppakolba.oppamod.Oppamod;
+import net.oppakolba.oppamod.client.renderer.item.ICanesRenderer;
+import net.oppakolba.oppamod.init.ModItems;
 import net.oppakolba.oppamod.mana.PlayerMana;
 import net.oppakolba.oppamod.mana.PlayerManaProvider;
 import net.oppakolba.oppamod.networking.ModMessage;
@@ -32,6 +35,7 @@ public class ModEvents {
 //        if(event.getSource().getEntity() instanceof Player player){
 //        }
 //    }
+
 
     @SubscribeEvent
     public static void onAttachCapabilitiesPlayer(AttachCapabilitiesEvent<Entity> event){

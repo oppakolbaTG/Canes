@@ -21,7 +21,7 @@ modId="oppamod" #mandatory
 # see the associated build.gradle script for how to populate this completely automatically during a build
 version="1.19" #mandatory
  # A display name for the mod
-displayName="OppaTerrariaMod" #mandatory
+displayName="Canes" #mandatory
 # A URL to query for updates for this mod. See the JSON update specification https://mcforge.readthedocs.io/en/latest/gettingstarted/autoupdate/
 #updateJSONURL="https://change.me.example.invalid/updates.json" #optional
 # A URL for the "homepage" for this mod, displayed in the mod UI
@@ -42,7 +42,7 @@ authors="Oppakolba" #optional
 
 # The description text for the mod (multi line!) (#mandatory)
 description='''
-Hi this is my first mod "Terraria in Minecraft" good games and learn lorem ipsum
+Hi this is my first mod "Canes" good games and learn lorem ipsum
 
 To contact:
 Tg: https://t.me/jarmenya52

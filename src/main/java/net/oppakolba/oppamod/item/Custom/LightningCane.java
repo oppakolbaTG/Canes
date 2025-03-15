@@ -54,8 +54,8 @@ public class LightningCane extends Item {
                     Vec3 playerPos = player.position();
 
 
-                    for(int i = 0; i< 6; i++) {
-                        Vec3 targetPos = playerPos.add(lookAngle.scale(i + 1));
+                    for(int i = 0; i < 10; i++) {
+                        Vec3 targetPos = playerPos.add(lookAngle.scale(i + 2));
                         LightningBolt lightningBolt = new LightningBolt(EntityType.LIGHTNING_BOLT, level);
                         lightningBolt.setPos(targetPos.x, player.getY(), targetPos.z);
                         level.addFreshEntity(lightningBolt);
