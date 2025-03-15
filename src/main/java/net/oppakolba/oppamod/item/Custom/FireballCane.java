@@ -1,10 +1,11 @@
 package net.oppakolba.oppamod.item.Custom;
 
+import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -15,39 +16,28 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.fml.common.Mod;
 import net.oppakolba.oppamod.entity.custom.FireballSeal;
 import net.oppakolba.oppamod.init.ModEntities;
 import net.oppakolba.oppamod.entity.custom.CustomFireball;
+import net.oppakolba.oppamod.item.misc.ICanesItem;
 import net.oppakolba.oppamod.mana.PlayerMana;
 import net.oppakolba.oppamod.mana.PlayerManaProvider;
 import net.oppakolba.oppamod.networking.ModMessage;
 import net.oppakolba.oppamod.networking.packet.ManaDataSyncS2CPacket;
 
-public class  FireballCane extends Item {
+public class  FireballCane extends ICanesItem {
     public FireballCane(Properties properties){
         super(properties);
     }
 
-    @Override
-    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
-        ItemStack stack = player.getItemInHand(hand);
-        player.startUsingItem(hand);
-        return InteractionResultHolder.consume(stack);
-    }
 
-    @Override
-    public int getUseDuration(ItemStack stack) {
-        return 1000;
-    }
 
     @Override
     public void releaseUsing(ItemStack stack, Level level, LivingEntity entity, int timeLeft) {
         if (!level.isClientSide && entity instanceof Player player) {
             int charge = 1000 - timeLeft;
 
-            if (charge < 20) {
-                player.sendSystemMessage(Component.literal("Зарядка слишком короткая!"));
+            if (charge < 20) { player.sendSystemMessage(Component.literal("Зарядка слишком короткая!"));
                 return;
             }
 
@@ -72,21 +62,18 @@ public class  FireballCane extends Item {
         }
     }
 
+
+    /**
+      add some flame particles with random generation
+     */
     @Override
-    @SuppressWarnings("deprecation")
     public void onUseTick(Level level, LivingEntity entity, ItemStack stack, int count) {
-        if(!level.isClientSide){
+        if(level.isClientSide){
             if(entity instanceof Player player){
-                FireballSeal fireballSeal = new FireballSeal(ModEntities.FIREBALL_SEAL.get(), level, player);
-                level.addFreshEntity(fireballSeal);
+                randomSpawnParticles(ParticleTypes.FLAME , level, player);
+                }
+                //FireballSeal fireballSeal = new FireballSeal(ModEntities.FIREBALL_SEAL.get(), level, player);
+               // level.addFreshEntity(fireballSeal);
             }
         }
     }
-
-
-    @Override
-    public UseAnim getUseAnimation(ItemStack stack) {
-        return UseAnim.BOW;
-    }
-}
-

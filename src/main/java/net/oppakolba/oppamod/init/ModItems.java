@@ -64,7 +64,8 @@ public class ModItems {
 
    public static final RegistryObject<Item> LIGHTNING_CANE = ITEMS.register("lightning_cane",
             () -> new LightningCane(new Item.Properties().tab(ModCreativeModeTab.OPPA_TAB).stacksTo(1)));
-    public static void register(IEventBus eventBus) {
+
+   public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }
 }
