@@ -1,6 +1,6 @@
-package net.oppakolba.oppamod.item.Custom;
+package net.oppakolba.oppamod.item.canes;
 
-import net.minecraft.network.chat.Component;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -14,12 +14,14 @@ import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.util.LazyOptional;
+import net.oppakolba.oppamod.init.ModParticles;
+import net.oppakolba.oppamod.item.misc.CanesItem;
 import net.oppakolba.oppamod.mana.PlayerMana;
 import net.oppakolba.oppamod.mana.PlayerManaProvider;
 import net.oppakolba.oppamod.networking.ModMessage;
 import net.oppakolba.oppamod.networking.packet.ManaDataSyncS2CPacket;
 
-public class LightningCane extends Item {
+public class LightningCane extends CanesItem {
     public LightningCane(Properties pProperties) {
         super(pProperties);
     }
@@ -76,14 +78,12 @@ public class LightningCane extends Item {
     }
 
 
-    /**
-  Need to add some lightning particles with random generation
-     */
     @Override
     @SuppressWarnings("deprecation")
     public void onUseTick(Level level, LivingEntity entity, ItemStack stack, int count) {
-        if(!level.isClientSide){
+        if(level.isClientSide){
             if(entity instanceof Player player){
+                randomSpawnParticles(ModParticles.LIGHTNING_PARTICLE.get(), level, player);
             }
         }
     }

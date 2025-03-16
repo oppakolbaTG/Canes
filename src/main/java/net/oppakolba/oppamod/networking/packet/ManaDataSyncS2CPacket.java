@@ -3,7 +3,7 @@ package net.oppakolba.oppamod.networking.packet;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.network.NetworkEvent;
-import net.oppakolba.oppamod.client.ClientManaData;
+import net.oppakolba.oppamod.client.manahud.ClientManaData;
 
 import java.util.function.Supplier;
 

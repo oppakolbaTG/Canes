@@ -13,7 +13,7 @@ import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.ItemStack;
-import net.oppakolba.oppamod.client.ClientManaData;
+import net.oppakolba.oppamod.client.manahud.ClientManaData;
 import net.oppakolba.oppamod.init.ModItems;
 import net.oppakolba.oppamod.mana.PlayerManaProvider;
 import net.oppakolba.oppamod.networking.ModMessage;

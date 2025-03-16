@@ -38,6 +38,7 @@ public class Oppamod {
         ModBlockEntities.BLOCK_ENTITIES.register(bus);
         ModMenuTypes.MENUS.register(bus);
         ModRecipe.SERIALIZER.register(bus);
+        ModParticles.PARTICLE_TYPES.register(bus);
         bus.addListener(this::commonSetup);
         MinecraftForge.EVENT_BUS.register(this);
     }

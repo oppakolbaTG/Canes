@@ -1,4 +1,4 @@
-package net.oppakolba.oppamod.item.Custom;
+package net.oppakolba.oppamod.item.canes;
 
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionResult;

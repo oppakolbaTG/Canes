@@ -1,4 +1,4 @@
-package net.oppakolba.oppamod.client;
+package net.oppakolba.oppamod.client.manahud;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.GuiComponent;

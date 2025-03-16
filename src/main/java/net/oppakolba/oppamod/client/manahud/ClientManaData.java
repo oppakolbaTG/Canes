@@ -1,4 +1,4 @@
-package net.oppakolba.oppamod.client;
+package net.oppakolba.oppamod.client.manahud;
 
 import lombok.Getter;
 import lombok.Setter;
