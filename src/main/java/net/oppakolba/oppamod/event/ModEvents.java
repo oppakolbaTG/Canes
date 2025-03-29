@@ -2,15 +2,22 @@ package net.oppakolba.oppamod.event;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.util.thread.BlockableEventLoop;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityEvent;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.LogicalSide;
@@ -18,7 +25,10 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.oppakolba.oppamod.Oppamod;
 import net.oppakolba.oppamod.client.renderer.item.ICanesRenderer;
+import net.oppakolba.oppamod.entity.item.ManaOrb;
+import net.oppakolba.oppamod.init.ModItemEntities;
 import net.oppakolba.oppamod.init.ModItems;
+import net.oppakolba.oppamod.item.misc.CanesItem;
 import net.oppakolba.oppamod.mana.PlayerMana;
 import net.oppakolba.oppamod.mana.PlayerManaProvider;
 import net.oppakolba.oppamod.networking.ModMessage;
@@ -27,14 +37,8 @@ import net.oppakolba.oppamod.networking.packet.ManaDataSyncS2CPacket;
 @Mod.EventBusSubscriber(modid = Oppamod.MOD_ID)
 public class ModEvents {
 
-    /**
-     Mana drop event should be here.
-     **/
-//    @SubscribeEvent
-//    public static void onMobDeath(LivingDeathEvent event){
-//        if(event.getSource().getEntity() instanceof Player player){
-//        }
-//    }
+
+
 
 
     @SubscribeEvent
@@ -80,5 +84,6 @@ public class ModEvents {
         }
         });
     }
+
 }
 

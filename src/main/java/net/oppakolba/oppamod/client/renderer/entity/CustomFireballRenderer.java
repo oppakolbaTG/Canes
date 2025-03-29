@@ -12,13 +12,13 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.oppakolba.oppamod.Oppamod;
 import net.oppakolba.oppamod.client.model.bolt.CustomFireballModel;
-import net.oppakolba.oppamod.entity.custom.CustomFireball;
+import net.oppakolba.oppamod.entity.projectile.FireballEntity;
 import org.jetbrains.annotations.NotNull;
 
 @OnlyIn(Dist.CLIENT)
-public class CustomFireballRenderer extends EntityRenderer<CustomFireball> {
+public class CustomFireballRenderer extends EntityRenderer<FireballEntity> {
     private static final ResourceLocation TEXTURE = new ResourceLocation(Oppamod.MOD_ID, "textures/entity/custom_fireball.png");
-    private final CustomFireballModel<CustomFireball> model;
+    private final CustomFireballModel<FireballEntity> model;
 
     public CustomFireballRenderer(EntityRendererProvider.Context context){
         super(context);
@@ -26,7 +26,7 @@ public class CustomFireballRenderer extends EntityRenderer<CustomFireball> {
     }
 
     @Override
-    public void render(CustomFireball entity, float entityYaw, float partialTick, PoseStack poseStack, MultiBufferSource buffer, int packedLight) {
+    public void render(FireballEntity entity, float entityYaw, float partialTick, PoseStack poseStack, MultiBufferSource buffer, int packedLight) {
         poseStack.mulPose(Vector3f.YP.rotationDegrees(entity.tickCount + 15f));
         poseStack.mulPose(Vector3f.XP.rotationDegrees(entity.tickCount + 15f));
         poseStack.scale(3F, 3F, 3F);
@@ -36,7 +36,7 @@ public class CustomFireballRenderer extends EntityRenderer<CustomFireball> {
 
     
     @Override
-    public @NotNull ResourceLocation getTextureLocation(@NotNull CustomFireball entity) {
+    public @NotNull ResourceLocation getTextureLocation(@NotNull FireballEntity entity) {
         return TEXTURE;
     }
 

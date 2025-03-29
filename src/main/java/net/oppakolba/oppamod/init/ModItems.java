@@ -66,6 +66,9 @@ public class ModItems {
    public static final RegistryObject<Item> LIGHTNING_CANE = ITEMS.register("lightning_cane",
             () -> new LightningCane(new Item.Properties().rarity(Rarity.EPIC).tab(ModCreativeModeTab.OPPA_TAB).stacksTo(1)));
 
+//   public static final RegistryObject<Item> DRILL_CANE = ITEMS.register("drill_cane",
+//            () -> new DrillCane(new Item.Properties().rarity(Rarity.EPIC).tab(ModCreativeModeTab.OPPA_TAB).stacksTo(1)));
+
    public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }

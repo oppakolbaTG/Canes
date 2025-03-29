@@ -8,7 +8,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
-public class CanesItem extends Item {
+public class CanesItem extends Item implements ICanseItem{
 
     public CanesItem(Properties pProperties) {
         super(pProperties);
@@ -28,11 +28,14 @@ public class CanesItem extends Item {
     }
 
 
-    public void randomSpawnParticles(ParticleOptions particle, Level level, Player player) {
+    public void randomSpawnParticles(ParticleOptions particle, Level level, Player player, int pX,int pY ,int pZ) {
+
         final double randomX = player.getRandomX(3);
         final double randomY = player.getRandomY();
         final double randomZ = player.getRandomZ(3);
-        level.addParticle(particle, randomX, randomY, randomZ, 0, 0.1, 0);
+
+
+        level.addParticle(particle, randomX, randomY, randomZ, pX, pY, pZ);
     }
 
 }

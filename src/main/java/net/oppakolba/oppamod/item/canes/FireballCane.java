@@ -11,7 +11,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.util.LazyOptional;
 import net.oppakolba.oppamod.init.ModEntities;
-import net.oppakolba.oppamod.entity.custom.CustomFireball;
+import net.oppakolba.oppamod.entity.projectile.FireballEntity;
 import net.oppakolba.oppamod.item.misc.CanesItem;
 import net.oppakolba.oppamod.mana.PlayerMana;
 import net.oppakolba.oppamod.mana.PlayerManaProvider;
@@ -25,12 +25,13 @@ public class  FireballCane extends CanesItem {
 
 
 
+
     @Override
     public void releaseUsing(ItemStack stack, Level level, LivingEntity entity, int timeLeft) {
         if (!level.isClientSide && entity instanceof Player player) {
             int charge = 1000 - timeLeft;
 
-            if (charge < 20) { player.sendSystemMessage(Component.literal("Зарядка слишком короткая!"));
+            if (charge < 20) { System.out.println("Зарядка слишком короткая!");
                 return;
             }
 
@@ -40,7 +41,7 @@ public class  FireballCane extends CanesItem {
                 if (mana.getMana() >= 10) {
                     mana.subMana(10);
 
-                    CustomFireball customFireball = new CustomFireball(ModEntities.CUSTOM_FIREBALL.get(), level, player,
+                    FireballEntity customFireball = new FireballEntity(ModEntities.CUSTOM_FIREBALL.get(), level, player,
                             player.getLookAngle().x, player.getLookAngle().y - 0.1f, player.getLookAngle().z, 6.0f);
 
                     level.addFreshEntity(customFireball);
@@ -56,17 +57,13 @@ public class  FireballCane extends CanesItem {
     }
 
 
-    /**
-      add some flame particles with random generation
-     */
     @Override
     public void onUseTick(Level level, LivingEntity entity, ItemStack stack, int count) {
         if(level.isClientSide){
             if(entity instanceof Player player){
-                randomSpawnParticles(ParticleTypes.FLAME , level, player);
+                randomSpawnParticles(ParticleTypes.FLAME , level, player, 0 ,1,0);
                 }
-                //FireballSeal fireballSeal = new FireballSeal(ModEntities.FIREBALL_SEAL.get(), level, player);
-               // level.addFreshEntity(fireballSeal);
+
             }
         }
     }

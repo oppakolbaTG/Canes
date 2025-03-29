@@ -1,4 +1,4 @@
-package net.oppakolba.oppamod.entity.custom;
+package net.oppakolba.oppamod.entity.projectile;
 
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -12,15 +12,16 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraftforge.network.NetworkHooks;
+import org.jetbrains.annotations.NotNull;
 
-public class CustomFireball extends AbstractHurtingProjectile  {
-    private static final EntityDataAccessor<Float> POWER = SynchedEntityData.defineId(CustomFireball.class, EntityDataSerializers.FLOAT);
+public class FireballEntity extends AbstractHurtingProjectile  {
+    private static final EntityDataAccessor<Float> POWER = SynchedEntityData.defineId(FireballEntity.class, EntityDataSerializers.FLOAT);
 
-    public CustomFireball(EntityType<? extends CustomFireball> entityType, Level level){
+    public FireballEntity(EntityType<? extends FireballEntity> entityType, Level level){
         super(entityType, level);
     }
 
-    public CustomFireball(EntityType<? extends CustomFireball> entityType, Level level, LivingEntity entity, double xP, double yP, double zP, float power){
+    public FireballEntity(EntityType<? extends FireballEntity> entityType, Level level, LivingEntity entity, double xP, double yP, double zP, float power){
         super(entityType, entity, xP, yP, zP, level);
         this.entityData.set(POWER, power);
         this.setPos(this.getX(), this.getY() + 4, this.getZ());
@@ -44,7 +45,7 @@ public class CustomFireball extends AbstractHurtingProjectile  {
 
 
     @Override
-    protected void onHitEntity(EntityHitResult result) {
+    protected void onHitEntity(@NotNull EntityHitResult result) {
         super.onHitEntity(result);
         if(!this.level.isClientSide()){
             this.level.explode(null , this.getX(), this.getY(), this.getZ(),getPower() / 2.0f, Explosion.BlockInteraction.DESTROY);
@@ -53,7 +54,7 @@ public class CustomFireball extends AbstractHurtingProjectile  {
     }
 
     @Override
-    protected void onHitBlock(BlockHitResult blockHitResult) {
+    protected void onHitBlock(@NotNull BlockHitResult blockHitResult) {
         super.onHitBlock(blockHitResult);
         if(!this.level.isClientSide()){
             this.level.explode(null , this.getX(), this.getY(), this.getZ(),getPower() / 2.0f, Explosion.BlockInteraction.DESTROY);
@@ -62,7 +63,7 @@ public class CustomFireball extends AbstractHurtingProjectile  {
     }
 
     @Override
-    public Packet<?> getAddEntityPacket() {
+    public @NotNull Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 

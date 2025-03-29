@@ -2,7 +2,7 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [32, 32],
 	"textures": {
-		"1": "oppamod:item/fireball_cane6"
+		"1": "oppamod:item/fireball_cane0"
 	},
 	"elements": [
 		{
@@ -34,7 +34,7 @@
 		{
 			"from": [6.4, 27.7, 6.5],
 			"to": [9.4, 30.7, 9.5],
-			"rotation": {"angle": -22.5, "axis": "y", "origin": [8, 29, 8]},
+			"rotation": {"angle": 0, "axis": "y", "origin": [5, 28, 7]},
 			"faces": {
 				"north": {"uv": [4, 0, 5.5, 1.5], "texture": "#1"},
 				"east": {"uv": [4, 1.5, 5.5, 3], "texture": "#1"},

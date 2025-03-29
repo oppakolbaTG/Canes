@@ -1,4 +1,4 @@
-package net.oppakolba.oppamod.client;
+package net.oppakolba.oppamod.client.renderer.particles;
 
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;

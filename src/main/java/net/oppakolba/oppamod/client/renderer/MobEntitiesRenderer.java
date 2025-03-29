@@ -7,14 +7,16 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.oppakolba.oppamod.Oppamod;
 import net.oppakolba.oppamod.client.renderer.entity.CustomFireballRenderer;
-import net.oppakolba.oppamod.client.renderer.entity.FireballSealRenderer;
+
+import net.oppakolba.oppamod.client.renderer.entity.ManaOrbRenderer;
 import net.oppakolba.oppamod.init.ModEntities;
+import net.oppakolba.oppamod.init.ModItemEntities;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, modid = Oppamod.MOD_ID, value = Dist.CLIENT)
 public class MobEntitiesRenderer {
     @SubscribeEvent
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event){
         event.registerEntityRenderer(ModEntities.CUSTOM_FIREBALL.get(), CustomFireballRenderer::new);
-        event.registerEntityRenderer(ModEntities.FIREBALL_SEAL.get(), FireballSealRenderer::new);
+        event.registerEntityRenderer(ModEntities.MANA_ORB.get(), ManaOrbRenderer::new);
     }
 }

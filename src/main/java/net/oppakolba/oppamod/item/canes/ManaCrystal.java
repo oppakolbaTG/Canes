@@ -25,12 +25,15 @@ public class ManaCrystal extends Item {
         Player player = context.getPlayer();
         if (player != null && !level.isClientSide()) {
             player.getCapability(PlayerManaProvider.PLAYER_MANA).ifPresent(mana -> {
+
                 int maxMana = mana.getMAX_MANA();
                 int currentMana = mana.getMana();
-                mana.addMana(20);
-                if (mana.getMana() > maxMana) {
-                    int excessMana = mana.getMana() - maxMana;
-                    mana.subMana(excessMana);
+                if(mana.getMana() != maxMana) {
+                    mana.addMana(20);
+                    if (mana.getMana() > maxMana) {
+                        int excessMana = mana.getMana() - maxMana;
+                        mana.subMana(excessMana);
+                    }
                 }
                 if (mana.getMana() != currentMana) {
                     if (player instanceof ServerPlayer serverPlayer) {
