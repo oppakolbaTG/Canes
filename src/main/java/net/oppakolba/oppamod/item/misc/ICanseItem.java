@@ -22,16 +22,10 @@ public interface ICanseItem {
 
 
         int maxExpPerOrb = 5;
-        int orbs = Math.max(
-                amount / maxExpPerOrb,
-                random.nextInt(amount) + 1
-        );
+        int orbs = Math.max(amount / maxExpPerOrb, random.nextInt(amount) + 1);
         for (int i = 0; i < orbs; i++) {
             ManaOrb orb = new ManaOrb(ModEntities.MANA_ORB.get(), level);
-
             orb.setPos(pos);
-
-
             orb.setDeltaMovement(
                     (random.nextDouble() - 0.5) * 0.3,
                     0.1 + random.nextDouble() * 0.2,

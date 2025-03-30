@@ -23,7 +23,7 @@ public class ModEntities {
 
     public static final RegistryObject<EntityType<ManaOrb>> MANA_ORB = ENTITIES.register("mana_orb",
             () -> EntityType.Builder.<ManaOrb>of(ManaOrb::new, MobCategory.MISC)
-                    .sized(1, 1)
+                    .sized(0.5f, 0.5f)
                     .build("mana_orb"));
 
 

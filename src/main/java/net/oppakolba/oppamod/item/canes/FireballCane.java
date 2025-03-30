@@ -43,7 +43,7 @@ public class  FireballCane extends CanesItem {
 
                     FireballEntity customFireball = new FireballEntity(ModEntities.CUSTOM_FIREBALL.get(), level, player,
                             player.getLookAngle().x, player.getLookAngle().y - 0.1f, player.getLookAngle().z, 6.0f);
-
+                    customFireball.setOwner(player);
                     level.addFreshEntity(customFireball);
                     player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 40 , 5));
 
