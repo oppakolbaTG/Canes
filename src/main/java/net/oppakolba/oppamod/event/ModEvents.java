@@ -25,7 +25,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.oppakolba.oppamod.Oppamod;
 import net.oppakolba.oppamod.client.renderer.item.ICanesRenderer;
-import net.oppakolba.oppamod.entity.item.ManaOrb;
 import net.oppakolba.oppamod.init.ModItemEntities;
 import net.oppakolba.oppamod.init.ModItems;
 import net.oppakolba.oppamod.item.misc.CanesItem;
@@ -36,10 +35,6 @@ import net.oppakolba.oppamod.networking.packet.ManaDataSyncS2CPacket;
 
 @Mod.EventBusSubscriber(modid = Oppamod.MOD_ID)
 public class ModEvents {
-
-
-
-
 
     @SubscribeEvent
     public static void onAttachCapabilitiesPlayer(AttachCapabilitiesEvent<Entity> event){

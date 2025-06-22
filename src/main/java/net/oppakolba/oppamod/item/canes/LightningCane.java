@@ -44,7 +44,7 @@ public class LightningCane extends CanesItem {
             int charge = 1000 - timeLeft;
 
             if (charge < 20) {
-                 return;
+                return;
             }
 
             LazyOptional<PlayerMana> manaOptional = player.getCapability(PlayerManaProvider.PLAYER_MANA);
@@ -54,25 +54,23 @@ public class LightningCane extends CanesItem {
                     mana.subMana(30);
                     Vec3 lookAngle = player.getLookAngle();
                     Vec3 playerPos = player.position();
-                    if (player instanceof ServerPlayer pServerPlayer) {
 
-                        for (int i = 0; i < 10; i++) {
-                            Vec3 targetPos = playerPos.add(lookAngle.scale(i + 2));
-                            LightningBolt lightningBolt = new LightningBolt(EntityType.LIGHTNING_BOLT, level);
-                            lightningBolt.setPos(targetPos.x, player.getY(), targetPos.z);
-                            lightningBolt.setCause(pServerPlayer);
-                            level.addFreshEntity(lightningBolt);
-                            try {
-                                Thread.sleep(40);
-                            } catch (InterruptedException e) {
-                                throw new RuntimeException(e);
-                            }
 
+                    for(int i = 0; i < 10; i++) {
+                        Vec3 targetPos = playerPos.add(lookAngle.scale(i + 2));
+                        LightningBolt lightningBolt = new LightningBolt(EntityType.LIGHTNING_BOLT, level);
+                        lightningBolt.setPos(targetPos.x, player.getY(), targetPos.z);
+                        level.addFreshEntity(lightningBolt);
+                        try {
+                            Thread.sleep(40);
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
                         }
-                        player.getCooldowns().addCooldown(this, 30);
-                        if (player instanceof ServerPlayer serverPlayer) {
-                            ModMessage.sendToPlayer(new ManaDataSyncS2CPacket(mana.getMana()), serverPlayer);
-                        }
+
+                    }
+                    player.getCooldowns().addCooldown(this, 30);
+                    if (player instanceof ServerPlayer serverPlayer) {
+                        ModMessage.sendToPlayer(new ManaDataSyncS2CPacket(mana.getMana()), serverPlayer);
                     }
                 }
             }
@@ -85,9 +83,7 @@ public class LightningCane extends CanesItem {
     public void onUseTick(Level level, LivingEntity entity, ItemStack stack, int count) {
         if(level.isClientSide){
             if(entity instanceof Player player){
-                for(int i = 0; i < 2; i++) {
-                    randomSpawnParticles(ModParticles.LIGHTNING_PARTICLE.get(), level, player, 0, 3, 0);
-                }
+                randomSpawnParticles(ModParticles.LIGHTNING_PARTICLE.get(), level, player, 0, 3, 0);
             }
         }
     }

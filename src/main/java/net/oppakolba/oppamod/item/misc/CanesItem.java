@@ -30,9 +30,9 @@ public class CanesItem extends Item implements ICanseItem{
 
     public void randomSpawnParticles(ParticleOptions particle, Level level, Player player, int pX,int pY ,int pZ) {
 
-        final double randomX = player.getRandomX(3);
+        final double randomX = player.getRandomX(pX);
         final double randomY = player.getRandomY();
-        final double randomZ = player.getRandomZ(3);
+        final double randomZ = player.getRandomZ(pZ);
 
 
         level.addParticle(particle, randomX, randomY, randomZ, pX, pY, pZ);

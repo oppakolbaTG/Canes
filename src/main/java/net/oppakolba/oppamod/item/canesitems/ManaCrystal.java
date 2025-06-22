@@ -1,4 +1,4 @@
-package net.oppakolba.oppamod.item.canes;
+package net.oppakolba.oppamod.item.canesitems;
 
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;

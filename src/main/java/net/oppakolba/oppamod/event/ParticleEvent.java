@@ -2,6 +2,7 @@ package net.oppakolba.oppamod.event;
 
 
 import net.minecraft.advancements.critereon.PlayerHurtEntityTrigger;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -17,6 +18,7 @@ import net.minecraftforge.event.entity.living.LivingExperienceDropEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.oppakolba.oppamod.client.renderer.particles.HealLineParticle;
 import net.oppakolba.oppamod.client.renderer.particles.LightningParticle;
 import net.oppakolba.oppamod.init.ModItems;
 import net.oppakolba.oppamod.init.ModParticles;
@@ -30,6 +32,8 @@ public class ParticleEvent {
     @SubscribeEvent
     public static void registerParticles(RegisterParticleProvidersEvent event) {
         event.register(ModParticles.LIGHTNING_PARTICLE.get(), LightningParticle.Provider::new);
+        Minecraft.getInstance().particleEngine.register(ModParticles.HEAL_LINE_PARTICLE.get(),
+                HealLineParticle.Provider::new);
     }
 
     @SubscribeEvent

@@ -37,6 +37,7 @@ public class Oppamod {
         ModItemEntities.ITEM_ENTITIES.register(bus);
         ModBlockEntities.BLOCK_ENTITIES.register(bus);
         ModMenuTypes.MENUS.register(bus);
+        ModLootModifier.register(bus);
         ModRecipe.SERIALIZER.register(bus);
         ModParticles.PARTICLE_TYPES.register(bus);
         bus.addListener(this::commonSetup);

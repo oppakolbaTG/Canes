@@ -1,0 +1,17 @@
+{
+  "type": "oppamod:add_item",
+  "conditions": [
+    {
+      "condition": "minecraft:alternative",
+      "terms": [
+        { "condition": "forge:loot_table_id", "loot_table_id": "minecraft:chests/abandoned_mineshaft" },
+        { "condition": "forge:loot_table_id", "loot_table_id": "minecraft:chests/buried_treasure" },
+        { "condition": "forge:loot_table_id", "loot_table_id": "minecraft:chests/shipwreck_supply" },
+        { "condition": "forge:loot_table_id", "loot_table_id": "minecraft:chests/simple_dungeon" },
+        { "condition": "forge:loot_table_id", "loot_table_id": "minecraft:chests/ruined_portal" },
+        { "condition": "forge:loot_table_id", "loot_table_id": "minecraft:chests/village/village_temple" }
+      ]
+    }
+  ],
+  "item": "oppamod:fallen_star"
+}

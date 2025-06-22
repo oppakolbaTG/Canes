@@ -15,6 +15,8 @@ public class ModParticles {
 
     public static final RegistryObject<SimpleParticleType> LIGHTNING_PARTICLE =
             PARTICLE_TYPES.register("lightning_particle", () -> new SimpleParticleType(false));
+    public static final RegistryObject<SimpleParticleType> HEAL_LINE_PARTICLE =
+            PARTICLE_TYPES.register("heal_line_particle", () -> new SimpleParticleType(true));
 
     public static void register(IEventBus eventBus){
         PARTICLE_TYPES.register(eventBus);

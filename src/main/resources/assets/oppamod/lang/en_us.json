@@ -9,6 +9,7 @@
   "item.oppamod.fallen_star": "Fallen Star",
   "item.oppamod.fireball_cane": "Fireball Cane",
   "item.oppamod.lightning_cane": "Lightning Turret",
+  "item.oppamod.heal_cane": "Heal Turret",
   "item.oppamod.sample_cane": "Sample Cane",
 
 
@@ -18,9 +19,8 @@
   "block.oppamod.alterio_table": "Alterio Table",
 
 
-  "entity.minecraft.villager.t_super_villager": "Super Villager",
-
-  "itemGroup.oppamodtab": "Canes",
+  "itemGroup.oppamodtab": "New items",
+  "itemGroup.canestab": "Canes",
 
   "message.oppamod.mana_use": "You can get mana",
   "message.oppamod.mana_no_use": "You can not get mana",

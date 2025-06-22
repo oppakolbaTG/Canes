@@ -1,4 +1,4 @@
-package net.oppakolba.oppamod.item.canes;
+package net.oppakolba.oppamod.item.canesitems;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;

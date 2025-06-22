@@ -49,7 +49,8 @@ public class FireballEntity extends AbstractHurtingProjectile  {
     protected void onHitEntity(@NotNull EntityHitResult result) {
         super.onHitEntity(result);
         if(!this.level.isClientSide()){
-            this.level.explode(null , this.getX(), this.getY(), this.getZ(),getPower() / 2.0f, Explosion.BlockInteraction.DESTROY);
+            Entity owner = this.getOwner();
+            this.level.explode(owner , this.getX(), this.getY(), this.getZ(),getPower() / 2.0f, Explosion.BlockInteraction.DESTROY);
             this.discard();
         }
     }

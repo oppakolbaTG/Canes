@@ -1,0 +1,15 @@
+
+{
+  "type": "oppamod:alterio_table",
+  "ingredients": [
+    {
+      "item": "oppamod:sample_cane"
+    },
+    {
+      "item": "minecraft:honey_bottle"
+    }
+  ],
+  "output": {
+    "item": "oppamod:heal_cane"
+  }
+}

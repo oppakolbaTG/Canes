@@ -9,20 +9,21 @@
   "item.oppamod.fallen_star": "Упавшая Звезда",
   "item.oppamod.fireball_cane": "Посох Огненного Шара",
   "item.oppamod.lightning_cane": "Турель Молний",
+  "item.oppamod.heal_cane": "Лечебный Посох",
   "item.oppamod.sample_cane": "Макет Посоха",
 
   "block.oppamod.water_leaf_block": "Воднолист",
   "block.oppamod.platinum_ore": "Платиновая руда",
   "block.oppamod.platinum_block": "Платиновый блок",
-  "entity.minecraft.villager.t_super_villager": "Супер житель",
   "block.oppamod.alterio_table": "Альтерио Стол",
 
-  "itemGroup.oppamodtab": "Террария",
+  "itemGroup.oppamodtab": "Новые предметы",
+  "itemGroup.canestab": "Посохи",
 
   "message.oppamod.mana_use": "Вы можете получить ману",
   "message.oppamod.mana_no_use": "Вы не можете получить ману",
 
-  "key.category.oppamod.oppaterra": "ОппаТерраМод",
+  "key.category.oppamod.oppaterra": "ModCanes",
   "key.oppamod.mana_use": "Использовать Ману",
   "key.oppamod.open_gui": "Отрыть Окно"
 }
