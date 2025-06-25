@@ -19,6 +19,7 @@ import net.oppakolba.oppamod.mana.PlayerManaProvider;
 import net.oppakolba.oppamod.networking.ModMessage;
 import net.oppakolba.oppamod.networking.packet.TerraMenuC2SPacket;
 import net.oppakolba.oppamod.networking.packet.TerraMenuReloadC2SPacket;
+import net.oppakolba.oppamod.networking.packet.UpgradeC2SPacket;
 import org.jetbrains.annotations.NotNull;
 
 public class TerraMenuScreen extends Screen {
@@ -57,7 +58,7 @@ public class TerraMenuScreen extends Screen {
                         for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
                             ItemStack stack = player.getInventory().getItem(i);
                             if (stack.getItem() == ModItems.MANA_CRYSTAL.get() && !stack.isEmpty()) {
-                                stack.shrink(3);
+                                ModMessage.sendToServer(new UpgradeC2SPacket());
                                 break;
                             }
                         }

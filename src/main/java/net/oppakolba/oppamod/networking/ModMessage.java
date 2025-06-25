@@ -53,6 +53,21 @@ public class  ModMessage {
                 .decoder(TerraMenuReloadC2SPacket::new)
                 .encoder(TerraMenuReloadC2SPacket::toByte)
                 .consumerMainThread(TerraMenuReloadC2SPacket::handle).add();
+
+        net.messageBuilder(UpgradeC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(UpgradeC2SPacket::new)
+                .encoder(UpgradeC2SPacket::toByte)
+                .consumerMainThread(UpgradeC2SPacket::handle).add();
+
+        net.messageBuilder(UpgradeS2CPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(UpgradeS2CPacket::new)
+                .encoder(UpgradeS2CPacket::toByte)
+                .consumerMainThread(UpgradeS2CPacket::handle).add();
+
+
+
+
+
     }
 
     public static <MSG> void sendToServer(MSG message){
