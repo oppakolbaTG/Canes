@@ -59,6 +59,7 @@ public class TerraMenuScreen extends Screen {
                             ItemStack stack = player.getInventory().getItem(i);
                             if (stack.getItem() == ModItems.MANA_CRYSTAL.get() && !stack.isEmpty()) {
                                 ModMessage.sendToServer(new UpgradeC2SPacket());
+                                stack.shrink(3);
                                 break;
                             }
                         }

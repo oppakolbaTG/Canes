@@ -61,7 +61,7 @@ public class  FireballCane extends CanesItem {
     public void onUseTick(Level level, LivingEntity entity, ItemStack stack, int count) {
         if(level.isClientSide){
             if(entity instanceof Player player){
-                randomSpawnParticles(ParticleTypes.FLAME , level, player, 0 ,1,0);
+                randomSpawnParticles(ParticleTypes.FLAME , level, player, 2 ,1,2);
                 }
 
             }

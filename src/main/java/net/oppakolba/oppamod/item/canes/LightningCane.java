@@ -83,7 +83,7 @@ public class LightningCane extends CanesItem {
     public void onUseTick(Level level, LivingEntity entity, ItemStack stack, int count) {
         if(level.isClientSide){
             if(entity instanceof Player player){
-                randomSpawnParticles(ModParticles.LIGHTNING_PARTICLE.get(), level, player, 0, 3, 0);
+                randomSpawnParticles(ModParticles.LIGHTNING_PARTICLE.get(), level, player, 2, 1, 2);
             }
         }
     }

@@ -35,7 +35,7 @@ public class CanesItem extends Item implements ICanseItem{
         final double randomZ = player.getRandomZ(pZ);
 
 
-        level.addParticle(particle, randomX, randomY, randomZ, pX, pY, pZ);
+        level.addParticle(particle, randomX, randomY, randomZ, 0, 0.5, 0);
     }
 
 }
