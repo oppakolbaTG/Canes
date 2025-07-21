@@ -71,6 +71,9 @@ public class ModItems {
    public static final RegistryObject<Item> HEAL_CANE = ITEMS.register("heal_cane",
             () -> new HealCane(new Item.Properties().rarity(Rarity.EPIC).tab(CreativeModeTab.CANES_TAB).stacksTo(1)));
 
+   public static final RegistryObject<Item> BEAM_CANE = ITEMS.register("beam_cane",
+            () -> new BeamCane(new Item.Properties().rarity(Rarity.EPIC).tab(CreativeModeTab.CANES_TAB).stacksTo(1)));
+
 //   public static final RegistryObject<Item> DRILL_CANE = ITEMS.register("drill_cane",
 //            () -> new DrillCane(new Item.Properties().rarity(Rarity.EPIC).tab(ModCreativeModeTab.OPPA_TAB).stacksTo(1)));
 
