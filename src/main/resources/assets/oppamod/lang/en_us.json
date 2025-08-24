@@ -7,10 +7,12 @@
   "item.oppamod.charged_copper_ingot": "Charged Copper Ingot",
   "item.oppamod.mana_crystal": "Mana Crystal",
   "item.oppamod.fallen_star": "Fallen Star",
+
   "item.oppamod.fireball_cane": "Fireball Cane",
   "item.oppamod.lightning_cane": "Lightning Turret",
   "item.oppamod.heal_cane": "Heal Turret",
   "item.oppamod.sample_cane": "Sample Cane",
+  "item.oppamod.beam_cane": "The Raybearer",
 
 
   "block.oppamod.water_leaf_block": "Water Leaf",

@@ -17,6 +17,12 @@ public class ModParticles {
             PARTICLE_TYPES.register("lightning_particle", () -> new SimpleParticleType(false));
     public static final RegistryObject<SimpleParticleType> HEAL_LINE_PARTICLE =
             PARTICLE_TYPES.register("heal_line_particle", () -> new SimpleParticleType(true));
+    public static final RegistryObject<SimpleParticleType> BEAM_EXPLOSION_PARTICLE =
+            PARTICLE_TYPES.register("beam_explosion_particle", () -> new SimpleParticleType(true));
+    public static final RegistryObject<SimpleParticleType> BEAM_PARTICLE =
+            PARTICLE_TYPES.register("beam_particle", () -> new SimpleParticleType(true));
+    //public static final RegistryObject<SimpleParticleType> CIRCLE_BEAM_PARTICLE =
+          //  PARTICLE_TYPES.register("circle_beam_particle", () -> new SimpleParticleType(true));
 
     public static void register(IEventBus eventBus){
         PARTICLE_TYPES.register(eventBus);

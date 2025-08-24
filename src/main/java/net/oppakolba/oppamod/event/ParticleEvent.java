@@ -18,6 +18,8 @@ import net.minecraftforge.event.entity.living.LivingExperienceDropEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.oppakolba.oppamod.client.renderer.particles.BeamExplosionParticle;
+import net.oppakolba.oppamod.client.renderer.particles.BeamParticle;
 import net.oppakolba.oppamod.client.renderer.particles.HealLineParticle;
 import net.oppakolba.oppamod.client.renderer.particles.LightningParticle;
 import net.oppakolba.oppamod.init.ModItems;
@@ -32,8 +34,9 @@ public class ParticleEvent {
     @SubscribeEvent
     public static void registerParticles(RegisterParticleProvidersEvent event) {
         event.register(ModParticles.LIGHTNING_PARTICLE.get(), LightningParticle.Provider::new);
-        Minecraft.getInstance().particleEngine.register(ModParticles.HEAL_LINE_PARTICLE.get(),
-                HealLineParticle.Provider::new);
+        event.register(ModParticles.BEAM_EXPLOSION_PARTICLE.get(), BeamExplosionParticle.Provider::new);
+        event.register(ModParticles.BEAM_PARTICLE.get(), BeamParticle.Provider::new);
+        Minecraft.getInstance().particleEngine.register(ModParticles.HEAL_LINE_PARTICLE.get(), HealLineParticle.Provider::new);
     }
 
     @SubscribeEvent

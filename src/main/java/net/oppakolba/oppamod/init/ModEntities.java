@@ -8,6 +8,8 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.oppakolba.oppamod.Oppamod;
+
+import net.oppakolba.oppamod.entity.projectile.BeamEntity;
 import net.oppakolba.oppamod.entity.projectile.FireballEntity;
 
 public class ModEntities {
@@ -19,6 +21,12 @@ public class ModEntities {
             ENTITIES.register("custom_fireball", () ->
                     EntityType.Builder.<FireballEntity>of(FireballEntity::new, MobCategory.MISC)
                             .sized(1f, 1f).build(new ResourceLocation(Oppamod.MOD_ID, "custom_fireball").toString()));
+
+
+    public static final RegistryObject<EntityType<BeamEntity>> BEAM_ENTITY =
+            ENTITIES.register("beam_entity", () ->
+                    EntityType.Builder.<BeamEntity>of(BeamEntity::new, MobCategory.MISC)
+                            .sized(1f, 1f).build(new ResourceLocation(Oppamod.MOD_ID, "beam_entity").toString()));
 
 
 //    public static final RegistryObject<EntityType<DrillEntity>> CANE_DRILL =

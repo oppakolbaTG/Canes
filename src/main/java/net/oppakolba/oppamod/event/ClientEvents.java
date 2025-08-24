@@ -3,11 +3,15 @@ package net.oppakolba.oppamod.event;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
 import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -15,6 +19,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.oppakolba.oppamod.Oppamod;
 import net.oppakolba.oppamod.client.manahud.ManaHudOverlay;
 import net.oppakolba.oppamod.client.renderer.item.ICanesRenderer;
+import net.oppakolba.oppamod.entity.projectile.BeamEntity;
+import net.oppakolba.oppamod.init.ModEntities;
 import net.oppakolba.oppamod.init.ModItems;
 import net.oppakolba.oppamod.mana.PlayerMana;
 import net.oppakolba.oppamod.mana.PlayerManaProvider;
@@ -28,6 +34,7 @@ import net.oppakolba.oppamod.util.KeyBinding;
 public class ClientEvents {
     @Mod.EventBusSubscriber(modid = Oppamod.MOD_ID, value = Dist.CLIENT)
     public static class ClientForgeEvents {
+
 
         @SubscribeEvent
         public static void onKeyInput(InputEvent.Key event) {

@@ -15,6 +15,9 @@ public class CanesItem extends Item implements ICanseItem{
 
     }
 
+
+
+
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
@@ -37,6 +40,10 @@ public class CanesItem extends Item implements ICanseItem{
 
         level.addParticle(particle, randomX, randomY, randomZ, 0, 0.5, 0);
     }
+
+
+
+
 
 }
 
