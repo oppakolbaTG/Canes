@@ -1,8 +1,8 @@
 {
   "replace": false,
   "values": [
-    "oppamod:platinum_ore",
-    "oppamod:platinum_block",
-    "oppamod:alterio_table"
+    "canes:platinum_ore",
+    "canes:platinum_block",
+    "canes:alterio_table"
   ]
 }
