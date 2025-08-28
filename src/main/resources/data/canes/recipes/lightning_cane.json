@@ -1,0 +1,14 @@
+{
+  "type": "canes:alterio_table",
+  "ingredients": [
+    {
+      "item": "canes:sample_cane"
+    },
+    {
+      "item": "canes:charged_copper_ingot"
+    }
+  ],
+  "output": {
+    "item": "canes:lightning_cane"
+  }
+}

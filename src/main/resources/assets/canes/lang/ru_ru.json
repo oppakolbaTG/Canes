@@ -1,0 +1,33 @@
+{
+  "item.canes.orange": "Апельсин",
+  "item.canes.golden_orange": "Золотой апельсин",
+  "item.canes.water_leaf": "Воднолист",
+  "item.canes.water_leaf_seed": "Семя воднолиста",
+  "item.canes.platinum_bar": "Платиновый слиток",
+  "item.canes.charged_copper_ingot": "Заряженный Медный слиток",
+  "item.canes.mana_crystal": "Кристал Маны",
+  "item.canes.fallen_star": "Упавшая Звезда",
+  "item.canes.charged_amethyst": "Заряженный Аметист",
+
+
+  "item.canes.fireball_cane": "Посох Огненного Шара",
+  "item.canes.lightning_cane": "Турель Молний",
+  "item.canes.heal_cane": "Лечебный Посох",
+  "item.canes.sample_cane": "Макет Посоха",
+  "item.canes.beam_cane": "Лученосец",
+
+  "block.canes.water_leaf_block": "Воднолист",
+  "block.canes.platinum_ore": "Платиновая руда",
+  "block.canes.platinum_block": "Платиновый блок",
+  "block.canes.alterio_table": "Альтерио Стол",
+
+  "itemGroup.canestab": "Новые предметы",
+  "itemGroup.canestab": "Посохи",
+
+  "message.canes.mana_use": "Вы можете получить ману",
+  "message.canes.mana_no_use": "Вы не можете получить ману",
+
+  "key.category.canes.oppaterra": "ModCanes",
+  "key.canes.mana_use": "Использовать Ману",
+  "key.canes.open_gui": "Отрыть Окно"
+}

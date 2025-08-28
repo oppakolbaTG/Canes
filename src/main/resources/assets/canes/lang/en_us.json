@@ -1,0 +1,34 @@
+{
+  "item.canes.orange": "Orange",
+  "item.canes.golden_orange": "Golden Orange",
+  "item.canes.water_leaf": "Water leaf",
+  "item.canes.water_leaf_seed": "Water leaf Seed",
+  "item.canes.platinum_bar": "Platinum Bar",
+  "item.canes.charged_copper_ingot": "Charged Copper Ingot",
+  "item.canes.mana_crystal": "Mana Crystal",
+  "item.canes.fallen_star": "Fallen Star",
+  "item.canes.charged_amethyst": "Charged Amethyst",
+
+  "item.canes.fireball_cane": "Fireball Cane",
+  "item.canes.lightning_cane": "Lightning Turret",
+  "item.canes.heal_cane": "Heal Turret",
+  "item.canes.sample_cane": "Sample Cane",
+  "item.canes.beam_cane": "The Raybearer",
+
+
+  "block.canes.water_leaf_block": "Water Leaf",
+  "block.canes.platinum_ore": "Platinum Ore",
+  "block.canes.platinum_block": "Platinum Block",
+  "block.canes.alterio_table": "Alterio Table",
+
+
+  "itemGroup.canestab": "New items",
+  "itemGroup.canestab": "Canes",
+
+  "message.canes.mana_use": "You can get mana",
+  "message.canes.mana_no_use": "You can not get mana",
+
+  "key.category.canes.oppaterra": "ModCanes",
+  "key.canes.mana_use": "Mana Use",
+  "key.canes.open_gui": "Open Screen"
+}

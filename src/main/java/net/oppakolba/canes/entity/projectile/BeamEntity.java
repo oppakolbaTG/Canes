@@ -87,7 +87,6 @@ public class BeamEntity extends Entity {
 
     private void cleanUpBeamId() {
         if (this.owner instanceof Player player) {
-            // Проверяем все слоты инвентаря
             for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
                 ItemStack stack = player.getInventory().getItem(i);
                 if (stack.getItem() instanceof net.oppakolba.canes.item.canes.BeamCane) {
@@ -127,7 +126,7 @@ public class BeamEntity extends Entity {
 
     @Override
     public void onRemovedFromWorld() {
-        this.cleanUpBeamId(); // Очищаем при удалении
+        this.cleanUpBeamId();
         super.onRemovedFromWorld();
     }
 

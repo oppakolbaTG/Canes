@@ -1,0 +1,14 @@
+{
+  "type": "canes:alterio_table",
+  "ingredients": [
+    {
+      "item": "canes:sample_cane"
+    },
+    {
+      "item": "minecraft:fire_charge"
+    }
+  ],
+  "output": {
+    "item": "canes:fireball_cane"
+  }
+}

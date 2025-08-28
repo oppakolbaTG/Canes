@@ -1,0 +1,14 @@
+{
+  "type": "canes:alterio_table",
+  "ingredients": [
+    {
+      "item": "canes:sample_cane"
+    },
+    {
+      "item": "canes:charged_amethyst"
+    }
+  ],
+  "output": {
+    "item": "canes:beam_cane"
+  }
+}

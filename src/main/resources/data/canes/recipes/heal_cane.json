@@ -1,0 +1,15 @@
+
+{
+  "type": "canes:alterio_table",
+  "ingredients": [
+    {
+      "item": "canes:sample_cane"
+    },
+    {
+      "item": "minecraft:honey_bottle"
+    }
+  ],
+  "output": {
+    "item": "canes:heal_cane"
+  }
+}
