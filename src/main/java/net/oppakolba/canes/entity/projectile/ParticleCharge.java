@@ -1,6 +1,7 @@
 package net.oppakolba.canes.entity.projectile;
 
 import lombok.Getter;
+import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.world.damagesource.DamageSource;
@@ -9,6 +10,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
+import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.level.Level;
@@ -21,26 +23,24 @@ import net.minecraftforge.network.NetworkHooks;
 public class ParticleCharge extends Entity {
     private LivingEntity target;
     private int damage;
-    private Double sRadius = 16.0D;
-    private Vec3 targetMovement = Vec3.ZERO;
-    private final double maxSpeed = 0.3D;
+    private Double sRadius = 20.0D;
+    private final double maxSpeed = 1.3D;
     private final double acceleration = 0.05D;
     int liveTime = 500;
     int pValue = 0;
+    boolean waitFor = true;
     @Getter
     public Player Owner;
-    private Vec3 clientLerpStartPos = Vec3.ZERO;
-    private Vec3 clientLerpTargetPos = Vec3.ZERO;
-    private int clientLerpSteps;
 
     public ParticleCharge(EntityType<? extends ParticleCharge> particleChargeEntityType, Level level) {
         super(particleChargeEntityType, level);
-        this.damage = random.nextInt(1, 3);
+        this.damage = random.nextInt(1, 2);
+
     }
 
     public ParticleCharge(EntityType<? extends ParticleCharge> pEntityType, Level pLevel, Player player, int value) {
         super(pEntityType, pLevel);
-        this.damage = random.nextInt(1, 3);
+        this.damage = random.nextInt(1, 2);
         if(player != null) {
             setPos(player.getX(), player.getY() + 2 , player.getZ());
         }
@@ -62,26 +62,41 @@ public class ParticleCharge extends Entity {
                 Vec3 startPos = this.position();
                 Vec3 endPos = startPos.add(this.getDeltaMovement());
                 EntityHitResult hitResult = findEntityHitResult(startPos, endPos);
-                if (target == null || !target.isAlive() || tickCount % 20 == 0) {
-                    findNewTarget(player);
-                }
-                if (target != null && target.isAlive()) {
-                    moveTowardsTarget();
-                    if (hitResult != null) {
-                        Entity hitEntity = hitResult.getEntity();
-                        if (hitEntity instanceof LivingEntity) {
-                            hitEntity.hurt(DamageSource.thorns(this), damage);
-                            discard();
+
+                    if (tickCount < 4) {
+                        notFindTarget(player);
+                    }
+                    if(tickCount >= 4) {
+
+                        if (target == null || !target.isAlive() || tickCount % 20 == 0) {
+                            findNewTarget(player);
+                        }
+                        if (target != null && target.isAlive()) {
+                            moveTowardsTarget();
+                            if (hitResult != null) {
+                                Entity hitEntity = hitResult.getEntity();
+                                if (hitEntity instanceof LivingEntity) {
+                                    hitEntity.hurt(DamageSource.thorns(this), damage);
+                                    discard();
+                                }
+                            }
                         }
                     }
+
+
                 }
                 this.move(MoverType.SELF, this.getDeltaMovement());
+
+                float f = 0.98f;
+                if (this.onGround) {
+                    BlockPos pos =new BlockPos(this.getX(), this.getY() - 1.0D, this.getZ());
+                    f = this.level.getBlockState(pos).getFriction(this.level, pos, this) * 0.98F;
+                }
 
                 if (tickCount >= liveTime) {
                     discard();
                 }
             }
-        }
     }
 
     private EntityHitResult findEntityHitResult(Vec3 startPos, Vec3 endPos) {
@@ -99,6 +114,14 @@ public class ParticleCharge extends Entity {
         }
 
         return null;
+    }
+
+
+    public void notFindTarget(Player player){
+        Vec3 currentMovement = this.getDeltaMovement();
+        double randomX = (random.nextDouble() - 0.5) * 0.2;
+        double randomZ = (random.nextDouble() - 0.5) * 0.2;
+        this.setDeltaMovement(currentMovement.x + randomX, currentMovement.y + 0.1 , currentMovement.z + randomZ);
     }
 
     private void moveTowardsTarget() {

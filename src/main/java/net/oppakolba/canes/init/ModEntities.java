@@ -32,7 +32,7 @@ public class ModEntities {
     public static final RegistryObject<EntityType<ParticleCharge>> PARTICLE_CHARGE =
             ENTITIES.register("particle_charge", () ->
                     EntityType.Builder.<ParticleCharge>of(ParticleCharge::new, MobCategory.MISC)
-                            .sized(0.1f, 0.1f).clientTrackingRange(4).updateInterval(1).build(new ResourceLocation(Canes.MOD_ID, "particle_charge").toString()));
+                            .sized(0.1f, 0.1f).fireImmune().clientTrackingRange(120).updateInterval(1).build(new ResourceLocation(Canes.MOD_ID, "particle_charge").toString()));
 
 
 //    public static final RegistryObject<EntityType<DrillEntity>> CANE_DRILL =

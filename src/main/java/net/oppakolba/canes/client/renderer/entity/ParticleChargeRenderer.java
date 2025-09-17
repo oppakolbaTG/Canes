@@ -3,6 +3,7 @@ package net.oppakolba.canes.client.renderer.entity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.culling.Frustum;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
@@ -14,7 +15,7 @@ import net.oppakolba.canes.entity.projectile.ParticleCharge;
 
 @OnlyIn(Dist.CLIENT)
 public class ParticleChargeRenderer extends EntityRenderer<ParticleCharge> {
-    private static final ResourceLocation TEXTURE = new ResourceLocation("oppamod", "textures/entity/particle_charge.png");
+    private static final ResourceLocation TEXTURE = new ResourceLocation("canes", "textures/entity/particle_charge.png");
     private final ParticleChargeModel<ParticleCharge> model;
 
     public ParticleChargeRenderer(EntityRendererProvider.Context pContext) {
@@ -30,6 +31,11 @@ public class ParticleChargeRenderer extends EntityRenderer<ParticleCharge> {
         pPoseStack.translate(0.04, -1.42, -0.04);
         model.renderToBuffer(pPoseStack, pBuffer.getBuffer(RenderType.entityTranslucent(TEXTURE)), pPackedLight, OverlayTexture.NO_OVERLAY, 1f, 1f, 1f, 1f);
         pPoseStack.popPose();
+    }
+
+    @Override
+    public boolean shouldRender(ParticleCharge pLivingEntity, Frustum pCamera, double pCamX, double pCamY, double pCamZ) {
+        return pLivingEntity.distanceToSqr(pCamX, pCamY, pCamZ) < 40 * 40;
     }
 
     @Override

@@ -19,7 +19,7 @@ public class RainOfCharges extends CanesItem {
     public void releaseUsing(ItemStack stack, Level level, LivingEntity entity, int pTimeCharged) {
         System.out.println("Используем");
         if (!level.isClientSide && entity instanceof Player player) {
-            for(int i = 1; i < 17; i++) {
+            for(int i = 1; i < 12; i++) {
                 ParticleCharge particleCharge = new ParticleCharge(ModEntities.PARTICLE_CHARGE.get(), level, player, i);
                 level.addFreshEntity(particleCharge);
             }
