@@ -11,6 +11,7 @@ import net.oppakolba.canes.Canes;
 
 import net.oppakolba.canes.entity.projectile.BeamEntity;
 import net.oppakolba.canes.entity.projectile.FireballEntity;
+import net.oppakolba.canes.entity.projectile.ParticleCharge;
 
 public class ModEntities {
     public static final DeferredRegister<EntityType<?>> ENTITIES =
@@ -20,13 +21,18 @@ public class ModEntities {
     public static final RegistryObject<EntityType<FireballEntity>> CUSTOM_FIREBALL =
             ENTITIES.register("custom_fireball", () ->
                     EntityType.Builder.<FireballEntity>of(FireballEntity::new, MobCategory.MISC)
-                            .sized(1f, 1f).build(new ResourceLocation(Canes.MOD_ID, "custom_fireball").toString()));
+                            .sized(1f, 1f).clientTrackingRange(4).updateInterval(2).build(new ResourceLocation(Canes.MOD_ID, "custom_fireball").toString()));
 
 
     public static final RegistryObject<EntityType<BeamEntity>> BEAM_ENTITY =
             ENTITIES.register("beam_entity", () ->
                     EntityType.Builder.<BeamEntity>of(BeamEntity::new, MobCategory.MISC)
-                            .sized(1f, 1f).build(new ResourceLocation(Canes.MOD_ID, "beam_entity").toString()));
+                            .sized(1f, 1f).clientTrackingRange(4).build(new ResourceLocation(Canes.MOD_ID, "beam_entity").toString()));
+
+    public static final RegistryObject<EntityType<ParticleCharge>> PARTICLE_CHARGE =
+            ENTITIES.register("particle_charge", () ->
+                    EntityType.Builder.<ParticleCharge>of(ParticleCharge::new, MobCategory.MISC)
+                            .sized(0.1f, 0.1f).clientTrackingRange(4).updateInterval(1).build(new ResourceLocation(Canes.MOD_ID, "particle_charge").toString()));
 
 
 //    public static final RegistryObject<EntityType<DrillEntity>> CANE_DRILL =

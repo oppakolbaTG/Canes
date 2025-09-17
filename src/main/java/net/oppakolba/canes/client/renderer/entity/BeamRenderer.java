@@ -29,7 +29,6 @@ public class BeamRenderer extends EntityRenderer<BeamEntity> {
         super(pContext);
         this.model = new BeamEntityModel<>(BeamEntityModel.createBodyLayer().bakeRoot());
 
-
     }
 
     @Override

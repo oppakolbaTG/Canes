@@ -1,7 +1,6 @@
 package net.oppakolba.canes.item.canes;
 
 import lombok.extern.slf4j.Slf4j;
-import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
@@ -23,7 +22,6 @@ import net.oppakolba.canes.mana.PlayerMana;
 import net.oppakolba.canes.mana.PlayerManaProvider;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Objects;
 
 @Slf4j
 public class BeamCane extends CanesItem {
@@ -39,7 +37,6 @@ public class BeamCane extends CanesItem {
     public BeamCane(Properties pProperties) {
         super(pProperties);
     }
-
 
 
     @Override

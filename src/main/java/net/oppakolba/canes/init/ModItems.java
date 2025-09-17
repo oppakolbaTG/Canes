@@ -13,9 +13,9 @@ import net.minecraftforge.registries.RegistryObject;
 import net.oppakolba.canes.Canes;
 import net.oppakolba.canes.item.canes.*;
 import net.oppakolba.canes.item.CreativeModeTab;
-import net.oppakolba.canes.item.canesitems.FallenStar;
-import net.oppakolba.canes.item.canesitems.ManaCrystal;
-import net.oppakolba.canes.item.canesitems.OrangeItem;
+import net.oppakolba.canes.item.caneitems.FallenStar;
+import net.oppakolba.canes.item.caneitems.ManaCrystal;
+import net.oppakolba.canes.item.caneitems.OrangeItem;
 
 public class ModItems {
     public static final DeferredRegister<Item> ITEMS =
@@ -76,6 +76,9 @@ public class ModItems {
 
    public static final RegistryObject<Item> BEAM_CANE = ITEMS.register("beam_cane",
             () -> new BeamCane(new Item.Properties().rarity(Rarity.EPIC).tab(CreativeModeTab.CANES_TAB).stacksTo(1)));
+
+   public static final RegistryObject<Item> RAIN_OF_CHARGES = ITEMS.register("rain_of_charges",
+            () -> new RainOfCharges(new Item.Properties().rarity(Rarity.EPIC).tab(CreativeModeTab.CANES_TAB).stacksTo(1)));
 
 //   public static final RegistryObject<Item> DRILL_CANE = ITEMS.register("drill_cane",
 //            () -> new DrillCane(new Item.Properties().rarity(Rarity.EPIC).tab(ModCreativeModeTab.OPPA_TAB).stacksTo(1)));

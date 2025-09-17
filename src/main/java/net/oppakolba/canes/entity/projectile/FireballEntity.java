@@ -36,7 +36,7 @@ public class FireballEntity extends AbstractHurtingProjectile  {
 
     @Override
     public void tick() {
-        super.tick();;
+        super.tick();
 
     }
 

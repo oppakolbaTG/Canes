@@ -1,7 +1,7 @@
 package net.oppakolba.canes.event;
 
 
-import net.minecraft.client.Minecraft;
+
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
@@ -23,7 +23,7 @@ public class ParticleEvent {
         event.register(ModParticles.LIGHTNING_PARTICLE.get(), LightningParticle.Provider::new);
         event.register(ModParticles.BEAM_EXPLOSION_PARTICLE.get(), BeamExplosionParticle.Provider::new);
         event.register(ModParticles.BEAM_PARTICLE.get(), BeamParticle.Provider::new);
-        Minecraft.getInstance().particleEngine.register(ModParticles.HEAL_LINE_PARTICLE.get(), HealLineParticle.Provider::new);
+        event.register(ModParticles.HEAL_LINE_PARTICLE.get(), HealLineParticle.Provider::new);
     }
 
     @SubscribeEvent
