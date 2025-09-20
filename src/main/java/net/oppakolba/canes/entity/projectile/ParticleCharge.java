@@ -24,23 +24,22 @@ public class ParticleCharge extends Entity {
     private LivingEntity target;
     private int damage;
     private Double sRadius = 20.0D;
-    private final double maxSpeed = 1.3D;
-    private final double acceleration = 0.05D;
+    private final double maxSpeed = 1.4D;
+    private final double acceleration = 0.07D;
     int liveTime = 500;
     int pValue = 0;
-    boolean waitFor = true;
     @Getter
     public Player Owner;
 
     public ParticleCharge(EntityType<? extends ParticleCharge> particleChargeEntityType, Level level) {
         super(particleChargeEntityType, level);
-        this.damage = random.nextInt(1, 2);
+        this.damage = random.nextInt(1, 3);
 
     }
 
     public ParticleCharge(EntityType<? extends ParticleCharge> pEntityType, Level pLevel, Player player, int value) {
         super(pEntityType, pLevel);
-        this.damage = random.nextInt(1, 2);
+        this.damage = random.nextInt(1, 3);
         if(player != null) {
             setPos(player.getX(), player.getY() + 2 , player.getZ());
         }

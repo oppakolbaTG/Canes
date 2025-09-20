@@ -1,6 +1,7 @@
 package net.oppakolba.canes.client.renderer.entity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.culling.Frustum;
@@ -28,8 +29,10 @@ public class ParticleChargeRenderer extends EntityRenderer<ParticleCharge> {
     public void render(ParticleCharge pEntity, float pEntityYaw, float pPartialTick, PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight) {
         pPoseStack.pushPose();
 
+        int light = LightTexture.pack(15,15);
+
         pPoseStack.translate(0.04, -1.42, -0.04);
-        model.renderToBuffer(pPoseStack, pBuffer.getBuffer(RenderType.entityTranslucent(TEXTURE)), pPackedLight, OverlayTexture.NO_OVERLAY, 1f, 1f, 1f, 1f);
+        model.renderToBuffer(pPoseStack, pBuffer.getBuffer(RenderType.entityTranslucent(TEXTURE)), pPackedLight + 4, OverlayTexture.NO_OVERLAY, 1f, 1f, 1f, 1f);
         pPoseStack.popPose();
     }
 

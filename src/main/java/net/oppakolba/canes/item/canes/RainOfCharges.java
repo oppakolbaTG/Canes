@@ -5,9 +5,12 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.common.util.LazyOptional;
 import net.oppakolba.canes.entity.projectile.ParticleCharge;
 import net.oppakolba.canes.init.ModEntities;
 import net.oppakolba.canes.item.misc.CanesItem;
+import net.oppakolba.canes.mana.PlayerMana;
+import net.oppakolba.canes.mana.PlayerManaProvider;
 
 public class RainOfCharges extends CanesItem {
 
@@ -17,13 +20,24 @@ public class RainOfCharges extends CanesItem {
 
     @Override
     public void releaseUsing(ItemStack stack, Level level, LivingEntity entity, int pTimeCharged) {
-        System.out.println("Используем");
         if (!level.isClientSide && entity instanceof Player player) {
-            for(int i = 1; i < 12; i++) {
-                ParticleCharge particleCharge = new ParticleCharge(ModEntities.PARTICLE_CHARGE.get(), level, player, i);
-                level.addFreshEntity(particleCharge);
+            int charge = 1000 - pTimeCharged;
+
+            if (charge < 20) {
+                return;
             }
 
+            LazyOptional<PlayerMana> manaOptional = player.getCapability(PlayerManaProvider.PLAYER_MANA);
+            if (manaOptional.isPresent()) {
+                PlayerMana mana = manaOptional.orElseThrow(IllegalAccessError::new);
+                if (mana.getMana() >= 15) {
+                    mana.subMana(15);
+                    for (int i = 1; i < 12; i++) {
+                        ParticleCharge particleCharge = new ParticleCharge(ModEntities.PARTICLE_CHARGE.get(), level, player, i);
+                        level.addFreshEntity(particleCharge);
+                    }
+                }
+            }
         }
     }
 
