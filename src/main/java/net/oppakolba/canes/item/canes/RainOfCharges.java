@@ -9,8 +9,8 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.oppakolba.canes.entity.projectile.ParticleCharge;
 import net.oppakolba.canes.init.ModEntities;
 import net.oppakolba.canes.item.misc.CanesItem;
-import net.oppakolba.canes.mana.PlayerMana;
-import net.oppakolba.canes.mana.PlayerManaProvider;
+import net.oppakolba.canes.mana.CanesMana;
+import net.oppakolba.canes.mana.CanesManaProvider;
 
 public class RainOfCharges extends CanesItem {
 
@@ -27,11 +27,11 @@ public class RainOfCharges extends CanesItem {
                 return;
             }
 
-            LazyOptional<PlayerMana> manaOptional = player.getCapability(PlayerManaProvider.PLAYER_MANA);
+            LazyOptional<CanesMana> manaOptional = player.getCapability(CanesManaProvider.CANES_MANA);
             if (manaOptional.isPresent()) {
-                PlayerMana mana = manaOptional.orElseThrow(IllegalAccessError::new);
+                CanesMana mana = manaOptional.orElseThrow(IllegalAccessError::new);
                 if (mana.getMana() >= 15) {
-                    mana.subMana(15);
+                    mana.subtractMana(15);
                     for (int i = 1; i < 12; i++) {
                         ParticleCharge particleCharge = new ParticleCharge(ModEntities.PARTICLE_CHARGE.get(), level, player, i);
                         level.addFreshEntity(particleCharge);

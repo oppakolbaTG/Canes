@@ -27,32 +27,6 @@ public class  ModMessage {
 
         INSTANCE = net;
 
-        net.messageBuilder(ManaUseC2SWorking.class, id(), NetworkDirection.PLAY_TO_SERVER)
-                .decoder(ManaUseC2SWorking::new)
-                .encoder(ManaUseC2SWorking::toByte)
-                .consumerMainThread(ManaUseC2SWorking::handle)
-                .add();
-
-        net.messageBuilder(ManaDataSyncS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
-                .decoder(ManaDataSyncS2CPacket::new)
-                .encoder(ManaDataSyncS2CPacket::toByte)
-                .consumerMainThread(ManaDataSyncS2CPacket::handle)
-                .add();
-
-        net.messageBuilder(TerraMenuC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
-                .decoder(TerraMenuC2SPacket::new)
-                .encoder(TerraMenuC2SPacket::toByte)
-                .consumerMainThread(TerraMenuC2SPacket::handle).add();
-
-        net.messageBuilder(TerraMenuS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
-                .decoder(TerraMenuS2CPacket::new)
-                .encoder(TerraMenuS2CPacket::toByte)
-                .consumerMainThread(TerraMenuS2CPacket::handle).add();
-
-        net.messageBuilder(TerraMenuReloadC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
-                .decoder(TerraMenuReloadC2SPacket::new)
-                .encoder(TerraMenuReloadC2SPacket::toByte)
-                .consumerMainThread(TerraMenuReloadC2SPacket::handle).add();
 
         net.messageBuilder(UpgradeC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
                 .decoder(UpgradeC2SPacket::new)

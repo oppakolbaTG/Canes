@@ -1,14 +1,12 @@
 package net.oppakolba.canes.item.canes;
 
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.server.level.ServerPlayer;
+
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
@@ -16,10 +14,8 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.util.LazyOptional;
 import net.oppakolba.canes.init.ModParticles;
 import net.oppakolba.canes.item.misc.CanesItem;
-import net.oppakolba.canes.mana.PlayerMana;
-import net.oppakolba.canes.mana.PlayerManaProvider;
-import net.oppakolba.canes.networking.ModMessage;
-import net.oppakolba.canes.networking.packet.ManaDataSyncS2CPacket;
+import net.oppakolba.canes.mana.CanesMana;
+import net.oppakolba.canes.mana.CanesManaProvider;
 
 public class LightningCane extends CanesItem {
     public LightningCane(Properties pProperties) {
@@ -47,11 +43,11 @@ public class LightningCane extends CanesItem {
                 return;
             }
 
-            LazyOptional<PlayerMana> manaOptional = player.getCapability(PlayerManaProvider.PLAYER_MANA);
+            LazyOptional<CanesMana> manaOptional = player.getCapability(CanesManaProvider.CANES_MANA);
             if (manaOptional.isPresent()) {
-                PlayerMana mana = manaOptional.orElseThrow(IllegalAccessError::new);
+                CanesMana mana = manaOptional.orElseThrow(IllegalAccessError::new);
                 if (mana.getMana() >= 30) {
-                    mana.subMana(30);
+                    mana.subtractMana(30);
                     Vec3 lookAngle = player.getLookAngle();
                     Vec3 playerPos = player.position();
 
@@ -69,9 +65,7 @@ public class LightningCane extends CanesItem {
 
                     }
                     player.getCooldowns().addCooldown(this, 30);
-                    if (player instanceof ServerPlayer serverPlayer) {
-                        ModMessage.sendToPlayer(new ManaDataSyncS2CPacket(mana.getMana()), serverPlayer);
-                    }
+
                 }
             }
         }

@@ -1,7 +1,6 @@
 package net.oppakolba.canes.item.canes;
 
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -13,12 +12,12 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.oppakolba.canes.init.ModEntities;
 import net.oppakolba.canes.entity.projectile.FireballEntity;
 import net.oppakolba.canes.item.misc.CanesItem;
-import net.oppakolba.canes.mana.PlayerMana;
-import net.oppakolba.canes.mana.PlayerManaProvider;
-import net.oppakolba.canes.networking.ModMessage;
-import net.oppakolba.canes.networking.packet.ManaDataSyncS2CPacket;
+import net.oppakolba.canes.mana.CanesMana;
+import net.oppakolba.canes.mana.CanesManaProvider;
 
 public class  FireballCane extends CanesItem {
+    private int manaInsideCane;
+
     public FireballCane(Properties properties){
         super(properties);
     }
@@ -35,11 +34,11 @@ public class  FireballCane extends CanesItem {
                 return;
             }
 
-            LazyOptional<PlayerMana> manaOptional = player.getCapability(PlayerManaProvider.PLAYER_MANA);
+            LazyOptional<CanesMana> manaOptional = player.getCapability(CanesManaProvider.CANES_MANA);
             if (manaOptional.isPresent()) {
-                PlayerMana mana = manaOptional.orElseThrow(IllegalAccessError::new);
-                if (mana.getMana() >= 10) {
-                    mana.subMana(10);
+                CanesMana mana = manaOptional.orElseThrow(IllegalAccessError::new);
+                if (mana.hasEnoughMana(10)) {
+                    mana.subtractMana(10);
 
                     FireballEntity customFireball = new FireballEntity(ModEntities.CUSTOM_FIREBALL.get(), level, player,
                             player.getLookAngle().x, player.getLookAngle().y - 0.1f, player.getLookAngle().z, 6.0f);
@@ -48,9 +47,6 @@ public class  FireballCane extends CanesItem {
                     player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 40 , 5));
 
                     player.getCooldowns().addCooldown(this, 40);
-                    if (player instanceof ServerPlayer serverPlayer) {
-                        ModMessage.sendToPlayer(new ManaDataSyncS2CPacket(mana.getMana()), serverPlayer);
-                    }
                 }
             }
         }
@@ -66,4 +62,7 @@ public class  FireballCane extends CanesItem {
 
             }
         }
+
+
+        public int getMana(){return manaInsideCane;}
     }

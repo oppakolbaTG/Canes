@@ -12,6 +12,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.oppakolba.canes.init.*;
+import net.oppakolba.canes.mana.ManaCapabilities;
 import net.oppakolba.canes.networking.ModMessage;
 import net.oppakolba.canes.screen.AlterioTableScreen;
 import net.oppakolba.canes.world.feature.ModConfiguredFeatures;
@@ -43,6 +44,7 @@ public class Canes {
         ModParticles.PARTICLE_TYPES.register(bus);
         bus.addListener(this::commonSetup);
         MinecraftForge.EVENT_BUS.register(this);
+        ManaCapabilities.ITEM_MANA.toString();
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {

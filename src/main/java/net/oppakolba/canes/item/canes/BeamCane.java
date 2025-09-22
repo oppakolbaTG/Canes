@@ -18,9 +18,8 @@ import net.oppakolba.canes.entity.projectile.BeamEntity;
 import net.oppakolba.canes.init.ModEntities;
 import net.oppakolba.canes.init.ModParticles;
 import net.oppakolba.canes.item.misc.CanesItem;
-import net.oppakolba.canes.mana.PlayerMana;
-import net.oppakolba.canes.mana.PlayerManaProvider;
-import org.jetbrains.annotations.NotNull;
+import net.oppakolba.canes.mana.CanesMana;
+import net.oppakolba.canes.mana.CanesManaProvider;
 
 
 @Slf4j
@@ -60,11 +59,11 @@ public class BeamCane extends CanesItem {
         if (entity instanceof Player player) {
             if (!level.isClientSide) {
                 if (count % 20 == 0) {
-                    LazyOptional<PlayerMana> manaOptional = player.getCapability(PlayerManaProvider.PLAYER_MANA);
+                    LazyOptional<CanesMana> manaOptional = player.getCapability(CanesManaProvider.CANES_MANA);
                     if (manaOptional.isPresent()) {
-                        PlayerMana mana = manaOptional.orElseThrow(IllegalAccessError::new);
-                        if (mana.getMana() >= 4) {
-                            mana.subMana(4);
+                        CanesMana mana = manaOptional.orElseThrow(IllegalAccessError::new);
+                        if (mana.hasEnoughMana(4)) {
+                            mana.subtractMana(4);
                             Vec3 lookPos = getLookPosition(player, beamRayDistance);
                             Vec3 lookVec = player.getLookAngle();
                             Vec3 playerEyePos = player.getEyePosition();

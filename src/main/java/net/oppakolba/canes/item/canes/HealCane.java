@@ -10,8 +10,8 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.common.util.LazyOptional;
 import net.oppakolba.canes.init.ModParticles;
 import net.oppakolba.canes.item.misc.CanesItem;
-import net.oppakolba.canes.mana.PlayerMana;
-import net.oppakolba.canes.mana.PlayerManaProvider;
+import net.oppakolba.canes.mana.CanesMana;
+import net.oppakolba.canes.mana.CanesManaProvider;
 
 public class HealCane extends CanesItem {
     public HealCane(Properties pProperties) {
@@ -24,11 +24,11 @@ public class HealCane extends CanesItem {
     public void onUseTick(Level level, LivingEntity entity, ItemStack stack, int count) {
         if(!level.isClientSide) {
             if (entity instanceof Player player) {
-                LazyOptional<PlayerMana> manaOptional = player.getCapability(PlayerManaProvider.PLAYER_MANA);
+                LazyOptional<CanesMana> manaOptional = player.getCapability(CanesManaProvider.CANES_MANA);
                 if (manaOptional.isPresent()) {
-                    PlayerMana mana = manaOptional.orElseThrow(IllegalAccessError::new);
+                    CanesMana mana = manaOptional.orElseThrow(IllegalAccessError::new);
                     if (mana.getMana() >= 4) {
-                        mana.subMana(4);
+                        mana.subtractMana(4);
                         player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 40, 1));
                     }
                 }
@@ -36,9 +36,9 @@ public class HealCane extends CanesItem {
         }
         if (level.isClientSide) {
             if (entity instanceof Player player) {
-                LazyOptional<PlayerMana> manaOptional = player.getCapability(PlayerManaProvider.PLAYER_MANA);
+                LazyOptional<CanesMana> manaOptional = player.getCapability(CanesManaProvider.CANES_MANA);
                 if (manaOptional.isPresent()) {
-                    PlayerMana mana = manaOptional.orElseThrow(IllegalAccessError::new);
+                    CanesMana mana = manaOptional.orElseThrow(IllegalAccessError::new);
                     if (mana.getMana() >= 4) {
 
                     } else if (mana.getMana() <= 4) {

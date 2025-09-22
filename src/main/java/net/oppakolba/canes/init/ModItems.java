@@ -62,6 +62,8 @@ public class ModItems {
     public static final RegistryObject<Item> CHARGED_AMETHYST = ITEMS.register("charged_amethyst",
             () -> new Item(new Item.Properties().tab(CreativeModeTab.OPPA_TAB)));
 
+    //Canes
+
     public static final RegistryObject<Item> SAMPLE_CANE = ITEMS.register("sample_cane",
             () -> new Item(new Item.Properties().tab(CreativeModeTab.CANES_TAB).stacksTo(1)));
 
