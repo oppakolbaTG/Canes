@@ -87,9 +87,16 @@ public class BeamCane extends CanesItem {
 
                             Entity lEntity = getPlayerLookAtEntity(player, beamRayDistance);
                             if (lEntity != null) {
+                                for(int i = 0; i < 4; i++) {
                                     lEntity.hurt(DamageSource.sting(player), 8);
                                     hit = true;
                                     System.out.println(lEntity);
+                                    try{
+                                        Thread.sleep(40);
+                                    }catch(InterruptedException ex){
+                                        throw new RuntimeException(ex);
+                                    }
+                                }
                             } else {
                                 hit = false;
                             }
