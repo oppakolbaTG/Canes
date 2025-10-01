@@ -19,6 +19,7 @@ import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.NetworkHooks;
+import org.jetbrains.annotations.NotNull;
 
 public class ParticleCharge extends Entity {
     private LivingEntity target;
@@ -63,7 +64,7 @@ public class ParticleCharge extends Entity {
                 EntityHitResult hitResult = findEntityHitResult(startPos, endPos);
 
                     if (tickCount < 4) {
-                        notFindTarget(player);
+                        notFindTarget();
                     }
                     if(tickCount >= 4) {
 
@@ -116,7 +117,7 @@ public class ParticleCharge extends Entity {
     }
 
 
-    public void notFindTarget(Player player){
+    public void notFindTarget(){
         Vec3 currentMovement = this.getDeltaMovement();
         double randomX = (random.nextDouble() - 0.5) * 0.2;
         double randomZ = (random.nextDouble() - 0.5) * 0.2;
@@ -176,7 +177,7 @@ public class ParticleCharge extends Entity {
     }
 
     @Override
-    public Packet<?> getAddEntityPacket() {
+    public @NotNull Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 }

@@ -9,6 +9,7 @@ import net.minecraftforge.network.simple.SimpleChannel;
 import net.oppakolba.canes.Canes;
 import net.oppakolba.canes.networking.packet.*;
 
+
 public class  ModMessage {
     private static SimpleChannel INSTANCE;
 
@@ -38,9 +39,11 @@ public class  ModMessage {
                 .encoder(UpgradeS2CPacket::toByte)
                 .consumerMainThread(UpgradeS2CPacket::handle).add();
 
-
-
-
+        net.messageBuilder(ManaDataSyncPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(ManaDataSyncPacket::new)
+                .encoder(ManaDataSyncPacket::toByte)
+                .consumerMainThread(ManaDataSyncPacket::handle)
+                .add();
 
     }
 
@@ -48,7 +51,7 @@ public class  ModMessage {
         INSTANCE.sendToServer(message);
     }
 
-    public static <MSG> void sendToPlayer(MSG message, ServerPlayer player){
-        INSTANCE.send(PacketDistributor.PLAYER.with(() -> player), message);
+    public static <MSG> void sendToClient(Object packet, ServerPlayer player){
+        INSTANCE.sendTo(packet, player.connection.connection, NetworkDirection.PLAY_TO_CLIENT);
     }
 }

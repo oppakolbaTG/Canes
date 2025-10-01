@@ -57,7 +57,6 @@ public class CanesMenuScreen extends Screen {
 
         super.render(pPoseStack, pMouseX, pMouseY, pPartialTick);
 
-//
     }
 
     @Override

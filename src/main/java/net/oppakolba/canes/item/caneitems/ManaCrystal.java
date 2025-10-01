@@ -9,8 +9,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.oppakolba.canes.init.ModSounds;
-import net.oppakolba.canes.mana.CanesManaProvider;
-import net.oppakolba.canes.networking.ModMessage;
 
 
 public class ManaCrystal extends Item {

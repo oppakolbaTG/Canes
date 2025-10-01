@@ -12,14 +12,12 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.*;
-import net.minecraftforge.common.util.LazyOptional;
-
 import net.oppakolba.canes.entity.projectile.BeamEntity;
 import net.oppakolba.canes.init.ModEntities;
 import net.oppakolba.canes.init.ModParticles;
+import net.oppakolba.canes.item.misc.CanesCapability;
 import net.oppakolba.canes.item.misc.CanesItem;
-import net.oppakolba.canes.mana.CanesMana;
-import net.oppakolba.canes.mana.CanesManaProvider;
+import org.jetbrains.annotations.NotNull;
 
 
 @Slf4j
@@ -29,20 +27,22 @@ public class BeamCane extends CanesItem {
      * If the Euclidean distance to the moused-over block in meters is less than this value, the "Looking at" text will appear on the debug overlay.
      */
     public float beamRayDistance = 20.0f;
-    private int tickCounter = 0;
     boolean hit = false;
 
 
+
     public BeamCane(Properties pProperties) {
-        super(pProperties);
+        super(pProperties, 20);
     }
 
 
+
     @Override
-    public void releaseUsing(ItemStack stack, Level level, LivingEntity livingEntity, int timeCharged) {
+    public void releaseUsing(@NotNull ItemStack stack, Level level, @NotNull LivingEntity livingEntity, int timeCharged) {
         if (!level.isClientSide) {
             CompoundTag tag = stack.getOrCreateTag();
             resetBeam(level, tag);
+
 
         }
     }
@@ -53,18 +53,18 @@ public class BeamCane extends CanesItem {
      **/
 
     @Override
-    public void onUseTick(Level level, LivingEntity entity, ItemStack stack, int count) {
-        tickCounter++;
+    public void onUseTick(@NotNull Level level, @NotNull LivingEntity entity, ItemStack stack, int count) {
+        super.onUseTick(level, entity, stack, count);
         CompoundTag tag = stack.getOrCreateTag();
         if (entity instanceof Player player) {
             if (!level.isClientSide) {
                 if (count % 20 == 0) {
-                    LazyOptional<CanesMana> manaOptional = player.getCapability(CanesManaProvider.CANES_MANA);
-                    if (manaOptional.isPresent()) {
-                        CanesMana mana = manaOptional.orElseThrow(IllegalAccessError::new);
-                        if (mana.hasEnoughMana(4)) {
-                            mana.subtractMana(4);
-                            Vec3 lookPos = getLookPosition(player, beamRayDistance);
+
+                    int currentMana = CanesItem.getMana(stack);
+                        if (CanesItem.getMana(stack) >= 4) {
+                            CanesItem.setMana(stack, currentMana - 4);
+
+
                             Vec3 lookVec = player.getLookAngle();
                             Vec3 playerEyePos = player.getEyePosition();
                             Vec3 pLookPos = playerEyePos.add(lookVec.scale(5.0));
@@ -87,20 +87,15 @@ public class BeamCane extends CanesItem {
 
                             Entity lEntity = getPlayerLookAtEntity(player, beamRayDistance);
                             if (lEntity != null) {
-                                if (tickCounter % 1 == 0) {
                                     lEntity.hurt(DamageSource.sting(player), 8);
                                     hit = true;
-                                    System.out.println(String.valueOf(lEntity));
-                                }
+                                    System.out.println(lEntity);
                             } else {
                                 hit = false;
                             }
                         } else {
                             resetBeam(level, tag);
-
                         }
-
-                    }
                 }
             } else {
                 if (tag.contains("BeamId")) {
@@ -110,9 +105,9 @@ public class BeamCane extends CanesItem {
 
                     Entity lookedAtEntity = getPlayerLookAtEntity(player, beamRayDistance);
 
-                    if (blockHit.getType() != HitResult.Type.MISS) {
 
-                        for (int i = 0; i < 12; i++) {
+                    for (int i = 0; i < 12; i++) {
+                        if (blockHit.getType() != HitResult.Type.MISS) {
                             level.addParticle(ModParticles.BEAM_EXPLOSION_PARTICLE.get(),
                                     hitPos.x + offset(0.5),
                                     hitPos.y + offset(0.5) - 0.2,
@@ -121,9 +116,8 @@ public class BeamCane extends CanesItem {
                                     Math.pow(-1, i) * (this.random.nextDouble()) * 0.6D,
                                     (this.random.nextDouble() - 0.5) * 0.8D
                             );
-                        }
-                    }else if (blockHit.getType() != HitResult.Type.MISS) {
-                        for (int i = 0; i < 12; i++) {
+                        } else if (blockHit.getType() != HitResult.Type.MISS) {
+
                             level.addParticle(ModParticles.BEAM_EXPLOSION_PARTICLE.get(),
                                     hitPos.x + offset(0.5),
                                     hitPos.y + offset(0.5) - 0.2,
@@ -134,6 +128,7 @@ public class BeamCane extends CanesItem {
                             );
                         }
                     }
+
 
 
                 Vec3 startPos = player.position().subtract(0.65 * player.getBbWidth(), 0.1 * player.getBbWidth(), 0.65 * player.getBbWidth());
@@ -169,13 +164,6 @@ public class BeamCane extends CanesItem {
         return this.random.nextDouble() - koef;
     }
 
-    public static Vec3 getLookPosition(Player player, double reachDistance) {
-        Vec3 eyePos = player.getEyePosition(1.0F);
-        Vec3 lookVec = player.getViewVector(1.0F);
-        Vec3 endPos = eyePos.add(lookVec.x * reachDistance, lookVec.y * reachDistance, lookVec.z * reachDistance);
-
-        return endPos;
-    }
 
     public static BlockHitResult getPlayerLookAtBlock(Player player, double reachDistance) {
         Vec3 eyePos = player.getEyePosition(1.0F);
