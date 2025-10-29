@@ -21,7 +21,6 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.oppakolba.canes.init.ModBlockEntities;
-import net.oppakolba.canes.init.ModItems;
 import net.oppakolba.canes.recipe.AlterioTableRecipe;
 import net.oppakolba.canes.screen.AlterioTableMenu;
 import org.jetbrains.annotations.NotNull;

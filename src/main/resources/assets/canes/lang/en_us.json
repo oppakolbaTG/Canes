@@ -9,7 +9,7 @@
   "item.canes.fallen_star": "Fallen Star",
   "item.canes.charged_amethyst": "Charged Amethyst",
 
-  "item.canes.fireball_cane": "Fireball Cane",
+  "item.canes.fireball_cane": "The Cane of Ancient Embers.",
   "item.canes.lightning_cane": "Lightning Turret",
   "item.canes.heal_cane": "Heal Turret",
   "item.canes.sample_cane": "Sample Cane",
@@ -31,5 +31,11 @@
 
   "key.category.canes.oppaterra": "ModCanes",
   "key.canes.mana_use": "Mana Use",
-  "key.canes.open_gui": "Open Screen"
+  "key.canes.open_gui": "Open Screen",
+
+  "screen.description": "Description",
+
+  "screen.description.1_fireball_cane": "The Staff of Ancient Embers. Its core \n pulses with a primordial spark, turning\nthe wielder's will into searing judgment.",
+  "screen.description.2_fireball_cane": "Its core pulses with a primordial spark,",
+  "screen.description.3_fireball_cane": "turning the wielder's will into searing judgment."
 }

@@ -10,7 +10,7 @@
   "item.canes.charged_amethyst": "Заряженный Аметист",
 
 
-  "item.canes.fireball_cane": "Посох Огненного Шара",
+  "item.canes.fireball_cane": "Посох Пламени Древних.",
   "item.canes.lightning_cane": "Турель Молний",
   "item.canes.heal_cane": "Лечебный Посох",
   "item.canes.sample_cane": "Макет Посоха",
@@ -31,5 +31,11 @@
 
   "key.category.canes.oppaterra": "ModCanes",
   "key.canes.mana_use": "Использовать Ману",
-  "key.canes.open_gui": "Отрыть Окно"
+  "key.canes.open_gui": "Отрыть Окно",
+
+  "screen.description": "Описание",
+
+  "screen.description.1_fireball_cane": "Посох Пламени Древних.",
+  "screen.description.2_fireball_cane": "В его сердцевине бьётся огненное семя,",
+  "screen.description.3_fireball_cane": "обращающее волю заклинателя в пылающую кару."
 }

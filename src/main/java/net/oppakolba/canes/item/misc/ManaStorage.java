@@ -13,7 +13,6 @@ public class ManaStorage implements ICanesMana, INBTSerializable<CompoundTag> {
     public ManaStorage(ItemStack stack, int defaultMaxMana) {
         this.stack = stack;
         this.defaultMaxMana = defaultMaxMana;
-        // Инициализируем NBT если нужно
         initializeNBT();
     }
 
