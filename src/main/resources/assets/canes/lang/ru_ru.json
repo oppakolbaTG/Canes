@@ -35,7 +35,8 @@
 
   "screen.description": "Описание",
 
-  "screen.description.1_fireball_cane": "Посох Пламени Древних.",
-  "screen.description.2_fireball_cane": "В его сердцевине бьётся огненное семя,",
-  "screen.description.3_fireball_cane": "обращающее волю заклинателя в пылающую кару."
+  "screen.power": "урон",
+  "screen.heal": "исцеление",
+  "screen.radius": "радиус взрыва",
+  "screen.amt": "кол-во зарядов"
 }

@@ -4,11 +4,7 @@ import com.mojang.logging.LogUtils;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
-import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -16,10 +12,9 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.oppakolba.canes.init.*;
-import net.oppakolba.canes.item.misc.CanesCapability;
-import net.oppakolba.canes.item.misc.CanesItem;
-import net.oppakolba.canes.item.misc.ICanesMana;
-import net.oppakolba.canes.item.misc.ManaProvider;
+import net.oppakolba.canes.item.misc.characteristics.CanesCharacteristics;
+import net.oppakolba.canes.item.misc.mana.CanesCapability;
+import net.oppakolba.canes.item.misc.mana.ICanesMana;
 import net.oppakolba.canes.networking.ModMessage;
 import net.oppakolba.canes.screen.AlterioTableScreen;
 import net.oppakolba.canes.world.feature.ModConfiguredFeatures;
@@ -50,6 +45,7 @@ public class Canes {
         ModParticles.PARTICLE_TYPES.register(bus);
         bus.addListener(this::commonSetup);
         CanesCapability.register();
+        CanesCharacteristics.register();
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
