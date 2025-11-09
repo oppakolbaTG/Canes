@@ -1,4 +1,4 @@
-package net.oppakolba.canes.item.misc;
+package net.oppakolba.canes.item.misc.mana;
 
 import net.minecraft.world.item.ItemStack;
 

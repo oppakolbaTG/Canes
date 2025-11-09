@@ -9,7 +9,6 @@ import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import net.oppakolba.canes.init.ModParticles;
-import net.oppakolba.canes.item.misc.CanesCapability;
 import net.oppakolba.canes.item.misc.CanesItem;
 import org.jetbrains.annotations.NotNull;
 
@@ -26,6 +25,7 @@ public class LightningCane extends CanesItem {
 
     @Override
     public void releaseUsing(@NotNull ItemStack stack, Level level, @NotNull LivingEntity entity, int timeLeft) {
+        int amt = 1 + getAmt(stack) * 2;
         if (!level.isClientSide && entity instanceof Player player) {
             int charge = 1000 - timeLeft;
 
@@ -40,7 +40,7 @@ public class LightningCane extends CanesItem {
                 Vec3 playerPos = player.position();
 
 
-                for (int i = 0; i < 10; i++) {
+                for (int i = 0; i < amt; i++) {
                     Vec3 targetPos = playerPos.add(lookAngle.scale(i + 2));
                     LightningBolt lightningBolt = new LightningBolt(EntityType.LIGHTNING_BOLT, level);
                     lightningBolt.setPos(targetPos.x, player.getY(), targetPos.z);

@@ -17,6 +17,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class FireballEntity extends AbstractHurtingProjectile  {
     private static final EntityDataAccessor<Float> POWER = SynchedEntityData.defineId(FireballEntity.class, EntityDataSerializers.FLOAT);
+    //private static final EntityDataAccessor<Float> RADIUS = SynchedEntityData.defineId(FireballEntity.class, EntityDataSerializers.FLOAT);
 
     public FireballEntity(EntityType<? extends FireballEntity> entityType, Level level){
         super(entityType, level);

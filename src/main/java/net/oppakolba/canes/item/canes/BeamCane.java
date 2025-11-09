@@ -15,7 +15,6 @@ import net.minecraft.world.phys.*;
 import net.oppakolba.canes.entity.projectile.BeamEntity;
 import net.oppakolba.canes.init.ModEntities;
 import net.oppakolba.canes.init.ModParticles;
-import net.oppakolba.canes.item.misc.CanesCapability;
 import net.oppakolba.canes.item.misc.CanesItem;
 import org.jetbrains.annotations.NotNull;
 
@@ -54,6 +53,7 @@ public class BeamCane extends CanesItem {
 
     @Override
     public void onUseTick(@NotNull Level level, @NotNull LivingEntity entity, ItemStack stack, int count) {
+
         super.onUseTick(level, entity, stack, count);
         CompoundTag tag = stack.getOrCreateTag();
         if (entity instanceof Player player) {
@@ -88,9 +88,8 @@ public class BeamCane extends CanesItem {
                             Entity lEntity = getPlayerLookAtEntity(player, beamRayDistance);
                             if (lEntity != null) {
                                 for(int i = 0; i < 4; i++) {
-                                    lEntity.hurt(DamageSource.sting(player), 8);
+                                    lEntity.hurt(DamageSource.sting(player), 1 + getPower(stack) * 2);
                                     hit = true;
-                                    System.out.println(lEntity);
                                     try{
                                         Thread.sleep(40);
                                     }catch(InterruptedException ex){
