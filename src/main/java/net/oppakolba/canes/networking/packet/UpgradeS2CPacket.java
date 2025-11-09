@@ -14,8 +14,6 @@ public class UpgradeS2CPacket {
     public static void handle(UpgradeS2CPacket message, Supplier<NetworkEvent.Context> ctxSupplier) {
         NetworkEvent.Context ctx = ctxSupplier.get();
         ctx.enqueueWork(() -> {
-            System.out.println("Клиент получил UpgradeS2CPacket!");
-
         });
         ctx.setPacketHandled(true);
     }
