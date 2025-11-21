@@ -12,7 +12,7 @@ public class CharacteristicStorage implements ICanesChar, INBTSerializable<Compo
     private final ItemStack stack;
 
 
-    public CharacteristicStorage(ItemStack stack) {
+    public CharacteristicStorage(ItemStack stack  ) {
         this.stack = stack;
         initializeNBT();
     }
@@ -23,7 +23,7 @@ public class CharacteristicStorage implements ICanesChar, INBTSerializable<Compo
             tag.putInt(power, 1);
         }
         if (!tag.contains(radius)) {
-            tag.putInt(radius, 1);
+                tag.putInt(radius, 1);
         }
         if (!tag.contains(amt)) {
             tag.putInt(amt, 1);

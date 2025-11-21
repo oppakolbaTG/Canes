@@ -4,7 +4,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkDirection;
 import net.minecraftforge.network.NetworkRegistry;
-import net.minecraftforge.network.PacketDistributor;
 import net.minecraftforge.network.simple.SimpleChannel;
 import net.oppakolba.canes.Canes;
 import net.oppakolba.canes.networking.packet.*;
@@ -29,10 +28,10 @@ public class  ModMessage {
         INSTANCE = net;
 
 
-        net.messageBuilder(UpgradeC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
-                .decoder(UpgradeC2SPacket::new)
-                .encoder(UpgradeC2SPacket::toByte)
-                .consumerMainThread(UpgradeC2SPacket::handle).add();
+        net.messageBuilder(UpgradeCharC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(UpgradeCharC2SPacket::new)
+                .encoder(UpgradeCharC2SPacket::toByte)
+                .consumerMainThread(UpgradeCharC2SPacket::handle).add();
 
         net.messageBuilder(UpgradeS2CPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
                 .decoder(UpgradeS2CPacket::new)
@@ -44,6 +43,8 @@ public class  ModMessage {
                 .encoder(ManaDataSyncPacket::toByte)
                 .consumerMainThread(ManaDataSyncPacket::handle)
                 .add();
+
+
 
     }
 

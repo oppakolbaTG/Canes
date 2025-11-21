@@ -76,6 +76,27 @@ public class CanesItem extends Item {
         return 0;
     }
 
+    public static void addPower(ItemStack stack, int value){
+        CompoundTag tag = stack.getOrCreateTag();
+        int cValue = Math.min(5, Math.max(getPower(stack) + value, 0));
+        tag.putInt("power", cValue);
+    }
+    public void addRadius(ItemStack stack, int value){
+        CompoundTag tag = stack.getOrCreateTag();
+        int cValue = Math.min(5, Math.max(getRadius(stack) + value, 0));
+        tag.putInt("radius", cValue);
+    }
+    public void addHeal(ItemStack stack, int value){
+        CompoundTag tag = stack.getOrCreateTag();
+        int cValue = Math.min(5, Math.max(getHeal(stack) + value, 0));
+        tag.putInt("heal", cValue);
+    }
+    public void addAmt(ItemStack stack, int value){
+        CompoundTag tag = stack.getOrCreateTag();
+        int cValue = Math.min(5, Math.max(getAmt(stack) + value, 0));
+        tag.putInt("amt", cValue);
+    }
+
     public static void setMana(ItemStack stack, int mana) {
         if (stack.getItem() instanceof CanesItem) {
             CompoundTag tag = stack.getOrCreateTag();
