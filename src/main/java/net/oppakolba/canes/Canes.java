@@ -13,6 +13,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.oppakolba.canes.init.*;
 import net.oppakolba.canes.item.misc.characteristics.CanesCharacteristics;
+import net.oppakolba.canes.item.misc.characteristics.ICanesChar;
 import net.oppakolba.canes.item.misc.mana.CanesCapability;
 import net.oppakolba.canes.item.misc.mana.ICanesMana;
 import net.oppakolba.canes.networking.ModMessage;
@@ -58,6 +59,7 @@ public class Canes {
     @SubscribeEvent
     public void onRegisterCapabilities(RegisterCapabilitiesEvent event) {
         event.register(ICanesMana.class);
+        event.register(ICanesChar.class);
     }
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
     @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
