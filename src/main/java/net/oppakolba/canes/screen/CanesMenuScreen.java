@@ -111,6 +111,7 @@ public class CanesMenuScreen extends Screen  {
                             x + 103, y + 80, color, shadowColor);
                     ScreenUtils.drawColoredShadow(pPoseStack, font, Component.translatable("screen.radius").append(": ").append(String.valueOf(CanesItem.getPower(stackItemInHand) * 2)),
                             x + 103, y + 103, color, shadowColor);
+                    renderLevel(pPoseStack, stackItemInHand,"power");
                 }
 
 
@@ -119,6 +120,7 @@ public class CanesMenuScreen extends Screen  {
                     renderIconCharacteristics(pPoseStack, 298, 75, 0, 0,false);
                     ScreenUtils.drawColoredShadow(pPoseStack, font, Component.translatable("screen.power").append(": ").append(String.valueOf(1 + CanesItem.getPower(stackItemInHand) * 2)),
                             x + 103, y + 80, color,shadowColor);
+                    renderLevel(pPoseStack, stackItemInHand,"power");
                 }
                 else if (stackItemInHand.getItem() instanceof LightningCane){
                     System.out.println(CanesItem.getAmt(stackItemInHand));
@@ -126,6 +128,7 @@ public class CanesMenuScreen extends Screen  {
                     renderIconCharacteristics(pPoseStack, 330, 75, 0,0,false);
                     ScreenUtils.drawColoredShadow(pPoseStack, font, Component.translatable("screen.amt").append(": ").append(String.valueOf(1 + CanesItem.getAmt(stackItemInHand) * 2)),
                             x + 103, y + 80, color, shadowColor);
+                    renderLevel(pPoseStack, stackItemInHand,"amt");
                 }
                 else if (stackItemInHand.getItem() instanceof HealCane){
                     renderManaBar(pPoseStack, stackItemInHand);
@@ -134,6 +137,7 @@ public class CanesMenuScreen extends Screen  {
                             x + 103, y + 80, color, shadowColor);
                     ScreenUtils .drawColoredShadow(pPoseStack, font, Component.translatable("screen.heal").append(": ").append(String.valueOf(CanesItem.getHeal(stackItemInHand) * 2)),
                             x + 103, y + 103, color, shadowColor);
+                    renderLevel(pPoseStack, stackItemInHand,"radius");
                 }
                 else if (stackItemInHand.getItem() instanceof RainOfCharges){
                     System.out.println(CanesItem.getRadius(stackItemInHand));
@@ -144,6 +148,7 @@ public class CanesMenuScreen extends Screen  {
                             x + 103, y + 80, color, shadowColor);
                     ScreenUtils.drawColoredShadow(pPoseStack, font, Component.translatable("screen.amt").append(": ").append(String.valueOf(1 + CanesItem.getAmt(stackItemInHand) * 2)),
                             x + 103, y + 103, color,shadowColor);
+                    renderLevel(pPoseStack, stackItemInHand,"power");
                 }
 
                 else{
@@ -180,12 +185,75 @@ public class CanesMenuScreen extends Screen  {
 
 
     /**if param renderSecondItem is false 5 and 6 are not taken into account**/
-    public void renderIconCharacteristics(PoseStack poseStack, int uOffset, int vOffset, int u2Offset, int v2Offset, boolean renderSecondIcon){
+    public void renderIconCharacteristics(PoseStack poseStack, int uOffset, int vOffset, int u2Offset, int v2Offset, boolean renderSecondIcon) {
 
         RenderSystem.setShaderTexture(0, TEXTURES);
-        blit(poseStack, this.screenWidth / 2 - 50, this.screenHeight / 2 + 2, uOffset, vOffset, 15 , 15, 512, 512);
-        if(renderSecondIcon){
-            blit(poseStack, this.screenWidth / 2 - 50, this.screenHeight / 2 + 25, u2Offset, v2Offset, 15 , 15, 512, 512);
+        blit(poseStack, this.screenWidth / 2 - 50, this.screenHeight / 2 + 2, uOffset, vOffset, 15, 15, 512, 512);
+        if (renderSecondIcon) {
+            blit(poseStack, this.screenWidth / 2 - 50, this.screenHeight / 2 + 25, u2Offset, v2Offset, 15, 15, 512, 512);
         }
+    }
+
+    public void renderLevel(PoseStack poseStack, ItemStack stack, String characteristics){
+        if(characteristics.equals("power")){
+            switch(CanesItem.getPower(stack)){
+                case 1 -> renderOne(poseStack);
+                case 2 -> renderTwo(poseStack);
+                case 3 -> renderThree(poseStack);
+                case 4 -> renderFour(poseStack);
+                case 5 -> renderFive(poseStack);
+            }
+        }
+        if(characteristics.equals("radius")){
+            switch(CanesItem.getRadius(stack)){
+                case 1 -> renderOne(poseStack);
+                case 2 -> renderTwo(poseStack);
+                case 3 -> renderThree(poseStack);
+                case 4 -> renderFour(poseStack);
+                case 5 -> renderFive(poseStack);
+            }
+        }
+        if(characteristics.equals("amt")){
+            switch(CanesItem.getAmt(stack)){
+                case 1 -> renderOne(poseStack);
+                case 2 -> renderTwo(poseStack);
+                case 3 -> renderThree(poseStack);
+                case 4 -> renderFour(poseStack);
+                case 5 -> renderFive(poseStack);
+            }
+        }
+        if(characteristics.equals("heal")){
+            switch(CanesItem.getHeal(stack)){
+                case 1 -> renderOne(poseStack);
+                case 2 -> renderTwo(poseStack);
+                case 3 -> renderThree(poseStack);
+                case 4 -> renderFour(poseStack);
+                case 5 -> renderFive(poseStack);
+            }
+        }
+    }
+
+    private void renderOne(PoseStack poseStack){
+        RenderSystem.setShaderTexture(0, TEXTURES);
+        blit(poseStack, this.screenWidth / 2 - 96, this.screenHeight / 2 - 35,368,38, 22,22, 512, 512);
+    }
+    private void renderTwo(PoseStack poseStack){
+        RenderSystem.setShaderTexture(0, TEXTURES);
+        blit(poseStack, this.screenWidth / 2 - 93, this.screenHeight / 2 - 35,390,38, 17,22,512, 512);
+    }
+    private void renderThree(PoseStack poseStack){
+        RenderSystem.setShaderTexture(0, TEXTURES);
+        blit(poseStack, this.screenWidth / 2 - 98, this.screenHeight / 2 - 35,414,38, 26,22,512, 512);
+
+    }
+    private void renderFour(PoseStack poseStack){
+        RenderSystem.setShaderTexture(0, TEXTURES);
+        blit(poseStack, this.screenWidth / 2 - 96, this.screenHeight / 2 - 35,447,38, 24,22,512, 512);
+
+    }
+    private void renderFive(PoseStack poseStack){
+        RenderSystem.setShaderTexture(0, TEXTURES);
+        blit(poseStack, this.screenWidth / 2 - 93, this.screenHeight / 2 - 35,478,38, 15,22,512, 512);
+
     }
 }
