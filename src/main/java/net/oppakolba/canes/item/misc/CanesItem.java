@@ -30,6 +30,11 @@ public class CanesItem extends Item {
         this(properties, 20, maxMana);
     }
 
+    @Override
+    public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
+        return oldStack.getItem() != newStack.getItem();
+    }
+
     public static int getPower(ItemStack stack){
         if(stack.getItem() instanceof  CanesItem){
             CompoundTag tag = stack.getOrCreateTag();

@@ -70,12 +70,4 @@ public class LightningCane extends CanesItem {
             }
         }
     }
-
-
-
-
-    @Override
-    public @NotNull UseAnim getUseAnimation(@NotNull ItemStack stack) {
-        return UseAnim.BOW;
-    }
 }

@@ -12,7 +12,7 @@
     import net.oppakolba.canes.item.misc.CanesItem;
     import org.jetbrains.annotations.NotNull;
 
-    public class  FireballCane extends CanesItem {
+    public class FireballCane extends CanesItem {
 
         public FireballCane(Properties properties) {
             super(properties, 20);

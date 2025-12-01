@@ -47,11 +47,9 @@ public class HealCane extends CanesItem {
         }
         if (level.isClientSide) {
             if (entity instanceof Player player) {
-                stack.getCapability(CanesCapability.MANA_CAPABILITY).ifPresent(cap -> {
-                if (cap.getMana(stack) >= 4) {
+                if (getMana(stack) >= 4) {
                     level.addParticle(ParticleTypes.CRIT, player.getX(), player.getY(), player.getZ(), 0, -0.1, 0);
                 }
-            });
 
 
                     for (int i = 0; i < 8; i++) {

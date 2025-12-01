@@ -35,13 +35,6 @@ public class RainOfCharges extends CanesItem {
                     level.addFreshEntity(particleCharge);
                 }
             }
-            }
         }
-
-
-    @Override
-    public @NotNull UseAnim getUseAnimation(@NotNull ItemStack stack) {
-        return UseAnim.BOW;
     }
-
 }
