@@ -26,17 +26,11 @@ import org.jetbrains.annotations.NotNull;
 public class CanesMenuScreen extends Screen  {
     private static final ResourceLocation TEXTURES = new ResourceLocation("canes", "textures/gui/terra_menu_screen1.png");
     private static final ResourceLocation UPG_BUTTON = new ResourceLocation("canes", "textures/gui/buttonn_upg.png");
-    private static final ResourceLocation LEVEL_1 = new ResourceLocation("canes", "textures/gui/level_1.png");
-    private static final ResourceLocation LEVEL_2 = new ResourceLocation("canes", "textures/gui/level_2.png");
-    private static final ResourceLocation LEVEL_3 = new ResourceLocation("canes", "textures/gui/level_3.png");
-    private static final ResourceLocation LEVEL_4 = new ResourceLocation("canes", "textures/gui/level_4.png");
-    private static final ResourceLocation LEVEL_5 = new ResourceLocation("canes", "textures/gui/level_5.png");
     protected int screenWidth;
     protected  int screenHeight;
     public int backgroundHeight = 148;
     public int backgroundWidth = 266;
     Font font = Minecraft.getInstance().font;
-
     int color = 0xcfa170;
     int shadowColor = 0xe7bf8b;
 
@@ -105,11 +99,12 @@ public class CanesMenuScreen extends Screen  {
             var stackItemInHand = player.getItemInHand(InteractionHand.MAIN_HAND);
             if(stackItemInHand.getItem() instanceof CanesItem) {
                 if(stackItemInHand.getItem() instanceof FireballCane){
+                    this.addRenderableWidget(new RequestWidget(x + 103 , y + 103,"FireBallCane"));
                     renderManaBar(pPoseStack, stackItemInHand);
                     renderIconCharacteristics(pPoseStack, 298, 75, 314, 75, true);
                     ScreenUtils.drawColoredShadow(pPoseStack, font, Component.translatable("screen.power").append(": ").append(String.valueOf(2 + CanesItem.getPower(stackItemInHand) * 2)),
                             x + 103, y + 80, color, shadowColor);
-                    ScreenUtils.drawColoredShadow(pPoseStack, font, Component.translatable("screen.radius").append(": ").append(String.valueOf(CanesItem.getPower(stackItemInHand) * 2)),
+                    ScreenUtils.drawColoredShadow(pPoseStack, font, Component.translatable("screen.radius").append(": ").append(String.valueOf(1 + CanesItem.getPower(stackItemInHand) * 2)),
                             x + 103, y + 103, color, shadowColor);
                     renderLevel(pPoseStack, stackItemInHand,"power");
                 }

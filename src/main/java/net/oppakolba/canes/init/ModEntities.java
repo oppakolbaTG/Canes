@@ -21,7 +21,7 @@ public class ModEntities {
     public static final RegistryObject<EntityType<FireballEntity>> CUSTOM_FIREBALL =
             ENTITIES.register("custom_fireball", () ->
                     EntityType.Builder.<FireballEntity>of(FireballEntity::new, MobCategory.MISC)
-                            .sized(1f, 1f).clientTrackingRange(4).updateInterval(2).build(new ResourceLocation(Canes.MOD_ID, "custom_fireball").toString()));
+                            .sized(0.25f, 0.25f).clientTrackingRange(4).updateInterval(2).build(new ResourceLocation(Canes.MOD_ID, "custom_fireball").toString()));
 
 
     public static final RegistryObject<EntityType<BeamEntity>> BEAM_ENTITY =

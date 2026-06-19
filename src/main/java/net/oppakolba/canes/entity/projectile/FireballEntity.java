@@ -26,7 +26,7 @@ public class FireballEntity extends AbstractHurtingProjectile  {
     public FireballEntity(EntityType<? extends FireballEntity> entityType, Level level, LivingEntity entity, double xP, double yP, double zP, float power){
         super(entityType, entity, xP, yP, zP, level);
         this.entityData.set(POWER, power);
-        this.setPos(this.getX(), this.getY() + 4, this.getZ());
+        this.setPos(this.getX(), this.getY() + 8, this.getZ());
     }
 
     @Override

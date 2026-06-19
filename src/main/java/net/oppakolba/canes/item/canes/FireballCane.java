@@ -7,6 +7,7 @@
     import net.minecraft.world.entity.player.Player;
     import net.minecraft.world.item.ItemStack;
     import net.minecraft.world.level.Level;
+    import net.minecraft.world.phys.Vec3;
     import net.oppakolba.canes.init.ModEntities;
     import net.oppakolba.canes.entity.projectile.FireballEntity;
     import net.oppakolba.canes.item.misc.CanesItem;
@@ -30,10 +31,11 @@
                 }
 
                 int currentMana = CanesItem.getMana(stack);
-                int maxMana = CanesItem.getMaxMana(stack);
 
                 if (currentMana >= 20) {
                     CanesItem.setMana(stack, currentMana - 20);
+                    Vec3 spawnPos = player.getEyePosition().add(0.0D, 1.0D, 0.0D).subtract(player.getLookAngle().scale(1.0D));
+
                     FireballEntity customFireball = new FireballEntity(ModEntities.CUSTOM_FIREBALL.get(), level, player,
                             player.getLookAngle().x, player.getLookAngle().y - 0.1f, player.getLookAngle().z, power);
                     customFireball.setOwner(player);
