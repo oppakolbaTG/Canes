@@ -24,7 +24,10 @@ import static org.openjdk.nashorn.internal.runtime.regexp.joni.Config.log;
 public class ClientEvents {
     @Mod.EventBusSubscriber(modid = Canes.MOD_ID, value = Dist.CLIENT)
     public static class ClientForgeEvents {
-
+        private static final String POWER = "power";
+        private static final String HEAL = "heal";
+        private static final String RADIUS = "radius";
+        private static final String AMT = "amt";
 
         @SubscribeEvent
         public static void onKeyInput(InputEvent.Key event) {
@@ -32,6 +35,7 @@ public class ClientEvents {
             Player player = minecraft.player;
             if(player != null) {
                 if (KeyBinding.OPENING_GUI_KEY.consumeClick() && player.getMainHandItem().getItem() instanceof CanesItem) {
+                    initialize(player.getItemInHand(InteractionHand.MAIN_HAND));
                     Minecraft.getInstance().setScreen(new CanesMenuScreen(Component.empty()));
                 }
             }
@@ -44,6 +48,23 @@ public class ClientEvents {
             ICanesRenderer.register(ModItems.FIREBALL_CANE.get());
         }
 
+
+        private static void initialize(ItemStack stack) {
+            CompoundTag tag = stack.getOrCreateTag();
+            if (!tag.contains(POWER)) {
+                tag.putInt(POWER, 1);
+            }
+            if (!tag.contains(RADIUS)) {
+                tag.putInt(RADIUS, 1);
+            }
+            if (!tag.contains(HEAL)) {
+                tag.putInt(HEAL, 1);
+            }
+            if (!tag.contains(AMT)) {
+                tag.putInt(AMT, 1);
+            }
+
+        }
 
     }
     @Mod.EventBusSubscriber(modid = Canes.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)

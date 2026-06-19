@@ -15,7 +15,6 @@ import net.oppakolba.canes.Canes;
 import net.oppakolba.canes.item.misc.CanesItem;
 import net.oppakolba.canes.networking.ModMessage;
 import net.oppakolba.canes.networking.packet.ManaDataSyncPacket;
-import net.oppakolba.canes.screen.CanesMenuScreen;
 import net.oppakolba.canes.util.KeyBinding;
 
 import java.util.concurrent.atomic.AtomicInteger;
@@ -26,10 +25,6 @@ public class ModEvents {
     private static final AtomicInteger tickCounter = new AtomicInteger(0);
     private static final String MANA_TAG = "mana";
     private static final String MAX_MANA_TAG = "max_mana";
-    private static final String POWER = "power";
-    private static final String HEAL = "heal";
-    private static final String RADIUS = "radius";
-    private static final String AMT = "amt";
     /**
      * Смотрит предметы в инвентаре и постоянно увеличивает их ману
      **/
@@ -83,31 +78,4 @@ public class ModEvents {
     }
 
 
-    private static void initialize(ItemStack stack) {
-        CompoundTag tag = stack.getOrCreateTag();
-        if (!tag.contains(POWER)) {
-            tag.putInt(POWER, 1);
-        }
-        if (!tag.contains(RADIUS)) {
-            tag.putInt(RADIUS, 1);
-        }
-        if (!tag.contains(HEAL)) {
-            tag.putInt(HEAL, 1);
-        }
-        if (!tag.contains(AMT)) {
-            tag.putInt(AMT, 1);
-        }
-
-    }
-    @SubscribeEvent
-    public static void onKeyInput(InputEvent.Key event) {
-        Minecraft minecraft = Minecraft.getInstance();
-        Player player = minecraft.player;
-        if(player != null) {
-            if (KeyBinding.OPENING_GUI_KEY.consumeClick() && player.getMainHandItem().getItem() instanceof CanesItem) {
-                initialize(player.getItemInHand(InteractionHand.MAIN_HAND));
-
-            }
-        }
-    }
 }
