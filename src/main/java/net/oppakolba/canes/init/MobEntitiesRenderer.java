@@ -10,6 +10,7 @@ import net.oppakolba.canes.Canes;
 
 import net.oppakolba.canes.client.renderer.entity.BeamRenderer;
 import net.oppakolba.canes.client.renderer.entity.CustomFireballRenderer;
+import net.oppakolba.canes.client.renderer.entity.ManaOrbRenderer;
 import net.oppakolba.canes.client.renderer.entity.ParticleChargeRenderer;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, modid = Canes.MOD_ID, value = Dist.CLIENT)
@@ -19,5 +20,6 @@ public class MobEntitiesRenderer {
         event.registerEntityRenderer(ModEntities.CUSTOM_FIREBALL.get(), CustomFireballRenderer::new);
         event.registerEntityRenderer(ModEntities.BEAM_ENTITY.get(), BeamRenderer::new);
         event.registerEntityRenderer(ModEntities.PARTICLE_CHARGE.get(), ParticleChargeRenderer::new);
+        event.registerEntityRenderer(ModEntities.MANA_ORB.get(), ManaOrbRenderer::new);
     }
 }

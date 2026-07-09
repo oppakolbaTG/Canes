@@ -13,6 +13,8 @@ authors="Oppakolba"
 description='''
 Hi this is my first mod "Canes" good games and learn lorem ipsum'''
 
+[[mixins]]
+config="mixins.canes.json"
 
 [[dependencies.canes]]
     modId="forge"

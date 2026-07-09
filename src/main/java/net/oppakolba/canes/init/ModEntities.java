@@ -9,6 +9,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.oppakolba.canes.Canes;
 
+import net.oppakolba.canes.entity.orbs.ManaOrb;
 import net.oppakolba.canes.entity.projectile.BeamEntity;
 import net.oppakolba.canes.entity.projectile.FireballEntity;
 import net.oppakolba.canes.entity.projectile.ParticleCharge;
@@ -34,6 +35,10 @@ public class ModEntities {
                     EntityType.Builder.<ParticleCharge>of(ParticleCharge::new, MobCategory.MISC)
                             .sized(0.1f, 0.1f).fireImmune().clientTrackingRange(120).updateInterval(1).build(new ResourceLocation(Canes.MOD_ID, "particle_charge").toString()));
 
+    public static final RegistryObject<EntityType<ManaOrb>> MANA_ORB =
+            ENTITIES.register("mana_orb", () ->
+                    EntityType.Builder.<ManaOrb>of(ManaOrb::new, MobCategory.MISC)
+                            .sized(0.5f, 0.5f).fireImmune().clientTrackingRange(120).updateInterval(1).build(new ResourceLocation(Canes.MOD_ID, "mana_orb").toString()));
 
 //    public static final RegistryObject<EntityType<DrillEntity>> CANE_DRILL =
 //            ENTITIES.register("cane_drill",
