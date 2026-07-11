@@ -25,8 +25,7 @@ public class ModEvents {
     private static final AtomicInteger tickCounter = new AtomicInteger(0);
     private static final String MANA_TAG = "mana";
     private static final String MAX_MANA_TAG = "max_mana";
-    /**
-     * Смотрит предметы в инвентаре и постоянно увеличивает их ману
+    /* мотрит предметы в инвентаре и постоянно увеличивает их ману
      **/
 
     @SubscribeEvent

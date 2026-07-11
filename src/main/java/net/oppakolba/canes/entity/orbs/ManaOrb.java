@@ -18,6 +18,8 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.PlayerXpEvent;
 import net.minecraftforge.network.NetworkHooks;
+import net.oppakolba.canes.item.misc.CanesItem;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
 
@@ -29,7 +31,6 @@ public class ManaOrb extends Entity {
     private static final int LIFETIME = 6000;
     private static final int ENTITY_SCAN_PERIOD = 20; //?
     private static final int MAX_FOLLOW_DIST = 8;
-    private static final int ORB_GROUPS_PER_AREA = 40; //?;
     private int lifeTime;
     @Getter
     public int value;
@@ -71,8 +72,7 @@ public class ManaOrb extends Entity {
             double dist = vec3.lengthSqr();
             if (dist < (double) 64.0F) {
                 double factor = 1.0F - Math.sqrt(dist) / (double) 8.0F;
-                Vec3 desired = vec3.normalize().scale(factor * factor * 0.1);
-                this.setDeltaMovement(this.getDeltaMovement().lerp(desired,0.15f));
+                this.setDeltaMovement(this.getDeltaMovement().add(vec3.normalize().scale(factor * factor * 0.1D)));
             }
         }
 
@@ -137,9 +137,16 @@ public class ManaOrb extends Entity {
 /**
 Касание маны запускает данную функцию
     **/
-    public void playerTouch(Player pEntity) {
+    @Override
+    public void playerTouch(@NotNull Player player) {
         if (!this.level.isClientSide) {
+            this.discard();
+            for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
+                ItemStack stack = player.getInventory().getItem(i);
+                if (!stack.isEmpty() && stack.getItem() instanceof CanesItem canesItem) {
 
+                }
+            }
 
 
         }
@@ -161,11 +168,16 @@ public class ManaOrb extends Entity {
 //        }
 //    }
 
+
     public void checkPlayerItems(){
 
     }
 
+    //Срабатывает когда умирает моб или специальный предмет
+    //Orb разлетается и только после срабатывает обычная логика движения к игроку
+    public void spawnOrb(){
 
+    }
 
 
     private int durabilityToMana(int pDurability) {
