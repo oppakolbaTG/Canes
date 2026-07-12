@@ -8,10 +8,15 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+import net.oppakolba.canes.entity.orbs.ManaOrb;
 import net.oppakolba.canes.init.ModSounds;
+
+import java.util.Random;
 
 
 public class ManaCrystal extends Item {
+    Random random = new Random();
+    private final int value = random.nextInt(3,6);
     public ManaCrystal(Properties p_41383_) {
         super(p_41383_);
     }
@@ -21,9 +26,16 @@ public class ManaCrystal extends Item {
         ItemStack itemStack = context.getItemInHand();
         Level level = context.getLevel();
         Player player = context.getPlayer();
+        if(!level.isClientSide){
+            for(int i = 0; i < value; i++) {
+                ManaOrb manaOrb = ManaOrb.spawnOrbWithPop(level, player.getX(), player.getY(), player.getZ());
+                level.addFreshEntity(manaOrb);
+
+            }
+        }
                 level.playSound(null, player.getOnPos(), ModSounds.MANA_USE.get(), SoundSource.PLAYERS, 0.5f, level.random.nextFloat() * 0.1f + 0.9f);
                 itemStack.shrink(1);
-                player.getCooldowns().addCooldown(this, 40);
+
 
         return InteractionResult.CONSUME;
     }

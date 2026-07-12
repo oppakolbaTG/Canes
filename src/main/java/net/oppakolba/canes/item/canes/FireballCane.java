@@ -34,8 +34,6 @@
 
                 if (currentMana >= 20) {
                     CanesItem.setMana(stack, currentMana - 20);
-                    Vec3 spawnPos = player.getEyePosition().add(0.0D, 1.0D, 0.0D).subtract(player.getLookAngle().scale(1.0D));
-
                     FireballEntity customFireball = new FireballEntity(ModEntities.CUSTOM_FIREBALL.get(), level, player,
                             player.getLookAngle().x, player.getLookAngle().y - 0.1f, player.getLookAngle().z, power);
                     customFireball.setOwner(player);
@@ -43,7 +41,7 @@
 
 
                     player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 40, 5));
-                    player.getCooldowns().addCooldown(this, 40);
+                    player.getCooldowns().addCooldown(this, 10);
                 }
             }
         }

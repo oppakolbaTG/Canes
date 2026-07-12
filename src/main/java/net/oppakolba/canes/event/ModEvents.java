@@ -9,19 +9,24 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.oppakolba.canes.Canes;
+import net.oppakolba.canes.entity.orbs.ManaOrb;
 import net.oppakolba.canes.item.misc.CanesItem;
 import net.oppakolba.canes.networking.ModMessage;
 import net.oppakolba.canes.networking.packet.ManaDataSyncPacket;
 import net.oppakolba.canes.util.KeyBinding;
 
+import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
 
 @Mod.EventBusSubscriber(modid = Canes.MOD_ID)
 public class ModEvents {
+    public static Random random = new Random();
     private static final AtomicInteger tickCounter = new AtomicInteger(0);
     private static final String MANA_TAG = "mana";
     private static final String MAX_MANA_TAG = "max_mana";
@@ -47,6 +52,25 @@ public class ModEvents {
                     }
                 }
             }
+        }
+    }
+
+    @SubscribeEvent
+    public static void spawnManaAfterDie(LivingDeathEvent event){
+        if(!(event.getSource().getEntity() instanceof Player player)){
+            return;
+        }
+        if(!(player.getItemInHand(InteractionHand.MAIN_HAND).getItem() instanceof CanesItem)){
+            return;
+        }
+        if(event.getEntity().level.isClientSide){
+            return;
+        }
+
+        int value = random.nextInt(1, 3);
+        for(int i = 0; i < value; i++) {
+            ManaOrb manaOrb = ManaOrb.spawnOrbWithPop(player.level, event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ());
+            event.getEntity().level.addFreshEntity(manaOrb);
         }
     }
 

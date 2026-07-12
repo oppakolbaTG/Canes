@@ -52,7 +52,7 @@ public class LightningCane extends CanesItem {
                     }
 
                 }
-                player.getCooldowns().addCooldown(this, 30);
+                player.getCooldowns().addCooldown(this, 10);
 
             }
             }

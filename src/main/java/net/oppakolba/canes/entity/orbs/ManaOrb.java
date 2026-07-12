@@ -4,24 +4,26 @@ import lombok.Getter;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.FluidTags;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.player.PlayerXpEvent;
 import net.minecraftforge.network.NetworkHooks;
+import net.oppakolba.canes.init.ModEntities;
 import net.oppakolba.canes.item.misc.CanesItem;
+import net.oppakolba.canes.networking.ModMessage;
+import net.oppakolba.canes.networking.packet.ManaDataSyncPacket;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Map;
+import java.util.Random;
+
 
 //Движение + движение к игроку
 //Присоединение к игроку(мб звук?)
@@ -33,8 +35,10 @@ public class ManaOrb extends Entity {
     private static final int MAX_FOLLOW_DIST = 8;
     private int lifeTime;
     @Getter
-    public int value;
+    Random random = new Random();
+    public int value = random.nextInt(3, 6);
     private Player followingPlayer;
+    private final int POP_STOP_COUNT = 40;
 
     public ManaOrb(EntityType<?> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
@@ -45,6 +49,46 @@ public class ManaOrb extends Entity {
         this.xo = this.getX();
         this.yo = this.getY();
         this.zo = this.getZ();
+        ++this.lifeTime;
+        if(lifeTime > POP_STOP_COUNT){
+            if (this.tickCount % ENTITY_SCAN_PERIOD == 1) {
+                this.scanForEntities();
+            }
+
+            if (this.followingPlayer != null && (this.followingPlayer.isSpectator() || this.followingPlayer.isDeadOrDying())) {
+                this.followingPlayer = null;
+            }
+
+            if (this.followingPlayer != null && hasLineOfSight(this.followingPlayer)) {
+                Vec3 vec3 = new Vec3(this.followingPlayer.getX() - this.getX(), this.followingPlayer.getY() + (double) this.followingPlayer.getEyeHeight() / (double) 2.0F - this.getY(), this.followingPlayer.getZ() - this.getZ());
+                double dist = vec3.lengthSqr();
+                if (dist < (double) 64.0F) {
+                    double factor = 1.0F - Math.sqrt(dist) / (double) MAX_FOLLOW_DIST;
+                    this.setDeltaMovement(this.getDeltaMovement().add(vec3.normalize().scale(factor * factor * 0.1D)));
+                }
+            }
+            if (!level.isClientSide && followingPlayer instanceof ServerPlayer serverPlayer) {
+                if (this.distanceToSqr(serverPlayer) < 0.30D) {
+                    for (int i = 0; i < followingPlayer.getInventory().getContainerSize(); i++) {
+                        ItemStack stack = followingPlayer.getInventory().getItem(i);
+                        if (!stack.isEmpty() && stack.getItem() instanceof CanesItem canesItem) {
+                            if (followingPlayer.getItemInHand(InteractionHand.MAIN_HAND).getItem().equals(canesItem)) {
+                                updateManaForItem(serverPlayer, stack, i);
+                                System.out.println("Мана начислилась предмету в руке " + canesItem.getMana(stack) + " slotId " + i + " Сколько было " + canesItem.getMaxMana(stack));
+                            } else if (!followingPlayer.getItemInHand(InteractionHand.MAIN_HAND).getItem().equals(canesItem)) {
+                                updateManaForItem(serverPlayer, stack, i);
+                                System.out.println("Мана начислилась предмету из инвентаря" + canesItem.getMana(stack) + i);
+                            }
+                        }
+                    }
+
+                    discard();
+                }
+            }
+
+        }
+
+
         if (this.isEyeInFluid(FluidTags.WATER)) {
             this.setUnderwaterMovement();
         } else if (!this.isNoGravity()) {
@@ -59,22 +103,6 @@ public class ManaOrb extends Entity {
             this.moveTowardsClosestSpace(this.getX(), (this.getBoundingBox().minY + this.getBoundingBox().maxY) / (double) 2.0F, this.getZ());
         }
 
-        if (this.tickCount % 20 == 1) {
-            this.scanForEntities();
-        }
-
-        if (this.followingPlayer != null && (this.followingPlayer.isSpectator() || this.followingPlayer.isDeadOrDying())) {
-            this.followingPlayer = null;
-        }
-
-        if (this.followingPlayer != null && hasLineOfSight(this.followingPlayer)) {
-            Vec3 vec3 = new Vec3(this.followingPlayer.getX() - this.getX(), this.followingPlayer.getY() + (double) this.followingPlayer.getEyeHeight() / (double) 2.0F - this.getY(), this.followingPlayer.getZ() - this.getZ());
-            double dist = vec3.lengthSqr();
-            if (dist < (double) 64.0F) {
-                double factor = 1.0F - Math.sqrt(dist) / (double) 8.0F;
-                this.setDeltaMovement(this.getDeltaMovement().add(vec3.normalize().scale(factor * factor * 0.1D)));
-            }
-        }
 
         this.move(MoverType.SELF, this.getDeltaMovement());
         float f = 0.98F;
@@ -88,8 +116,8 @@ public class ManaOrb extends Entity {
             this.setDeltaMovement(this.getDeltaMovement().multiply((double) 1.0F, -0.9, (double) 1.0F));
         }
 
-        ++this.lifeTime;
-        if (this.lifeTime >= 6000) {
+
+        if (this.lifeTime >= LIFETIME) {
             this.discard();
         }
 
@@ -109,83 +137,76 @@ public class ManaOrb extends Entity {
 
     private void scanForEntities() {
         if (this.followingPlayer == null || this.followingPlayer.distanceToSqr(this) > (double) 64.0F) {
-            this.followingPlayer = this.level.getNearestPlayer(this, (double) 8.0F);
+            this.followingPlayer = this.level.getNearestPlayer(this, (double) MAX_FOLLOW_DIST);
         }
     }
-
-//    public static void award(ServerLevel pLevel, Vec3 pPos, int pAmount) {
-//        while(pAmount > 0) {
-//            int i = getExperienceValue(pAmount);
-//            pAmount -= i;
-//            if (!tryMergeToExisting(pLevel, pPos, i)) {
-//                pLevel.addFreshEntity(new ExperienceOrb(pLevel, pPos.x(), pPos.y(), pPos.z(), i));
-//            }
-//        }
-//
-//    }
-
 
     private void setUnderwaterMovement() {
         Vec3 vec3 = this.getDeltaMovement();
         this.setDeltaMovement(vec3.x * (double) 0.99F, Math.min(vec3.y + (double) 5.0E-4F, (double) 0.06F), vec3.z * (double) 0.99F);
     }
 
+
+    @Override
     protected void doWaterSplashEffect() {
     }
+
 
 
 /**
 Касание маны запускает данную функцию
     **/
-    @Override
-    public void playerTouch(@NotNull Player player) {
-        if (!this.level.isClientSide) {
-            this.discard();
-            for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
-                ItemStack stack = player.getInventory().getItem(i);
-                if (!stack.isEmpty() && stack.getItem() instanceof CanesItem canesItem) {
-
-                }
-            }
-
-
-        }
-    }
-
-    /**
-     * А это надо переделать так чтобы мана закидывалась к посох
-     * @return
-     */
-//    private int repairPlayerCanes(Player pPlayer, int pRepairAmount) {
-//        if (entry != null) {
-//            ItemStack itemstack = (ItemStack)entry.getValue();
-//            int i = Math.min((int)((float)this.value * itemstack.getXpRepairRatio()), itemstack.getDamageValue());
-//            itemstack.setDamageValue(itemstack.getDamageValue() - i);
-//            int j = pRepairAmount - this.durabilityToMana(i);
-//            return j > 0 ? this.repairPlayerItems(pPlayer, j) : 0;
-//        } else {
-//            return pRepairAmount;
+//    @Override
+//    public void playerTouch(@NotNull Player player) {
+//        if (!this.level.isClientSide && player instanceof ServerPlayer serverPlayer) {
+//            if (lifeTime < POP_STOP_COUNT) {
+//                return;
+//            } else {
+//                this.discard();
+//                for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
+//                    ItemStack stack = player.getInventory().getItem(i);
+//                    if (!stack.isEmpty() && stack.getItem() instanceof CanesItem canesItem) {
+//                        if (player.getItemInHand(InteractionHand.MAIN_HAND).getItem().equals(canesItem)) {
+//                            updateManaForItem(serverPlayer, stack, i);
+//                            System.out.println("Мана начислилась предмету в руке " + canesItem.getMana(stack) + " slotId " + i + " Сколько было " + canesItem.getMaxMana(stack));
+//                        } else if (!player.getItemInHand(InteractionHand.MAIN_HAND).getItem().equals(canesItem)) {
+//                            updateManaForItem(serverPlayer, stack, i);
+//                            System.out.println("Мана начислилась предмету из инвентаря" + canesItem.getMana(stack) + i);
+//                        }
+//                    }
+//                }
+//
+//            }
 //        }
 //    }
 
 
-    public void checkPlayerItems(){
-
-    }
 
     //Срабатывает когда умирает моб или специальный предмет
     //Orb разлетается и только после срабатывает обычная логика движения к игроку
-    public void spawnOrb(){
-
+    public static ManaOrb spawnOrbWithPop(Level level, double x, double y, double z){
+        ManaOrb manaOrb = new ManaOrb(ModEntities.MANA_ORB.get(), level);
+        manaOrb.setPos(x,y,z);
+        manaOrb.yRotO = (float) (manaOrb.random.nextDouble() * 360.0d);
+        manaOrb.setDeltaMovement((manaOrb.random.nextDouble() * 0.2d - 0.1d) * 2.0d, manaOrb.random.nextDouble() * 0.2D * 2.0D + 0.1D,
+                (manaOrb.random.nextDouble() * 0.2D - 0.1D) * 2.0D);
+        return manaOrb;
     }
 
 
-    private int durabilityToMana(int pDurability) {
-        return pDurability / 2;
-    }
 
-    private int manaToDurability(int pXp) {
-        return pXp * 2;
+
+    private void updateManaForItem(ServerPlayer player, ItemStack stack, int slotId) {
+        int currentMana = CanesItem.getMana(stack);
+        int maxMana = CanesItem.getMaxMana(stack);
+        if (currentMana < maxMana) {
+            int newMana = Math.min(currentMana + this.value, maxMana);
+            CanesItem.setMana(stack, newMana);
+
+            if (currentMana != newMana) {
+                ModMessage.sendToClient(new ManaDataSyncPacket(newMana, slotId), player);
+            }
+        }
     }
 
     @Override
@@ -206,7 +227,7 @@ public class ManaOrb extends Entity {
     }
 
     @Override
-    public Packet<?> getAddEntityPacket() {
+    public @NotNull Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 }
