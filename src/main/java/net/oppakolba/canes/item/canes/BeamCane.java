@@ -1,6 +1,7 @@
 package net.oppakolba.canes.item.canes;
 
 import lombok.extern.slf4j.Slf4j;
+import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
@@ -22,11 +23,9 @@ import org.jetbrains.annotations.NotNull;
 @Slf4j
 public class BeamCane extends CanesItem {
     protected final RandomSource random = RandomSource.create();
-    /**
-     * If the Euclidean distance to the moused-over block in meters is less than this value, the "Looking at" text will appear on the debug overlay.
-     */
     public float beamRayDistance = 20.0f;
     boolean hit = false;
+    boolean guiIsOpen = false;
 
 
 
@@ -34,47 +33,44 @@ public class BeamCane extends CanesItem {
         super(pProperties, 20);
     }
 
-
+    //Исправить баг с частицами (Надо сделать так, чтобы частицы спавнились вдоль сущности, а не по диагонали)
 
     @Override
     public void releaseUsing(@NotNull ItemStack stack, Level level, @NotNull LivingEntity livingEntity, int timeCharged) {
-        if (!level.isClientSide) {
+        if (!level.isClientSide && livingEntity instanceof Player player) {
             CompoundTag tag = stack.getOrCreateTag();
             resetBeam(level, tag);
-
+            player.getCooldowns().addCooldown(this, 200);
 
         }
     }
 
 
-    /**
-     * Наносит урон
-     **/
 
     @Override
-    public void onUseTick(@NotNull Level level, @NotNull LivingEntity entity, ItemStack stack, int count) {
+    public void onUseTick(@NotNull Level level, @NotNull LivingEntity entity, @NotNull ItemStack stack, int count) {
 
         super.onUseTick(level, entity, stack, count);
         CompoundTag tag = stack.getOrCreateTag();
         if (entity instanceof Player player) {
             if (!level.isClientSide) {
-                if (count % 20 == 0) {
+                if (count % 2 == 0) {
 
                     int currentMana = CanesItem.getMana(stack);
-                        if (CanesItem.getMana(stack) >= 4) {
-                            CanesItem.setMana(stack, currentMana - 4);
-
-
+                        if (CanesItem.getMana(stack) >= 2) {
                             Vec3 lookVec = player.getLookAngle();
                             Vec3 playerEyePos = player.getEyePosition();
                             Vec3 pLookPos = playerEyePos.add(lookVec.scale(5.0));
+                            if (count % 6 == 0) {
+                                CanesItem.setMana(stack, currentMana - 1);
+                            }
                             if (!tag.contains("BeamId")) {
                                 BeamEntity beam = new BeamEntity(ModEntities.BEAM_ENTITY.get(), level, lookVec, beamRayDistance, player, pLookPos);
                                 level.addFreshEntity(beam);
                                 tag.putInt("BeamId", beam.getId());
 
 
-                            }
+                            } 
                             if (tag.contains("BeamId")) {
                                 int beamId = tag.getInt("BeamId");
                                 Entity beamEntity = level.getEntity(beamId);
@@ -85,17 +81,12 @@ public class BeamCane extends CanesItem {
                             }
 
 
+
                             Entity lEntity = getPlayerLookAtEntity(player, beamRayDistance);
                             if (lEntity != null) {
-                                for(int i = 0; i < 4; i++) {
                                     lEntity.hurt(DamageSource.sting(player), 1 + getPower(stack) * 2);
                                     hit = true;
-                                    try{
-                                        Thread.sleep(40);
-                                    }catch(InterruptedException ex){
-                                        throw new RuntimeException(ex);
-                                    }
-                                }
+
                             } else {
                                 hit = false;
                             }
@@ -103,59 +94,63 @@ public class BeamCane extends CanesItem {
                             resetBeam(level, tag);
                         }
                 }
+                if(guiIsOpen){
+                    resetBeam(level, tag);
+                }
             } else {
                 if (tag.contains("BeamId")) {
+                    if(Minecraft.getInstance().screen == null) {
+                        guiIsOpen = false;
+                        BlockHitResult blockHit = getPlayerLookAtBlock(player, beamRayDistance);
+                        Vec3 hitPos = blockHit.getLocation();
 
-                    BlockHitResult blockHit = getPlayerLookAtBlock(player, beamRayDistance);
-                    Vec3 hitPos = blockHit.getLocation();
-
-                    Entity lookedAtEntity = getPlayerLookAtEntity(player, beamRayDistance);
+                        Entity lookedAtEntity = getPlayerLookAtEntity(player, beamRayDistance);
 
 
-                    for (int i = 0; i < 12; i++) {
-                        if (blockHit.getType() != HitResult.Type.MISS) {
-                            level.addParticle(ModParticles.BEAM_EXPLOSION_PARTICLE.get(),
-                                    hitPos.x + offset(0.5),
-                                    hitPos.y + offset(0.5) - 0.2,
-                                    hitPos.z + offset(0.5),
-                                    (this.random.nextDouble() - 0.5) * 0.8D,
-                                    Math.pow(-1, i) * (this.random.nextDouble()) * 0.6D,
-                                    (this.random.nextDouble() - 0.5) * 0.8D
-                            );
-                        } else if (blockHit.getType() != HitResult.Type.MISS) {
+                        for (int i = 0; i < 12; i++) {
+                            if (blockHit.getType() != HitResult.Type.MISS) {
+                                level.addParticle(ModParticles.BEAM_EXPLOSION_PARTICLE.get(),
+                                        hitPos.x + offset(0.5),
+                                        hitPos.y + offset(0.5) - 0.2,
+                                        hitPos.z + offset(0.5),
+                                        (this.random.nextDouble() - 0.5) * 0.8D,
+                                        Math.pow(-1, i) * (this.random.nextDouble()) * 0.6D,
+                                        (this.random.nextDouble() - 0.5) * 0.8D
+                                );
+                            } else {
 
-                            level.addParticle(ModParticles.BEAM_EXPLOSION_PARTICLE.get(),
-                                    hitPos.x + offset(0.5),
-                                    hitPos.y + offset(0.5) - 0.2,
-                                    hitPos.z + offset(0.5),
-                                    (this.random.nextDouble() - 0.5) * 0.8D,
-                                    Math.pow(-1, i) * (this.random.nextDouble()) * 0.6D,
-                                    (this.random.nextDouble() - 0.5) * 0.8D
-                            );
+                                level.addParticle(ModParticles.BEAM_EXPLOSION_PARTICLE.get(),
+                                        hitPos.x + offset(0.5),
+                                        hitPos.y + offset(0.5) - 0.2,
+                                        hitPos.z + offset(0.5),
+                                        (this.random.nextDouble() - 0.5) * 0.8D,
+                                        Math.pow(-1, i) * (this.random.nextDouble()) * 0.6D,
+                                        (this.random.nextDouble() - 0.5) * 0.8D
+                                );
+                            }
                         }
-                    }
 
 
+                        Vec3 startPos = player.position().subtract(0.65 * player.getBbWidth(), 0.1 * player.getBbWidth() - 0.5f, 0.65 * player.getBbWidth());
+                        Vec3 endPos = lookedAtEntity != null && hit ?
+                                new Vec3(lookedAtEntity.getX(), lookedAtEntity.getY() + lookedAtEntity.getBbHeight() / 1.5, lookedAtEntity.getZ()) :
+                                hitPos;
 
-                Vec3 startPos = player.position().subtract(0.65 * player.getBbWidth(), 0.1 * player.getBbWidth(), 0.65 * player.getBbWidth());
-                Vec3 endPos = lookedAtEntity != null && hit ?
-                        new Vec3(lookedAtEntity.getX(), lookedAtEntity.getY() + lookedAtEntity.getBbHeight() / 2, lookedAtEntity.getZ()) :
-                        hitPos;
+                        Vec3 direction = endPos.subtract(startPos);
 
-                Vec3 direction = endPos.subtract(startPos);
+                        for (int i = 0; i < 14; i++) {
+                            for (int j = 0; j < 3; j++) {
+                                double progress = i / 14.0;
+                                Vec3 particlePos = startPos.add(direction.scale(progress));
+                                level.addParticle(ModParticles.BEAM_PARTICLE.get(),
+                                        particlePos.x + offset(0.1),
+                                        particlePos.y + offset(0.1),
+                                        particlePos.z + offset(0.1),
+                                        0.3, 0.3, 0.3);
 
-            for (int i = 0; i < 14; i++) {
-                for (int j = 0; j < 3; j++) {
-                    double progress = i / 14.0;
-                    Vec3 particlePos = startPos.add(direction.scale(progress));
-                    level.addParticle(ModParticles.BEAM_PARTICLE.get(),
-                            particlePos.x + offset(0.1),
-                            particlePos.y + offset(0.1),
-                            particlePos.z + offset(0.1),
-                            0.3, 0.3, 0.3);
-
-                }
-            }
+                            }
+                        }
+                    }else guiIsOpen = true;
         }
 
 

@@ -1,16 +1,13 @@
 package net.oppakolba.canes.event;
 
-import net.minecraft.client.Minecraft;
+
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.oppakolba.canes.Canes;
@@ -18,7 +15,6 @@ import net.oppakolba.canes.entity.orbs.ManaOrb;
 import net.oppakolba.canes.item.misc.CanesItem;
 import net.oppakolba.canes.networking.ModMessage;
 import net.oppakolba.canes.networking.packet.ManaDataSyncPacket;
-import net.oppakolba.canes.util.KeyBinding;
 
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;

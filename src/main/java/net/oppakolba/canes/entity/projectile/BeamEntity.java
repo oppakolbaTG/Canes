@@ -2,21 +2,18 @@ package net.oppakolba.canes.entity.projectile;
 
 import lombok.extern.log4j.Log4j2;
 import net.minecraft.commands.arguments.EntityAnchorArgument;
-import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.NetworkHooks;
-import net.oppakolba.canes.client.renderer.particles.BeamParticle;
-import net.oppakolba.canes.item.canes.BeamCane;
+
 
 import javax.annotation.Nullable;
 
@@ -39,7 +36,7 @@ public class BeamEntity extends Entity {
 
     public BeamEntity(EntityType<?> pEntityType, Level pLevel, Vec3 lookVec, float length, Player player, Vec3 pLookPos) {
         super(pEntityType, pLevel);
-        this.setPos(player.getX(), player.getY() + 0.6f, player.getZ() - 0.7);
+        this.setPos(player.getX(), player.getY() + 0.6f, player.getZ());
         lookAt(EntityAnchorArgument.Anchor.EYES, pLookPos);
         this.direction = lookVec.normalize();
         this.length = length;

@@ -2,12 +2,15 @@ package net.oppakolba.canes.item.misc;
 
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.oppakolba.canes.networking.ModMessage;
+import net.oppakolba.canes.networking.packet.ManaDataSyncPacket;
 import org.checkerframework.checker.units.qual.A;
 
 public class CanesItem extends Item {
@@ -169,6 +172,20 @@ public class CanesItem extends Item {
         super.onCraftedBy(pStack, pLevel, pPlayer);
         initialize(pStack);
 
+    }
+
+    protected static void updateManaForItem(ServerPlayer player, ItemStack stack, int slotId) {
+        int currentMana = CanesItem.getMana(stack);
+        int maxMana = CanesItem.getMaxMana(stack);
+
+        if (currentMana < maxMana) {
+            int newMana = Math.min(currentMana + 1, maxMana);
+            CanesItem.setMana(stack, newMana);
+
+            if (currentMana != newMana) {
+                ModMessage.sendToClient(new ManaDataSyncPacket(newMana, slotId), player);
+            }
+        }
     }
 
 

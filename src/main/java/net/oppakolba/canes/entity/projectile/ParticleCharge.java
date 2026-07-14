@@ -2,6 +2,7 @@ package net.oppakolba.canes.entity.projectile;
 
 import lombok.Getter;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.world.damagesource.DamageSource;
@@ -10,13 +11,10 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
-import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.EntityHitResult;
-import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
@@ -44,11 +42,8 @@ public class ParticleCharge extends Entity {
         if(player != null) {
             setPos(player.getX(), player.getY() + 2 , player.getZ());
         }
-        if(player == null){
-            System.out.println("player is null !!!!!!!!!!!!!!!!!!!");
-        }
         pValue = value;
-        System.out.println("Создаем");
+
     }
 
 
@@ -84,7 +79,10 @@ public class ParticleCharge extends Entity {
                     }
 
 
-                }
+                }else{
+                level.addParticle(ParticleTypes.BUBBLE_POP, this.getX(), this.getY(), this.getZ(),0.3f, 0.3f, 0.3f);
+            }
+
                 this.move(MoverType.SELF, this.getDeltaMovement());
 
                 float f = 0.98f;

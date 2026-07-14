@@ -25,7 +25,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Random;
 
 
-//Движение + движение к игроку
 //Присоединение к игроку(мб звук?)
 //
 //
@@ -38,7 +37,7 @@ public class ManaOrb extends Entity {
     Random random = new Random();
     public int value = random.nextInt(3, 6);
     private Player followingPlayer;
-    private final int POP_STOP_COUNT = 40;
+    private final int POP_STOP_COUNT = 20;
 
     public ManaOrb(EntityType<?> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
@@ -68,16 +67,14 @@ public class ManaOrb extends Entity {
                 }
             }
             if (!level.isClientSide && followingPlayer instanceof ServerPlayer serverPlayer) {
-                if (this.distanceToSqr(serverPlayer) < 0.30D) {
+                if (this.distanceToSqr(serverPlayer) < 0.31D) {
                     for (int i = 0; i < followingPlayer.getInventory().getContainerSize(); i++) {
                         ItemStack stack = followingPlayer.getInventory().getItem(i);
                         if (!stack.isEmpty() && stack.getItem() instanceof CanesItem canesItem) {
                             if (followingPlayer.getItemInHand(InteractionHand.MAIN_HAND).getItem().equals(canesItem)) {
                                 updateManaForItem(serverPlayer, stack, i);
-                                System.out.println("Мана начислилась предмету в руке " + canesItem.getMana(stack) + " slotId " + i + " Сколько было " + canesItem.getMaxMana(stack));
                             } else if (!followingPlayer.getItemInHand(InteractionHand.MAIN_HAND).getItem().equals(canesItem)) {
                                 updateManaForItem(serverPlayer, stack, i);
-                                System.out.println("Мана начислилась предмету из инвентаря" + canesItem.getMana(stack) + i);
                             }
                         }
                     }
@@ -92,11 +89,11 @@ public class ManaOrb extends Entity {
         if (this.isEyeInFluid(FluidTags.WATER)) {
             this.setUnderwaterMovement();
         } else if (!this.isNoGravity()) {
-            this.setDeltaMovement(this.getDeltaMovement().add((double) 0.0F, -0.03, (double) 0.0F));
+            this.setDeltaMovement(this.getDeltaMovement().add( 0.0F, -0.03,  0.0F));
         }
 
         if (this.level.getFluidState(this.blockPosition()).is(FluidTags.LAVA)) {
-            this.setDeltaMovement((double) ((this.random.nextFloat() - this.random.nextFloat()) * 0.2F), (double) 0.2F, (double) ((this.random.nextFloat() - this.random.nextFloat()) * 0.2F));
+            this.setDeltaMovement( ((this.random.nextFloat() - this.random.nextFloat()) * 0.2F),  0.2F,  ((this.random.nextFloat() - this.random.nextFloat()) * 0.2F));
         }
 
         if (!this.level.noCollision(this.getBoundingBox())) {
@@ -150,35 +147,6 @@ public class ManaOrb extends Entity {
     @Override
     protected void doWaterSplashEffect() {
     }
-
-
-
-/**
-Касание маны запускает данную функцию
-    **/
-//    @Override
-//    public void playerTouch(@NotNull Player player) {
-//        if (!this.level.isClientSide && player instanceof ServerPlayer serverPlayer) {
-//            if (lifeTime < POP_STOP_COUNT) {
-//                return;
-//            } else {
-//                this.discard();
-//                for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
-//                    ItemStack stack = player.getInventory().getItem(i);
-//                    if (!stack.isEmpty() && stack.getItem() instanceof CanesItem canesItem) {
-//                        if (player.getItemInHand(InteractionHand.MAIN_HAND).getItem().equals(canesItem)) {
-//                            updateManaForItem(serverPlayer, stack, i);
-//                            System.out.println("Мана начислилась предмету в руке " + canesItem.getMana(stack) + " slotId " + i + " Сколько было " + canesItem.getMaxMana(stack));
-//                        } else if (!player.getItemInHand(InteractionHand.MAIN_HAND).getItem().equals(canesItem)) {
-//                            updateManaForItem(serverPlayer, stack, i);
-//                            System.out.println("Мана начислилась предмету из инвентаря" + canesItem.getMana(stack) + i);
-//                        }
-//                    }
-//                }
-//
-//            }
-//        }
-//    }
 
 
 
