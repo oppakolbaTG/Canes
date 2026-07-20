@@ -41,7 +41,7 @@ public class ModEvents {
                     for (ServerPlayer player : event.getServer().getPlayerList().getPlayers()) {
                         for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
                             ItemStack stack = player.getInventory().getItem(i);
-                            if (!stack.isEmpty() && stack.getItem() instanceof CanesItem canesItem) {
+                            if (!stack.isEmpty() && stack.getItem() instanceof CanesItem) {
                                 updateManaForItem(player, stack, i);
                             }
                         }

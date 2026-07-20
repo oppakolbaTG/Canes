@@ -11,7 +11,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.oppakolba.canes.networking.ModMessage;
 import net.oppakolba.canes.networking.packet.ManaDataSyncPacket;
-import org.checkerframework.checker.units.qual.A;
+
 
 public class CanesItem extends Item {
     int value;
@@ -89,17 +89,17 @@ public class CanesItem extends Item {
         int cValue = Math.min(5, Math.max(getPower(stack) + value, 0));
         tag.putInt("power", cValue);
     }
-    public void addRadius(ItemStack stack, int value){
+    public static void addRadius(ItemStack stack, int value){
         CompoundTag tag = stack.getOrCreateTag();
         int cValue = Math.min(5, Math.max(getRadius(stack) + value, 0));
         tag.putInt("radius", cValue);
     }
-    public void addHeal(ItemStack stack, int value){
+    public static void addHeal(ItemStack stack, int value){
         CompoundTag tag = stack.getOrCreateTag();
         int cValue = Math.min(5, Math.max(getHeal(stack) + value, 0));
         tag.putInt("heal", cValue);
     }
-    public void addAmt(ItemStack stack, int value){
+    public static void addAmt(ItemStack stack, int value){
         CompoundTag tag = stack.getOrCreateTag();
         int cValue = Math.min(5, Math.max(getAmt(stack) + value, 0));
         tag.putInt("amt", cValue);
@@ -117,7 +117,7 @@ public class CanesItem extends Item {
         if (stack.getItem() instanceof CanesItem) {
             CompoundTag tag = stack.getOrCreateTag();
             int oldMaxMana = tag.getInt("maxMana");
-            tag.putInt("maxMana", Math.max(oldMaxMana, Math.min(0, maxMana)));
+            tag.putInt("maxMana", Math.max(oldMaxMana, maxMana));
         }
         }
 

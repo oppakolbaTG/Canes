@@ -101,20 +101,17 @@ public class BeamEntity extends Entity {
         Player player = this.level.getNearestPlayer(this, 50);
         if (player == null || !player.isAlive()) {
             this.cleanUpBeamId();
-            System.out.println("4");
             return true;
         }
 
         ItemStack usingItem = player.getUseItem();
         if (!(usingItem.getItem() instanceof net.oppakolba.canes.item.canes.BeamCane)) {
             this.cleanUpBeamId();
-            System.out.println("2");
             return true;
         }
 
         if (!player.isUsingItem()) {
             this.cleanUpBeamId();
-            System.out.println("1");
             return true;
         }
 

@@ -35,7 +35,6 @@ public class LightningCane extends CanesItem {
             int currentMana = getMana(stack);
             if (getMana(stack) >= 20) {
                 setMana(stack, currentMana - 20);
-                System.out.println(getMana(stack));
                 Vec3 lookAngle = player.getLookAngle();
                 Vec3 playerPos = player.position();
 
@@ -66,7 +65,6 @@ public class LightningCane extends CanesItem {
         if(level.isClientSide){
             if(entity instanceof Player player){
                 randomSpawnParticles(ModParticles.LIGHTNING_PARTICLE.get(), level, player, 2, 1, 2);
-                    System.out.println(getMana(stack));
             }
         }
     }

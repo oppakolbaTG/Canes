@@ -40,7 +40,6 @@ public class HealCane extends CanesItem {
                                 targetPlayer.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 40, heal));
                             }
                         }
-                        System.out.println(getMana(stack));
                         player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 40, heal));
                     }
             }

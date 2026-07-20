@@ -1,0 +1,14 @@
+{
+  "type": "canes:alterio_table",
+  "ingredients": [
+    {
+      "item": "canes:sample_cane"
+    },
+    {
+      "item": "minecraft:echo_shard"
+    }
+  ],
+  "output": {
+    "item": "canes:beam_cane"
+  }
+}
