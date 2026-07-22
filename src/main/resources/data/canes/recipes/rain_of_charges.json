@@ -5,10 +5,10 @@
       "item": "canes:sample_cane"
     },
     {
-      "item": "minecraft:echo_shard"
+      "item": "canes:charged_echo_shard"
     }
   ],
   "output": {
-    "item": "canes:beam_cane"
+    "item": "canes:rain_of_charges"
   }
 }

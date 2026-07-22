@@ -11,7 +11,7 @@ public class CreativeModeTab {
     public static final net.minecraft.world.item.CreativeModeTab OPPA_TAB = new net.minecraft.world.item.CreativeModeTab("canestab") {
         @Override
         public ItemStack makeIcon() {
-            return new ItemStack(ModItems.ORANGE.get());
+            return new ItemStack(ModItems.PLATINUM_BAR.get());
         }
     };
 }

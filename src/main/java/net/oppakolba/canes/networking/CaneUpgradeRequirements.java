@@ -4,6 +4,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraftforge.fml.common.Mod;
 import net.oppakolba.canes.init.ModItems;
 import net.oppakolba.canes.item.canes.*;
 import net.oppakolba.canes.item.misc.CanesItem;
@@ -32,11 +33,11 @@ public class CaneUpgradeRequirements {
 
     private static Item specialItemFor(String code) {
         return switch (code) {
-            case "fc" -> Items.FIRE_CHARGE;
+            case "fc" -> ModItems.CHARGED_FIREBALL.get();
             case "bc" -> ModItems.CHARGED_AMETHYST.get();
-            case "hc" -> Items.HONEY_BOTTLE;
+            case "hc" -> ModItems.CHARGED_HONEY_BOTTLE.get();
             case "lc" -> ModItems.CHARGED_COPPER_INGOT.get();
-            case "roc" -> Items.ECHO_SHARD;
+            case "roc" -> ModItems.CHARGED_ECHO_SHARD.get();
             default -> null;
         };
     }

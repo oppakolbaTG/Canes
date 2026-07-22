@@ -12,22 +12,24 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.ProjectileUtil;
+import net.minecraft.world.entity.projectile.ThrowableProjectile;
+import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.AABB;
-import net.minecraft.world.phys.EntityHitResult;
-import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.phys.*;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
 
-public class ParticleCharge extends Entity {
+public class ParticleCharge extends ThrowableProjectile  {
     private LivingEntity target;
     private int damage;
     private Double sRadius = 20.0D;
-    private final double maxSpeed = 1.4D;
-    private final double acceleration = 0.07D;
+    private final double maxSpeed = 0.5D;
+    private final double acceleration = 0.2D;
     int liveTime = 500;
     int pValue = 0;
-    private float power;
     @Getter
     public Player Owner;
 
@@ -57,6 +59,16 @@ public class ParticleCharge extends Entity {
                 Vec3 startPos = this.position();
                 Vec3 endPos = startPos.add(this.getDeltaMovement());
                 EntityHitResult hitResult = findEntityHitResult(startPos, endPos);
+                BlockHitResult blockHitResult = this.level.clip(new ClipContext(
+                        startPos, endPos,
+                        ClipContext.Block.COLLIDER,
+                        ClipContext.Fluid.NONE,
+                        this
+                ));
+                if (blockHitResult.getType() != HitResult.Type.MISS) {
+                    this.onHit(blockHitResult);
+                    return;
+                }
 
                     if (tickCount < 4) {
                         notFindTarget();
@@ -76,9 +88,10 @@ public class ParticleCharge extends Entity {
                                 }
                             }
                         }
+                        else{
+                            //this.setDeltaMovement(this.getDeltaMovement().add( 0.0F, -0.01,  0.0F));
+                        }
                     }
-
-
                 }else{
                 level.addParticle(ParticleTypes.BUBBLE_POP, this.getX(), this.getY(), this.getZ(),0.3f, 0.3f, 0.3f);
             }
@@ -115,6 +128,12 @@ public class ParticleCharge extends Entity {
     }
 
 
+    @Override
+    protected void onHit(HitResult pResult) {
+        super.onHit(pResult);
+        this.discard();
+    }
+
     public void notFindTarget(){
         Vec3 currentMovement = this.getDeltaMovement();
         double randomX = (random.nextDouble() - 0.5) * 0.2;
@@ -122,7 +141,7 @@ public class ParticleCharge extends Entity {
         this.setDeltaMovement(currentMovement.x + randomX, currentMovement.y + 0.1 , currentMovement.z + randomZ);
     }
 
-    private void moveTowardsTarget() {
+    public void moveTowardsTarget() {
         Vec3 toTarget = new Vec3(target.getX() - this.getX(),
                 target.getY() + target.getEyeHeight() / 2.0D - this.getY(),
                 target.getZ() - this.getZ());
@@ -132,10 +151,7 @@ public class ParticleCharge extends Entity {
         if (distance < 64.0D) {
             double strength = 1.0D - Math.sqrt(distance) / 8.0D;
             Vec3 desiredMovement = toTarget.normalize().scale(strength * maxSpeed);
-            Vec3 currentMovement = this.getDeltaMovement();
-            Vec3 newMovement = currentMovement.add(
-                    desiredMovement.subtract(currentMovement).scale(acceleration)
-            );
+            Vec3 newMovement = this.getDeltaMovement().add(desiredMovement.subtract(this.getDeltaMovement()).scale(acceleration));
             if (newMovement.length() > maxSpeed) {
                 newMovement = newMovement.normalize().multiply(friction, 0.98D, friction);
             }
@@ -145,7 +161,7 @@ public class ParticleCharge extends Entity {
     }
 
 
-    private void findNewTarget(Player player) {
+    public void findNewTarget(Player player) {
         AABB area = new AABB(player.getX() - sRadius, player.getY() - sRadius,
                 player.getZ() - sRadius, player.getX() + sRadius,
                 player.getY() + sRadius, player.getZ() + sRadius);
@@ -154,8 +170,6 @@ public class ParticleCharge extends Entity {
                 TargetingConditions.forCombat().range(20).selector(null),
                 player, player.getX(), player.getY(), player.getZ(), area);
     }
-
-
 
     @Override
     protected void defineSynchedData() {
