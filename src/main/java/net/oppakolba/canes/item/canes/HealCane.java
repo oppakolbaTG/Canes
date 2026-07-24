@@ -1,6 +1,9 @@
 package net.oppakolba.canes.item.canes;
 
+import net.minecraft.client.resources.sounds.Sound;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
@@ -67,4 +70,11 @@ public class HealCane extends CanesItem {
 
 
         }
+
+    @Override
+    public void releaseUsing(ItemStack pStack, Level pLevel, LivingEntity pLivingEntity, int pTimeCharged) {
+        if(pLivingEntity instanceof Player player)
+        pLevel.playSound(player, pLivingEntity.blockPosition(), SoundEvents.BEACON_DEACTIVATE, SoundSource.MASTER, 0.7f, 1.99f);
+        super.releaseUsing(pStack, pLevel, pLivingEntity, pTimeCharged);
     }
+}

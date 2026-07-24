@@ -1,10 +1,11 @@
 package net.oppakolba.canes.entity.projectile;
 
 import lombok.Getter;
-import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -12,12 +13,9 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.entity.projectile.ThrowableProjectile;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.*;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
@@ -25,9 +23,9 @@ import org.jetbrains.annotations.NotNull;
 public class ParticleCharge extends ThrowableProjectile  {
     private LivingEntity target;
     private int damage;
-    private Double sRadius = 20.0D;
-    private final double maxSpeed = 0.5D;
-    private final double acceleration = 0.2D;
+    private final Double sRadius = 20.0D;
+    private final double maxSpeed = 0.7D;
+    private final double acceleration = 0.3D;
     int liveTime = 500;
     int pValue = 0;
     @Getter
@@ -77,6 +75,14 @@ public class ParticleCharge extends ThrowableProjectile  {
 
                         if (target == null || !target.isAlive() || tickCount % 20 == 0) {
                             findNewTarget(player);
+
+                        }
+                        if (target == null || !target.isAlive()) {
+                            if (blockHitResult.getType() != HitResult.Type.MISS) {
+                                this.onHit(blockHitResult);
+                                return;
+                            }
+
                         }
                         if (target != null && target.isAlive()) {
                             moveTowardsTarget();
@@ -84,12 +90,10 @@ public class ParticleCharge extends ThrowableProjectile  {
                                 Entity hitEntity = hitResult.getEntity();
                                 if (hitEntity instanceof LivingEntity) {
                                     hitEntity.hurt(DamageSource.thorns(this), damage);
+                                    level.playSound(player, this.getX(),this.getY(),this.getZ(), SoundEvents.ALLAY_THROW, SoundSource.MASTER, 1.0f, 1.7f);
                                     discard();
                                 }
                             }
-                        }
-                        else{
-                            //this.setDeltaMovement(this.getDeltaMovement().add( 0.0F, -0.01,  0.0F));
                         }
                     }
                 }else{
@@ -98,11 +102,11 @@ public class ParticleCharge extends ThrowableProjectile  {
 
                 this.move(MoverType.SELF, this.getDeltaMovement());
 
-                float f = 0.98f;
-                if (this.onGround) {
-                    BlockPos pos =new BlockPos(this.getX(), this.getY() - 1.0D, this.getZ());
-                    f = this.level.getBlockState(pos).getFriction(this.level, pos, this) * 0.98F;
-                }
+//                float f = 0.98f;
+//                if (this.onGround) {
+//                    BlockPos pos =new BlockPos(this.getX(), this.getY() - 1.0D, this.getZ());
+//                    f = this.level.getBlockState(pos).getFriction(this.level, pos, this) * 0.98F;
+//                }
 
                 if (tickCount >= liveTime) {
                     discard();
@@ -129,8 +133,9 @@ public class ParticleCharge extends ThrowableProjectile  {
 
 
     @Override
-    protected void onHit(HitResult pResult) {
+    protected void onHit(@NotNull HitResult pResult) {
         super.onHit(pResult);
+        level.playSound(null, this.getX(),this.getY(),this.getZ(), SoundEvents.UI_STONECUTTER_TAKE_RESULT, SoundSource.MASTER, 1.0f, 1.84f);
         this.discard();
     }
 

@@ -26,12 +26,6 @@ public class ModConfiguredFeatures {
     public static final Supplier<List<OreConfiguration.TargetBlockState>> OVERWORLD_PLATINUM_ORE = Suppliers.memoize(() -> List.of(
             OreConfiguration.target(OreFeatures.STONE_ORE_REPLACEABLES, ModBlocks.PLATINUM_ORE.get().defaultBlockState())));
 
-
-    public static final RegistryObject<ConfiguredFeature<?, ?>> WATER_LEAF = CONFIGURED_FEATURE.register("water_leaf",
-            () -> new ConfiguredFeature<>(Feature.RANDOM_PATCH,
-                    new RandomPatchConfiguration(32,4, 2, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK,
-                            new SimpleBlockConfiguration(BlockStateProvider.simple(ModBlocks.WATER_LEAF_BLOCK.get()))))));
-
     public static final RegistryObject<ConfiguredFeature<?, ?>> PLATINUM_ORE = CONFIGURED_FEATURE.register("platinum_ore",
             () -> new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(OVERWORLD_PLATINUM_ORE.get(), 8)));
 

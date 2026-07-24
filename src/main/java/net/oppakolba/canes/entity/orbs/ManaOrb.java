@@ -1,10 +1,14 @@
 package net.oppakolba.canes.entity.orbs;
 
 import lombok.Getter;
+import net.minecraft.client.resources.sounds.SoundEventRegistration;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.*;
@@ -26,8 +30,7 @@ import java.util.Random;
 
 
 //Присоединение к игроку(мб звук?)
-//
-//
+
 public class ManaOrb extends Entity {
     private static final int LIFETIME = 6000;
     private static final int ENTITY_SCAN_PERIOD = 20; //?
@@ -73,8 +76,10 @@ public class ManaOrb extends Entity {
                         if (!stack.isEmpty() && stack.getItem() instanceof CanesItem canesItem) {
                             if (followingPlayer.getItemInHand(InteractionHand.MAIN_HAND).getItem().equals(canesItem)) {
                                 updateManaForItem(serverPlayer, stack, i);
+                                level.playSound(null, this.getX(),this.getY(),this.getZ(), SoundEvents.NOTE_BLOCK_CHIME, SoundSource.PLAYERS, 0.5f, 1.5f);
                             } else if (!followingPlayer.getItemInHand(InteractionHand.MAIN_HAND).getItem().equals(canesItem)) {
                                 updateManaForItem(serverPlayer, stack, i);
+                                level.playSound(null, this.getX(),this.getY(),this.getZ(), SoundEvents.NOTE_BLOCK_CHIME, SoundSource.PLAYERS, 0.5f, 1.5f);
                             }
                         }
                     }

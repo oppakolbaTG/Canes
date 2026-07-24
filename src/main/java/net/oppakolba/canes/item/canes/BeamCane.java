@@ -3,6 +3,9 @@ package net.oppakolba.canes.item.canes;
 import lombok.extern.slf4j.Slf4j;
 import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
@@ -32,9 +35,7 @@ public class BeamCane extends CanesItem {
     public BeamCane(Properties pProperties) {
         super(pProperties, 20);
     }
-
-    //Исправить баг с частицами (Надо сделать так, чтобы частицы спавнились вдоль сущности, а не по диагонали)
-
+    
     @Override
     public void releaseUsing(@NotNull ItemStack stack, Level level, @NotNull LivingEntity livingEntity, int timeCharged) {
         if (!level.isClientSide && livingEntity instanceof Player player) {
@@ -55,7 +56,7 @@ public class BeamCane extends CanesItem {
         if (entity instanceof Player player) {
             if (!level.isClientSide) {
                 if (count % 2 == 0) {
-
+                    level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.LAVA_EXTINGUISH, SoundSource.MASTER, 0.7f, 2.0f);
                     int currentMana = CanesItem.getMana(stack);
                         if (CanesItem.getMana(stack) >= 2) {
                             Vec3 lookVec = player.getLookAngle();
@@ -97,6 +98,7 @@ public class BeamCane extends CanesItem {
                 if(guiIsOpen){
                     resetBeam(level, tag);
                 }
+                if(CanesItem.getMana(stack) == 2) player.getCooldowns().addCooldown(this, 200);
             } else {
                 if (tag.contains("BeamId")) {
                     if(Minecraft.getInstance().screen == null) {

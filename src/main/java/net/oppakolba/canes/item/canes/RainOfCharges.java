@@ -1,5 +1,7 @@
 package net.oppakolba.canes.item.canes;
 
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -8,6 +10,8 @@ import net.oppakolba.canes.entity.projectile.ParticleCharge;
 import net.oppakolba.canes.init.ModEntities;
 import net.oppakolba.canes.item.misc.CanesItem;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Locale;
 
 public class RainOfCharges extends CanesItem {
 
@@ -22,17 +26,18 @@ public class RainOfCharges extends CanesItem {
         int amt = 2 + getAmt(stack) * 2;
         int power = 2 + getPower(stack) * 2;
         if (!level.isClientSide && entity instanceof Player player) {
-            int charge = 1000 - pTimeCharged;
+          //  int charge = 1000 - pTimeCharged;
 
-            if (charge < 20) {
-                return;
-            }
+           // if (charge < 20) {
+          //      return;
+          //  }
             int currentMana = getMana(stack);
             if (getMana(stack) >= 20) {
                 setMana(stack, currentMana - 20);
                 for (int i = 1; i < amt; i++) {
                     ParticleCharge particleCharge = new ParticleCharge(ModEntities.PARTICLE_CHARGE.get(), level, player, i, power);
                     level.addFreshEntity(particleCharge);
+                    level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.BUBBLE_COLUMN_BUBBLE_POP, SoundSource.MASTER, 0.5f, 1.80f);
                 }
             }
         }

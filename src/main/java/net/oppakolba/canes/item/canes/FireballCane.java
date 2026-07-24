@@ -21,16 +21,15 @@
         }
 
 
-        //Добавить частиц?
         @Override
         public void releaseUsing(@NotNull ItemStack stack, Level level, @NotNull LivingEntity entity, int timeLeft) {
             float power = 2 + getPower(stack) * 2;
             if (!level.isClientSide && entity instanceof Player player) {
-                int charge = 1000 - timeLeft;
+                // int charge = 1000 - timeLeft;
 
-                if (charge < 20) {
-                    return;
-                }
+               // if (charge < 20) {
+               //     return;
+            //    }
 
                 int currentMana = CanesItem.getMana(stack);
 
@@ -42,10 +41,10 @@
                     double targetZ = pos.getLocation().z;
 
                     Vec3 target = new Vec3(targetX, targetY, targetZ);
-                    Vec3 start = player.getEyePosition();//
+                    Vec3 start = player.getEyePosition();
                     Vec3 dir = target.subtract(start).normalize();
                     FireballEntity customFireball = new FireballEntity(ModEntities.CUSTOM_FIREBALL.get(), level, player,//
-                            dir.x, dir.y , dir.z, power);//
+                            dir.x, dir.y , dir.z, power);
                     customFireball.setOwner(player);
                     level.addFreshEntity(customFireball);
 

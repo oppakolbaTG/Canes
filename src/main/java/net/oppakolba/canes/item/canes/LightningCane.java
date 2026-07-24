@@ -27,11 +27,11 @@ public class LightningCane extends CanesItem {
     public void releaseUsing(@NotNull ItemStack stack, Level level, @NotNull LivingEntity entity, int timeLeft) {
         int amt = 1 + getAmt(stack) * 2;
         if (!level.isClientSide && entity instanceof Player player) {
-            int charge = 1000 - timeLeft;
+           // int charge = 1000 - timeLeft;
 
-            if (charge < 20) {
-                return;
-            }
+          //  if (charge < 20) {
+         //       return;
+         //   }
             int currentMana = getMana(stack);
             if (getMana(stack) >= 20) {
                 setMana(stack, currentMana - 20);

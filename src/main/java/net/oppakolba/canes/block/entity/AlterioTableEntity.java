@@ -4,6 +4,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
@@ -41,10 +43,14 @@ public class AlterioTableEntity extends BlockEntity implements MenuProvider {
     protected final ContainerData data;
     private int progress = 0;
     private int maxProgress = 100;
+    private static BlockPos pos;
+
+
 
 
     public AlterioTableEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.ALTERIO_TABLE.get(), pos, state);
+        this.pos = pos;
         this.data = new ContainerData() {
             @Override
             public int get(int index) {
@@ -71,12 +77,12 @@ public class AlterioTableEntity extends BlockEntity implements MenuProvider {
     }
 
     @Override
-    public Component getDisplayName() {
+    public @NotNull Component getDisplayName() {
         return Component.literal("Alterio Table");
     }
 
     @Override
-    public @Nullable AbstractContainerMenu createMenu(int id, Inventory inventory, Player player) {
+    public @Nullable AbstractContainerMenu createMenu(int id, @NotNull Inventory inventory, @NotNull Player player) {
         return new AlterioTableMenu(id, inventory, this, this.data);
     }
 
@@ -108,7 +114,7 @@ public class AlterioTableEntity extends BlockEntity implements MenuProvider {
     }
 
     @Override
-    public void load(CompoundTag nbt) {
+    public void load(@NotNull CompoundTag nbt) {
         super.load(nbt);
         itemHandler.deserializeNBT(nbt.getCompound("inventory"));
         progress = nbt.getInt("alterio_table.progress");
@@ -118,6 +124,7 @@ public class AlterioTableEntity extends BlockEntity implements MenuProvider {
         for(int i = 0; i < itemHandler.getSlots(); i++){
             inventory.setItem(i, itemHandler.getStackInSlot(i));
         }
+        assert this.level != null;
         Containers.dropContents(this.level, this.worldPosition, inventory);
     }
 
@@ -150,6 +157,7 @@ public class AlterioTableEntity extends BlockEntity implements MenuProvider {
         for(int i = 0; i < entity.itemHandler.getSlots(); i++){
             inventory.setItem(i, entity.itemHandler.getStackInSlot(i));
         }
+        assert level != null;
         Optional<AlterioTableRecipe> recipe = level.getRecipeManager().getRecipeFor(AlterioTableRecipe.Type.INSTANCE, inventory, level);
 
         if(hasRecipe(entity)){
@@ -157,6 +165,7 @@ public class AlterioTableEntity extends BlockEntity implements MenuProvider {
             entity.itemHandler.extractItem(1, 1, false);
             entity.itemHandler.setStackInSlot(2, new ItemStack(recipe.get().getResultItem().getItem(), entity.itemHandler.getStackInSlot(2).getCount() + 1));
             entity.resetProgress();
+            level.playSound(null, pos,  SoundEvents.ENCHANTMENT_TABLE_USE, SoundSource.MASTER, 0.75F, 1.75F);
         }
     }
 

@@ -14,7 +14,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.oppakolba.canes.Canes;
 import net.oppakolba.canes.block.custom.AlterioTableBlock;
-import net.oppakolba.canes.block.custom.WaterLeafBlock;
 import net.oppakolba.canes.item.CreativeModeTab;
 
 import java.util.function.Supplier;
@@ -40,10 +39,6 @@ public static final RegistryObject<Block> PLATINUM_ORE = registerBlock("platinum
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(5f)
                     .requiresCorrectToolForDrops()), CreativeModeTab.OPPA_TAB);
-
-
-        public static final RegistryObject<Block> WATER_LEAF_BLOCK = BLOCKS.register("water_leaf_block",
-                () -> new WaterLeafBlock(BlockBehaviour.Properties.copy(Blocks.SWEET_BERRY_BUSH)));
 
 
 

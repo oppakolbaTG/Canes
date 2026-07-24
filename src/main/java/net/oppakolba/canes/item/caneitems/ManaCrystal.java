@@ -1,6 +1,8 @@
 package net.oppakolba.canes.item.caneitems;
 
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -26,16 +28,17 @@ public class ManaCrystal extends Item {
         ItemStack itemStack = context.getItemInHand();
         Level level = context.getLevel();
         Player player = context.getPlayer();
-        if(!level.isClientSide){
-            for(int i = 0; i < value; i++) {
-                ManaOrb manaOrb = ManaOrb.spawnOrbWithPop(level, player.getX(), player.getY(), player.getZ());
-                level.addFreshEntity(manaOrb);
+        if(!level.isClientSide) {
+            if (player != null) {
+                for (int i = 0; i < value; i++) {
+                    ManaOrb manaOrb = ManaOrb.spawnOrbWithPop(level, player.getX(), player.getY(), player.getZ());
+                    level.addFreshEntity(manaOrb);
 
+                }
             }
+            level.playSound(null, player.getOnPos(), SoundEvents.GLASS_BREAK, SoundSource.PLAYERS, 1.0f, 1.30f);
+            itemStack.shrink(1);
         }
-                level.playSound(null, player.getOnPos(), ModSounds.MANA_USE.get(), SoundSource.PLAYERS, 0.5f, level.random.nextFloat() * 0.1f + 0.9f);
-                itemStack.shrink(1);
-
 
         return InteractionResult.CONSUME;
     }
