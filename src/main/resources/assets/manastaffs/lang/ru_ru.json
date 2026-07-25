@@ -1,0 +1,44 @@
+{
+  "item.manastaffs.orange": "Апельсин",
+  "item.manastaffs.golden_orange": "Золотой апельсин",
+  "item.manastaffs.water_leaf": "Воднолист",
+  "item.manastaffs.water_leaf_seed": "Семя воднолиста",
+  "item.manastaffs.platinum_bar": "Платиновый слиток",
+  "item.manastaffs.charged_copper_ingot": "Заряженный Медный слиток",
+  "item.manastaffs.mana_crystal": "Кристал Маны",
+  "item.manastaffs.fallen_star": "Упавшая Звезда",
+  "item.manastaffs.charged_fireball": "Заряженный Огненный заряд",
+  "item.manastaffs.charged_echo_shard": "Заряженный Осколок Эха",
+  "item.manastaffs.charged_honey_bottle": "Заряженная Бутылочка меда",
+
+
+  "item.manastaffs.fireball_staff": "Посох Пламени Древних",
+  "item.manastaffs.lightning_staff": "Турель Молний",
+  "item.manastaffs.heal_staff": "Лечебный Посох",
+  "item.manastaffs.sample_staff": "Макет Посоха",
+  "item.manastaffs.beam_staff": "Лученосец",
+  "item.manastaffs.rain_of_charges": "Рейнофчар",
+
+
+  "block.manastaffs.water_leaf_block": "Воднолист",
+  "block.manastaffs.platinum_ore": "Платиновая руда",
+  "block.manastaffs.platinum_block": "Платиновый блок",
+  "block.manastaffs.alterio_table": "Альтерио Стол",
+
+  "itemGroup.manastaffstab": "Новые предметы",
+  "itemGroup.manastaffstab": "Посохи",
+
+  "message.manastaffs.mana_use": "Вы можете получить ману",
+  "message.manastaffs.mana_no_use": "Вы не можете получить ману",
+
+  "key.category.manastaffs.oppaterra": "Modmanastaffs",
+  "key.manastaffs.mana_use": "Использовать Ману",
+  "key.manastaffs.open_gui": "Отрыть Окно",
+
+  "screen.description": "Описание",
+
+  "screen.power": "урон",
+  "screen.heal": "исцеление",
+  "screen.radius": "радиус взрыва",
+  "screen.amt": "кол-во зарядов"
+}

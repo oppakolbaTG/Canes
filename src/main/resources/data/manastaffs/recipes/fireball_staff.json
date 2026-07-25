@@ -1,0 +1,14 @@
+{
+  "type": "manastaffs:alterio_table",
+  "ingredients": [
+    {
+      "item": "manastaffs:sample_staff"
+    },
+    {
+      "item": "manastaffs:charged_fireball"
+    }
+  ],
+  "output": {
+    "item": "manastaffs:fireball_staff"
+  }
+}

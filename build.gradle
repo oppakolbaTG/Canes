@@ -6,8 +6,8 @@ plugins {
 }
 
 version = '1.19.2'
-group = 'net.oppakolba.canes'
-archivesBaseName = 'canes'
+group = 'net.oppakolba.mana_staffs'
+archivesBaseName = 'mana_staffs'
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
@@ -24,10 +24,10 @@ minecraft {
 
             property 'forge.logging.console.level', 'debug'
 
-            property 'forge.enabledGameTestNamespaces', 'canes'
+            property 'forge.enabledGameTestNamespaces', 'manastaffs'
 
             mods {
-                canes {
+                manastaffs {
                     source sourceSets.main
                 }
             }
@@ -40,10 +40,10 @@ minecraft {
 
             property 'forge.logging.console.level', 'debug'
 
-            property 'forge.enabledGameTestNamespaces', 'canes'
+            property 'forge.enabledGameTestNamespaces', 'manastaffs'
 
             mods {
-                canes {
+                manastaffs {
                     source sourceSets.main
                 }
             }
@@ -56,10 +56,10 @@ minecraft {
 
             property 'forge.logging.console.level', 'debug'
 
-            property 'forge.enabledGameTestNamespaces', 'canes'
+            property 'forge.enabledGameTestNamespaces', 'manastaffs'
 
             mods {
-                canes {
+                manastaffs {
                     source sourceSets.main
                 }
             }
@@ -72,10 +72,10 @@ minecraft {
 
             property 'forge.logging.console.level', 'debug'
 
-            args '--mod', 'canes', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            args '--mod', 'manastaffs', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
 
             mods {
-                canes {
+                manastaffs {
                     source sourceSets.main
                 }
             }
@@ -112,12 +112,12 @@ dependencies {
 jar {
     manifest {
         attributes([
-                "Specification-Title"     : "canes",
-                "Specification-Vendor"    : "canessareus",
+                "Specification-Title"     : "manastaffs",
+                "Specification-Vendor"    : "manastaffssareus",
                 "Specification-Version"   : "1",
                 "Implementation-Title"    : project.name,
                 "Implementation-Version"  : project.jar.archiveVersion,
-                "Implementation-Vendor"   : "canessareus",
+                "Implementation-Vendor"   : "manastaffssareus",
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }

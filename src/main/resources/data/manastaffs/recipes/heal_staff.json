@@ -1,0 +1,15 @@
+
+{
+  "type": "manastaffs:alterio_table",
+  "ingredients": [
+    {
+      "item": "manastaffs:sample_staff"
+    },
+    {
+      "item": "manastaffs:charged_honey_bottle"
+    }
+  ],
+  "output": {
+    "item": "manastaffs:heal_staff"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key":{
+  "#": {"item": "manastaffs:platinum_bar"},
+    "&": {"item": "minecraft:iron_ingot"}
+
+},
+  "pattern": [
+    " # ",
+    " & ",
+    " & "
+  ],
+
+  "result": {
+    "item": "manastaffs:sample_staff"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "type": "manastaffs:alterio_table",
+  "ingredients": [
+    {
+      "item": "manastaffs:sample_staff"
+    },
+    {
+      "item": "manastaffs:charged_amethyst"
+    }
+  ],
+  "output": {
+    "item": "manastaffs:beam_staff"
+  }
+}

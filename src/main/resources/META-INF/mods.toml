@@ -5,24 +5,24 @@ issueTrackerURL = "https://t.me/jarmenya52"
 logoFile="Oblozkha.png"
 
 [[mods]]
-modId="canes"
+modId="manastaffs"
 version="1.19"
-displayName="Canes"
-credits="Thanks for this Canes Mod goes to Java" #optional
+displayName="ManaStaffs"
+credits="Thanks for this manastaffs Mod goes to Java" #optional
 authors="Oppakolba"
 description='''
-Hi this is my first mod "Canes" good games and learn lorem ipsum'''
+Hi this is my first mod "manastaffs" good games and learn lorem ipsum'''
 
 [[mixins]]
-config="mixins.canes.json"
+config="mixins.manastaffs.json"
 
-[[dependencies.canes]]
+[[dependencies.manastaffs]]
     modId="forge"
     mandatory=true
     versionRange="[41,)"
     ordering="NONE"
     side="BOTH"
-[[dependencies.canes]]
+[[dependencies.manastaffs]]
     modId="minecraft"
     mandatory=true
     versionRange="[1.19,1.20)"

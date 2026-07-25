@@ -1,8 +1,8 @@
 {
   "replace": false,
   "values": [
-    "canes:platinum_ore",
-    "canes:platinum_block",
-    "canes:alterio_table"
+    "manastaffs:platinum_ore",
+    "manastaffs:platinum_block",
+    "manastaffs:alterio_table"
   ]
 }

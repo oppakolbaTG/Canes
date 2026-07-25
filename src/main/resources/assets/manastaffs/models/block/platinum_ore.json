@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "manastaffs:block/platinum_ore"
+  }
+}

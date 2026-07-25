@@ -1,0 +1,45 @@
+{
+  "item.manastaffs.orange": "Orange",
+  "item.manastaffs.golden_orange": "Golden Orange",
+  "item.manastaffs.water_leaf": "Water leaf",
+  "item.manastaffs.water_leaf_seed": "Water leaf Seed",
+  "item.manastaffs.platinum_bar": "Platinum Bar",
+  "item.manastaffs.charged_copper_ingot": "Charged Copper Ingot",
+  "item.manastaffs.mana_crystal": "Mana Crystal",
+  "item.manastaffs.fallen_star": "Fallen Star",
+  "item.manastaffs.charged_amethyst": "Charged Amethyst",
+  "item.manastaffs.charged_fireball": "Charged Fireball",
+  "item.manastaffs.charged_echo_shard": "Charged Echo shard",
+  "item.manastaffs.charged_honey_bottle": "Charged Honey bottle",
+
+  "item.manastaffs.fireball_staff": "The staff of Ancient Embers",
+  "item.manastaffs.lightning_staff": "Lightning Turret",
+  "item.manastaffs.heal_staff": "Heal Turret",
+  "item.manastaffs.sample_staff": "Sample staff",
+  "item.manastaffs.beam_staff": "The Raybearer",
+  "item.manastaffs.rain_of_charges": "Rain Of Charges",
+
+
+  "block.manastaffs.water_leaf_block": "Water Leaf",
+  "block.manastaffs.platinum_ore": "Platinum Ore",
+  "block.manastaffs.platinum_block": "Platinum Block",
+  "block.manastaffs.alterio_table": "Alterio Table",
+
+
+  "itemGroup.manastaffstab": "New items",
+  "itemGroup.manastaffstab": "manastaffs",
+
+  "message.manastaffs.mana_use": "You can get mana",
+  "message.manastaffs.mana_no_use": "You can not get mana",
+
+  "key.category.manastaffs.oppaterra": "Modmanastaffs",
+  "key.manastaffs.mana_use": "Mana Use",
+  "key.manastaffs.open_gui": "Open Screen",
+
+  "screen.description": "Description",
+
+  "screen.power": "power",
+  "screen.heal": "healing",
+  "screen.radius": "blast radius",
+  "screen.amt": "amt of charges"
+}

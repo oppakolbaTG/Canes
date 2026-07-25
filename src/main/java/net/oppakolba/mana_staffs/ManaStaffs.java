@@ -1,0 +1,71 @@
+package net.oppakolba.mana_staffs;
+
+import com.mojang.logging.LogUtils;
+import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.oppakolba.mana_staffs.init.*;
+import net.oppakolba.mana_staffs.item.misc.characteristics.StaffsCharacteristics;
+import net.oppakolba.mana_staffs.item.misc.characteristics.IStaffsChar;
+import net.oppakolba.mana_staffs.item.misc.mana.StaffsCapability;
+import net.oppakolba.mana_staffs.item.misc.mana.IStaffsMana;
+import net.oppakolba.mana_staffs.networking.ModMessage;
+import net.oppakolba.mana_staffs.screen.AlterioTableScreen;
+import net.oppakolba.mana_staffs.world.feature.ModConfiguredFeatures;
+import net.oppakolba.mana_staffs.world.feature.ModPlacedFeatures;
+import org.slf4j.Logger;
+
+// The value here should match an entry in the META-INF/mods.toml file
+@Mod(ManaStaffs.MOD_ID)
+public class ManaStaffs {
+    public static final String MOD_ID = "manastaffs";
+    private static final Logger LOGGER = LogUtils.getLogger();
+    public ManaStaffs()
+    {
+        IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+
+        ModItems.register(bus);
+        ModBlocks.register(bus);
+        ModPainting.register(bus);
+        ModConfiguredFeatures.register(bus);
+        ModPlacedFeatures.register(bus);
+        ModSounds.SOUNDS.register(bus);
+        ModEntities.ENTITIES.register(bus);
+        ModItemEntities.ITEM_ENTITIES.register(bus);
+        ModBlockEntities.BLOCK_ENTITIES.register(bus);
+        ModMenuTypes.MENUS.register(bus);
+        ModLootModifier.register(bus);
+        ModRecipe.SERIALIZER.register(bus);
+        ModParticles.PARTICLE_TYPES.register(bus);
+        bus.addListener(this::commonSetup);
+        StaffsCapability.register();
+        StaffsCharacteristics.register();
+    }
+
+    private void commonSetup(final FMLCommonSetupEvent event) {
+        event.enqueueWork(() -> {
+            ModMessage.register();
+        });
+
+    }
+
+    @SubscribeEvent
+    public void onRegisterCapabilities(RegisterCapabilitiesEvent event) {
+        event.register(IStaffsMana.class);
+        event.register(IStaffsChar.class);
+    }
+    // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
+    @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+    public static class ClientModEvents {
+        @SubscribeEvent
+        @SuppressWarnings("removal")
+        public static void onClientSetup(FMLClientSetupEvent event) {
+            MenuScreens.register(ModMenuTypes.ALTERIO_TABLE_MENU.get(), AlterioTableScreen::new);
+        }
+    }
+}

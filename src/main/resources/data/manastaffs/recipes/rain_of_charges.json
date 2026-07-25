@@ -1,0 +1,14 @@
+{
+  "type": "manastaffs:alterio_table",
+  "ingredients": [
+    {
+      "item": "manastaffs:sample_staff"
+    },
+    {
+      "item": "manastaffs:charged_echo_shard"
+    }
+  ],
+  "output": {
+    "item": "manastaffs:rain_of_charges"
+  }
+}

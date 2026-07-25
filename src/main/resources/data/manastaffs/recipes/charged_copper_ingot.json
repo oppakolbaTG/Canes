@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key":{
+    "#": {"item": "manastaffs:mana_crystal"},
+    "&": {"item": "minecraft:copper_ingot"}
+
+  },
+  "pattern": [
+    " #&"
+  ],
+
+  "result": {
+    "item": "manastaffs:charged_copper_ingot"
+  }
+}
