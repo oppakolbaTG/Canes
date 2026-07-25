@@ -1,1 +1,1 @@
-manastaffs
+Mana Staffs
