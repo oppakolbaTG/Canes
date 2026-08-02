@@ -22,24 +22,12 @@ public class ModBlocks {
             DeferredRegister.create(ForgeRegistries.BLOCKS, ManaStaffs.MOD_ID);
 
 
-public static final RegistryObject<Block> PLATINUM_ORE = registerBlock("platinum_ore",
-        () -> new DropExperienceBlock(BlockBehaviour.Properties.of(Material.STONE)
-                .strength(5f)
-                .requiresCorrectToolForDrops(),
-                UniformInt.of(3,5)), CreativeModeTab.OPPA_TAB);
 
     public static final RegistryObject<Block> AlTERIO_TABLE = registerBlock("alterio_table",
             () -> new AlterioTableBlock(BlockBehaviour.Properties.of(Material.STONE)
                     .noOcclusion()
                     .strength( 30f)
                     .requiresCorrectToolForDrops()), CreativeModeTab.OPPA_TAB);
-
-    public static final RegistryObject<Block> PLATINUM_BLOCK = registerBlock("platinum_block",
-            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
-                    .strength(5f)
-                    .requiresCorrectToolForDrops()), CreativeModeTab.OPPA_TAB);
-
-
 
     private static <I extends Block> RegistryObject<I> registerBlock(String name, Supplier<I> block, net.minecraft.world.item.CreativeModeTab tab) {
         RegistryObject<I> toReturn = BLOCKS.register(name, block);

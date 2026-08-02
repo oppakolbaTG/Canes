@@ -16,8 +16,8 @@ import net.oppakolba.mana_staffs.item.misc.mana.StaffsCapability;
 import net.oppakolba.mana_staffs.item.misc.mana.IStaffsMana;
 import net.oppakolba.mana_staffs.networking.ModMessage;
 import net.oppakolba.mana_staffs.screen.AlterioTableScreen;
-import net.oppakolba.mana_staffs.world.feature.ModConfiguredFeatures;
-import net.oppakolba.mana_staffs.world.feature.ModPlacedFeatures;
+//import net.oppakolba.mana_staffs.world.feature.ModConfiguredFeatures;
+//import net.oppakolba.mana_staffs.world.feature.ModPlacedFeatures;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -32,8 +32,8 @@ public class ManaStaffs {
         ModItems.register(bus);
         ModBlocks.register(bus);
         ModPainting.register(bus);
-        ModConfiguredFeatures.register(bus);
-        ModPlacedFeatures.register(bus);
+       // ModConfiguredFeatures.register(bus);
+       // ModPlacedFeatures.register(bus);
         ModSounds.SOUNDS.register(bus);
         ModEntities.ENTITIES.register(bus);
         ModItemEntities.ITEM_ENTITIES.register(bus);

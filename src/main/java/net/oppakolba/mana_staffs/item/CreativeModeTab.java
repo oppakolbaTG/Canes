@@ -11,7 +11,7 @@ public class CreativeModeTab {
     public static final net.minecraft.world.item.CreativeModeTab OPPA_TAB = new net.minecraft.world.item.CreativeModeTab("manastaffstab") {
         @Override
         public ItemStack makeIcon() {
-            return new ItemStack(ModItems.PLATINUM_BAR.get());
+            return new ItemStack(ModItems.MANA_CRYSTAL.get());
         }
     };
 }
