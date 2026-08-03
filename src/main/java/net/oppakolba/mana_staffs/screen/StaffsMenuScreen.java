@@ -265,7 +265,8 @@ public class StaffsMenuScreen extends Screen  {
         }
     }
     public void renderManaBar(PoseStack pPoseStack, ItemStack itemStack){
-        int k = StaffsItem.getMana(itemStack) == 20 ? 166 : 8 * StaffsItem.getMana(itemStack);
+        int j = 166 / StaffsItem.getMaxMana(itemStack);
+        int k = StaffsItem.getMana(itemStack) == StaffsItem.getMaxMana(itemStack) ? 166 : j * StaffsItem.getMana(itemStack);
         RenderSystem.setShaderTexture(0, TEXTURES);
         blit(pPoseStack, this.screenWidth / 2 - 60, this.screenHeight / 2 - 39, 282, 16, k, 4, 512, 512);
     }

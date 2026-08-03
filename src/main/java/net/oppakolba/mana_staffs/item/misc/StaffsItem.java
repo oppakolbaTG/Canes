@@ -116,8 +116,8 @@ public class StaffsItem extends Item {
     public static void setMaxMana(ItemStack stack, int maxMana){
         if (stack.getItem() instanceof StaffsItem) {
             CompoundTag tag = stack.getOrCreateTag();
-            int oldMaxMana = tag.getInt("maxMana");
-            tag.putInt("maxMana", Math.max(oldMaxMana, maxMana));
+            int oldMaxMana = tag.getInt("max_mana");
+            tag.putInt("max_mana", Math.max(oldMaxMana, maxMana));
         }
         }
 
@@ -150,6 +150,7 @@ public class StaffsItem extends Item {
         initialize(stack);
         return InteractionResultHolder.consume(stack);
     }
+
 
     @Override
     public int getUseDuration(ItemStack stack) {

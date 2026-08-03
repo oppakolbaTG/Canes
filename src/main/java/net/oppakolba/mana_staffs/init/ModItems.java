@@ -26,6 +26,12 @@ public class ModItems {
     public static final RegistryObject<Item> CHARGED_COPPER_INGOT = ITEMS.register("charged_copper_ingot",
             () -> new Item(new Item.Properties().tab(CreativeModeTab.OPPA_TAB)));
 
+    public static final RegistryObject<Item> SPLINTER_GEALACH = ITEMS.register("splinter_gealach",
+            () -> new Item(new Item.Properties().tab(CreativeModeTab.OPPA_TAB)));
+
+    public static final RegistryObject<Item> GEALACH_SEAL = ITEMS.register("gealach_seal",
+            () -> new Item(new Item.Properties().tab(CreativeModeTab.OPPA_TAB)));
+
     public static final RegistryObject<Item> CHARGED_AMETHYST = ITEMS.register("charged_amethyst",
             () -> new Item(new Item.Properties().tab(CreativeModeTab.OPPA_TAB)));
 

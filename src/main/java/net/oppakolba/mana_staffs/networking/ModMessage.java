@@ -44,6 +44,12 @@ public class  ModMessage {
                 .consumerMainThread(ManaDataSyncPacket::handle)
                 .add();
 
+        net.messageBuilder(MaxManaDataSyncPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(MaxManaDataSyncPacket::new)
+                .encoder(MaxManaDataSyncPacket::toByte)
+                .consumerMainThread(MaxManaDataSyncPacket::handle)
+                .add();
+
 
 
     }
