@@ -26,7 +26,7 @@ public class StaffsMenuScreen extends Screen  {
     private static final ResourceLocation REQUIREMENTS = new ResourceLocation("manastaffs", "textures/gui/requirements.png");
     protected int screenWidth;
     protected  int screenHeight;
-    public int backgroundHeight = 148;
+    public int backgroundHeight = 152;
     public int backgroundWidth = 266;
     Font font = Minecraft.getInstance().font;
     int color = 0xcfa170;
@@ -55,7 +55,7 @@ public class StaffsMenuScreen extends Screen  {
             upgButton = null;
             return;
         }
-        upgButton = new ImageButton(x + 32, y + 78, 32, 32, 0, 0, 32, UPG_BUTTON, 32, 64,  button -> {
+        upgButton = new ImageButton(x + 32, y + 83, 32, 32, 0, 0, 32, UPG_BUTTON, 32, 64,  button -> {
             ModMessage.sendToServer(new UpgradeCharC2SPacket(staffCode, 1));
         });
         this.addRenderableWidget(upgButton);
@@ -99,9 +99,9 @@ public class StaffsMenuScreen extends Screen  {
                     renderManaBar(pPoseStack, stackItemInHand);
                     renderIconCharacteristics(pPoseStack, 298, 75, 314, 75, true);
                     ScreenUtils.drawColoredShadow(pPoseStack, font, Component.translatable("screen.power").append(": ").append(String.valueOf(2 + StaffsItem.getPower(stackItemInHand) * 2)),
-                            x + 103, y + 80, color, shadowColor);
+                            x + 103, y + 84, color, shadowColor);
                     ScreenUtils.drawColoredShadow(pPoseStack, font, Component.translatable("screen.radius").append(": ").append(String.valueOf(1 + StaffsItem.getPower(stackItemInHand) * 2)),
-                            x + 103, y + 103, color, shadowColor);
+                            x + 103, y + 107, color, shadowColor);
                     renderLevel(pPoseStack, stackItemInHand,"power");
                     renderRequirementsForLvlUp("fc", pPoseStack, x ,y, StaffsItem.getPower(stackItemInHand));
                 }
@@ -109,7 +109,7 @@ public class StaffsMenuScreen extends Screen  {
                     renderManaBar(pPoseStack, stackItemInHand);
                     renderIconCharacteristics(pPoseStack, 298, 75, 0, 0,false);
                     ScreenUtils.drawColoredShadow(pPoseStack, font, Component.translatable("screen.power").append(": ").append(String.valueOf(1 + StaffsItem.getPower(stackItemInHand) * 2)),
-                            x + 103, y + 80, color,shadowColor);
+                            x + 103, y + 84, color,shadowColor);
                     renderLevel(pPoseStack, stackItemInHand,"power");
                     renderRequirementsForLvlUp("bc", pPoseStack, x ,y, StaffsItem.getPower(stackItemInHand));
                 }
@@ -117,7 +117,7 @@ public class StaffsMenuScreen extends Screen  {
                     renderManaBar(pPoseStack, stackItemInHand);
                     renderIconCharacteristics(pPoseStack, 330, 75, 0,0,false);
                     ScreenUtils.drawColoredShadow(pPoseStack, font, Component.translatable("screen.amt").append(": ").append(String.valueOf(1 + StaffsItem.getAmt(stackItemInHand) * 2)),
-                            x + 103, y + 80, color, shadowColor);
+                            x + 103, y + 84, color, shadowColor);
                     renderLevel(pPoseStack, stackItemInHand,"amt");
                     renderRequirementsForLvlUp("lc", pPoseStack, x ,y, StaffsItem.getAmt(stackItemInHand));
                 }
@@ -125,9 +125,9 @@ public class StaffsMenuScreen extends Screen  {
                     renderManaBar(pPoseStack, stackItemInHand);
                     renderIconCharacteristics(pPoseStack, 314, 75, 346, 75, true);
                     ScreenUtils.drawColoredShadow(pPoseStack, font, Component.translatable("screen.radius").append(": ").append(String.valueOf(1 + StaffsItem.getRadius(stackItemInHand) * 2)),
-                            x + 103, y + 80, color, shadowColor);
+                            x + 103, y + 84, color, shadowColor);
                     ScreenUtils .drawColoredShadow(pPoseStack, font, Component.translatable("screen.heal").append(": ").append(String.valueOf(StaffsItem.getHeal(stackItemInHand) * 2)),
-                            x + 103, y + 103, color, shadowColor);
+                            x + 103, y + 107, color, shadowColor);
                     renderLevel(pPoseStack, stackItemInHand,"radius");
                     renderRequirementsForLvlUp("hc", pPoseStack, x ,y, StaffsItem.getRadius(stackItemInHand));
                 }
@@ -135,9 +135,9 @@ public class StaffsMenuScreen extends Screen  {
                     renderManaBar(pPoseStack, stackItemInHand);
                     renderIconCharacteristics(pPoseStack, 298, 75, 330, 75, true);
                     ScreenUtils.drawColoredShadow(pPoseStack, font, Component.translatable("screen.power").append(": ").append(String.valueOf(2 + StaffsItem.getPower(stackItemInHand) * 2)),
-                            x + 103, y + 80, color, shadowColor);
+                            x + 103, y + 84, color, shadowColor);
                     ScreenUtils.drawColoredShadow(pPoseStack, font, Component.translatable("screen.amt").append(": ").append(String.valueOf(1 + StaffsItem.getAmt(stackItemInHand) * 2)),
-                            x + 103, y + 103, color,shadowColor);
+                            x + 103, y + 107, color,shadowColor);
                     renderLevel(pPoseStack, stackItemInHand,"power");
                     renderRequirementsForLvlUp("roc",pPoseStack ,x ,y , StaffsItem.getPower(stackItemInHand));
                 }
@@ -174,46 +174,46 @@ public class StaffsMenuScreen extends Screen  {
         RenderSystem.setShaderTexture(0, REQUIREMENTS);
         switch(item){
             case "fc" -> {
-                blit(poseStack, x + 200, y + 5, 0, 0, 10, 8, 79, 8);
-                blit(poseStack, x + 220, y + 5, 13, 0, 10, 8, 79, 8);
+                blit(poseStack, x + 200, y + 10, 0, 0, 10, 8, 79, 8);
+                blit(poseStack, x + 220, y + 10, 13, 0, 10, 8, 79, 8);
             }
             case "bc" -> {
-                blit(poseStack, x + 200, y + 5,0, 0, 10, 8, 79, 8);
-                blit(poseStack, x + 220, y + 5, 40, 0, 10, 8, 79, 8);
+                blit(poseStack, x + 200, y + 10,0, 0, 10, 8, 79, 8);
+                blit(poseStack, x + 220, y + 10, 40, 0, 10, 8, 79, 8);
             }
             case "hc" -> {
-                blit(poseStack, x + 200, y + 5, 0, 0, 10, 8, 79, 8);
-                blit(poseStack, x + 220, y + 5, 27, 0, 10, 8, 79, 8);
+                blit(poseStack, x + 200, y + 10, 0, 0, 10, 8, 79, 8);
+                blit(poseStack, x + 220, y + 10, 27, 0, 10, 8, 79, 8);
             }
             case "lc" -> {
-                blit(poseStack, x + 200, y + 5, 0, 0, 10, 8, 79, 8);
-                blit(poseStack, x + 219, y + 5, 53, 0, 10, 8, 79, 8);
+                blit(poseStack, x + 200, y + 10, 0, 0, 10, 8, 79, 8);
+                blit(poseStack, x + 219, y + 10, 53, 0, 10, 8, 79, 8);
             }
             case "roc" -> {
-                blit(poseStack, x + 200, y + 5, 0, 0, 10, 8, 79, 8);
-                blit(poseStack, x + 220, y + 5, 68, 0, 10, 8, 79, 8);
+                blit(poseStack, x + 200, y + 10, 0, 0, 10, 8, 79, 8);
+                blit(poseStack, x + 220, y + 10, 68, 0, 10, 8, 79, 8);
             }
         }
         switch (lvl) {
             case 1 -> {
-                ScreenUtils.drawColoredShadow(poseStack, font, Component.translatable(":1"),x + 230, y + 5, color, shadowColor);
-                ScreenUtils.drawColoredShadow(poseStack, font, Component.translatable(":1"),x + 209, y + 5, color, shadowColor);
+                ScreenUtils.drawColoredShadow(poseStack, font, Component.translatable(":1"),x + 230, y + 10, color, shadowColor);
+                ScreenUtils.drawColoredShadow(poseStack, font, Component.translatable(":1"),x + 209, y + 10, color, shadowColor);
             }
             case 2 -> {
-                ScreenUtils.drawColoredShadow(poseStack, font, Component.translatable(":1"),x + 230, y + 5, color, shadowColor);
-                ScreenUtils.drawColoredShadow(poseStack, font, Component.translatable(":2"),x + 209, y + 5, color, shadowColor);
+                ScreenUtils.drawColoredShadow(poseStack, font, Component.translatable(":1"),x + 230, y + 10, color, shadowColor);
+                ScreenUtils.drawColoredShadow(poseStack, font, Component.translatable(":2"),x + 209, y + 10, color, shadowColor);
             }
             case 3 -> {
-                ScreenUtils.drawColoredShadow(poseStack, font, Component.translatable(":2"),x + 230, y + 5, color, shadowColor);
-                ScreenUtils.drawColoredShadow(poseStack, font, Component.translatable(":2"),x + 209, y + 5, color, shadowColor);
+                ScreenUtils.drawColoredShadow(poseStack, font, Component.translatable(":2"),x + 230, y + 10, color, shadowColor);
+                ScreenUtils.drawColoredShadow(poseStack, font, Component.translatable(":2"),x + 209, y + 10, color, shadowColor);
             }
             case 4 -> {
-                ScreenUtils.drawColoredShadow(poseStack, font, Component.translatable(":2"),x + 230, y + 5, color, shadowColor);
-                ScreenUtils.drawColoredShadow(poseStack, font, Component.translatable(":3"),x + 209, y + 5, color, shadowColor);
+                ScreenUtils.drawColoredShadow(poseStack, font, Component.translatable(":2"),x + 230, y + 10, color, shadowColor);
+                ScreenUtils.drawColoredShadow(poseStack, font, Component.translatable(":3"),x + 209, y + 10, color, shadowColor);
             }
             case 5 -> {
-                ScreenUtils.drawColoredShadow(poseStack, font, Component.translatable(":3"),x + 230, y + 5, color, shadowColor);
-                ScreenUtils.drawColoredShadow(poseStack, font, Component.translatable(":3"),x + 209, y + 5, color, shadowColor);
+                ScreenUtils.drawColoredShadow(poseStack, font, Component.translatable(":3"),x + 230, y + 10, color, shadowColor);
+                ScreenUtils.drawColoredShadow(poseStack, font, Component.translatable(":3"),x + 209, y + 10, color, shadowColor);
             }
         }
 
@@ -221,9 +221,9 @@ public class StaffsMenuScreen extends Screen  {
     public void renderIconCharacteristics(PoseStack poseStack, int uOffset, int vOffset, int u2Offset, int v2Offset, boolean renderSecondIcon) {
 
         RenderSystem.setShaderTexture(0, TEXTURES);
-        blit(poseStack, this.screenWidth / 2 - 50, this.screenHeight / 2 + 2, uOffset, vOffset, 15, 15, 512, 512);
+        blit(poseStack, this.screenWidth / 2 - 50, this.screenHeight / 2 + 6, uOffset, vOffset, 15, 15, 512, 512);
         if (renderSecondIcon) {
-            blit(poseStack, this.screenWidth / 2 - 50, this.screenHeight / 2 + 25, u2Offset, v2Offset, 15, 15, 512, 512);
+            blit(poseStack, this.screenWidth / 2 - 50, this.screenHeight / 2 + 29, u2Offset, v2Offset, 15, 15, 512, 512);
         }
     }
     public void renderLevel(PoseStack poseStack, ItemStack stack, String characteristics){
@@ -268,29 +268,29 @@ public class StaffsMenuScreen extends Screen  {
         int j = 166 / StaffsItem.getMaxMana(itemStack);
         int k = StaffsItem.getMana(itemStack) == StaffsItem.getMaxMana(itemStack) ? 166 : j * StaffsItem.getMana(itemStack);
         RenderSystem.setShaderTexture(0, TEXTURES);
-        blit(pPoseStack, this.screenWidth / 2 - 60, this.screenHeight / 2 - 39, 282, 16, k, 4, 512, 512);
+        blit(pPoseStack, this.screenWidth / 2 - 60, this.screenHeight / 2 - 36, 282, 16, k, 4, 512, 512);
     }
     private void renderOne(PoseStack poseStack){
         RenderSystem.setShaderTexture(0, TEXTURES);
-        blit(poseStack, this.screenWidth / 2 - 96, this.screenHeight / 2 - 35,368,38, 22,22, 512, 512);
+        blit(poseStack, this.screenWidth / 2 - 96, this.screenHeight / 2 - 32,368,38, 22,22, 512, 512);
     }
     private void renderTwo(PoseStack poseStack){
         RenderSystem.setShaderTexture(0, TEXTURES);
-        blit(poseStack, this.screenWidth / 2 - 93, this.screenHeight / 2 - 35,390,38, 17,22,512, 512);
+        blit(poseStack, this.screenWidth / 2 - 93, this.screenHeight / 2 - 32,390,38, 17,22,512, 512);
     }
     private void renderThree(PoseStack poseStack){
         RenderSystem.setShaderTexture(0, TEXTURES);
-        blit(poseStack, this.screenWidth / 2 - 98, this.screenHeight / 2 - 35,414,38, 26,22,512, 512);
+        blit(poseStack, this.screenWidth / 2 - 98, this.screenHeight / 2 - 32,414,38, 26,22,512, 512);
 
     }
     private void renderFour(PoseStack poseStack){
         RenderSystem.setShaderTexture(0, TEXTURES);
-        blit(poseStack, this.screenWidth / 2 - 96, this.screenHeight / 2 - 35,447,38, 24,22,512, 512);
+        blit(poseStack, this.screenWidth / 2 - 96, this.screenHeight / 2 - 32,447,38, 24,22,512, 512);
 
     }
     private void renderFive(PoseStack poseStack){
         RenderSystem.setShaderTexture(0, TEXTURES);
-        blit(poseStack, this.screenWidth / 2 - 93, this.screenHeight / 2 - 35,478,38, 15,22,512, 512);
+        blit(poseStack, this.screenWidth / 2 - 93, this.screenHeight / 2 - 32,478,38, 15,22,512, 512);
 
     }
 }
