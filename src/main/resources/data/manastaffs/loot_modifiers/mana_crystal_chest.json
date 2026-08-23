@@ -5,13 +5,33 @@
       "condition": "minecraft:alternative",
       "terms": [
         { "condition": "forge:loot_table_id", "loot_table_id": "minecraft:chests/abandoned_mineshaft" },
-        { "condition": "forge:loot_table_id", "loot_table_id": "minecraft:chests/buried_treasure" },
         { "condition": "forge:loot_table_id", "loot_table_id": "minecraft:chests/shipwreck_supply" },
         { "condition": "forge:loot_table_id", "loot_table_id": "minecraft:chests/simple_dungeon" },
         { "condition": "forge:loot_table_id", "loot_table_id": "minecraft:chests/ruined_portal" },
-        { "condition": "forge:loot_table_id", "loot_table_id": "minecraft:chests/village/village_temple" }
+        { "condition": "forge:loot_table_id", "loot_table_id": "minecraft:chests/village/village_temple" },
+        { "condition": "forge:loot_table_id", "loot_table_id": "minecraft:chests/bastion_bridge" },
+        { "condition": "forge:loot_table_id", "loot_table_id": "minecraft:chests/bastion_treasure" },
+        { "condition": "forge:loot_table_id", "loot_table_id": "minecraft:chests/desert_pyramid" },
+        { "condition": "forge:loot_table_id", "loot_table_id": "minecraft:chests/igloo_chest" },
+        { "condition": "forge:loot_table_id", "loot_table_id": "minecraft:chests/pillager_outpost" },
+        { "condition": "forge:loot_table_id", "loot_table_id": "minecraft:chests/stronghold_library" },
+        { "condition": "forge:loot_table_id", "loot_table_id": "minecraft:chests/" },
+        { "condition": "forge:loot_table_id", "loot_table_id": "minecraft:chests/village/village_armorer" },
+        { "condition": "forge:loot_table_id", "loot_table_id": "minecraft:chests/village/village_desert_house" },
+        { "condition": "forge:loot_table_id", "loot_table_id": "minecraft:chests/village/village_mason" },
+        { "condition": "forge:loot_table_id", "loot_table_id": "minecraft:chests/village/village_fisher"},
+        { "condition": "forge:loot_table_id", "loot_table_id": "minecraft:chests/village/village_plains_house"},
+        { "condition": "forge:loot_table_id", "loot_table_id": "minecraft:chests/village/village_shepherd"},
+        { "condition": "forge:loot_table_id", "loot_table_id": "minecraft:chests/village/village_snowy_house"},
+        { "condition": "forge:loot_table_id", "loot_table_id": "minecraft:chests/village/village_tannery"},
+        { "condition": "forge:loot_table_id", "loot_table_id": "minecraft:chests/village/village_toolsmith"},
+        { "condition": "forge:loot_table_id", "loot_table_id": "minecraft:chests/village/village_weaponsmith" }
       ]
+    },
+    {
+      "condition": "minecraft:random_chance",
+      "chance": 0.80
     }
   ],
-  "item": "manastaffs:fallen_star"
+  "item": "manastaffs:mana_crystal"
 }

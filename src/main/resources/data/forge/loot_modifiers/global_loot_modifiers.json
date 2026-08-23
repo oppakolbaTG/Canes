@@ -1,6 +1,4 @@
 {
   "replace": false,
-  "entries": [
-    "manastaffs:mana_crystal_chest"
-  ]
+  "entries": ["manastaffs:mana_crystal_chest"]
 }

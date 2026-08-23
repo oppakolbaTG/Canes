@@ -24,6 +24,10 @@ public class AlterioTableRecipe implements Recipe<SimpleContainer> {
         this.recipeItem = recipeItem;
     }
 
+    @Override
+    public NonNullList<Ingredient> getIngredients() {
+        return recipeItem;
+    }
 
     @Override
     public boolean matches(SimpleContainer simpleContainer, Level level) {
@@ -97,7 +101,7 @@ public class AlterioTableRecipe implements Recipe<SimpleContainer> {
 
         @Override
         public void toNetwork(FriendlyByteBuf buf, AlterioTableRecipe recipe) {
-            buf.writeInt(2);
+//            buf.writeInt(2);
 
             for(Ingredient ing : recipe.getIngredients()){
                 ing.toNetwork(buf);
