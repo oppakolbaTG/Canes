@@ -26,7 +26,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> AlTERIO_TABLE = registerBlock("alterio_table",
             () -> new AlterioTableBlock(BlockBehaviour.Properties.of(Material.STONE)
                     .noOcclusion()
-                    .strength( 30f)
+                    .strength( 18f)
                     .requiresCorrectToolForDrops()), CreativeModeTab.OPPA_TAB);
 
     private static <I extends Block> RegistryObject<I> registerBlock(String name, Supplier<I> block, net.minecraft.world.item.CreativeModeTab tab) {

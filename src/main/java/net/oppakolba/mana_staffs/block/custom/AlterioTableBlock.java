@@ -26,8 +26,7 @@ public class AlterioTableBlock extends BaseEntityBlock {
     }
 
     @Override
-    @SuppressWarnings("deprecation")
-    public @NotNull RenderShape getRenderShape(BlockState blockState) {
+    public  RenderShape getRenderShape(BlockState blockState) {
         return RenderShape.MODEL;
     }
 
@@ -67,4 +66,6 @@ public class AlterioTableBlock extends BaseEntityBlock {
     public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
         return createTickerHelper(type, ModBlockEntities.ALTERIO_TABLE.get(), AlterioTableEntity::tick);
     }
+
+
 }
