@@ -1,0 +1,27 @@
+{
+  "type": "manastaffs:add_item",
+  "conditions": [
+    {
+      "condition": "minecraft:alternative",
+      "terms": [
+        { "condition": "forge:loot_table_id", "loot_table_id": "minecraft:chests/abandoned_mineshaft" },
+        { "condition": "forge:loot_table_id", "loot_table_id": "minecraft:chests/shipwreck_supply" },
+        { "condition": "forge:loot_table_id", "loot_table_id": "minecraft:chests/simple_dungeon" },
+        { "condition": "forge:loot_table_id", "loot_table_id": "minecraft:chests/ruined_portal" },
+        { "condition": "forge:loot_table_id", "loot_table_id": "minecraft:chests/bastion_bridge" },
+        { "condition": "forge:loot_table_id", "loot_table_id": "minecraft:chests/bastion_treasure" },
+        { "condition": "forge:loot_table_id", "loot_table_id": "minecraft:chests/desert_pyramid" },
+        { "condition": "forge:loot_table_id", "loot_table_id": "minecraft:chests/igloo_chest" },
+        { "condition": "forge:loot_table_id", "loot_table_id": "minecraft:chests/pillager_outpost" },
+        { "condition": "forge:loot_table_id", "loot_table_id": "minecraft:chests/stronghold_library" },
+        { "condition": "forge:loot_table_id", "loot_table_id": "minecraft:chests/" },
+        { "condition": "forge:loot_table_id", "loot_table_id": "minecraft:chests/village/village_snowy_house"},
+      ]
+    },
+    {
+      "condition": "minecraft:random_chance",
+      "chance": 0.70
+    }
+  ],
+  "item": "manastaffs:splinter_gealach"
+}
