@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {"item": "manastaffs:splinter_gealach"}},
+  "pattern": [
+    "#",
+    "#"
+  ],
+  "result": {
+    "item": "manastaffs:gealach_seal"
+  }
+}
