@@ -11,6 +11,7 @@ import net.minecraft.tags.FluidTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
@@ -18,6 +19,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.NetworkHooks;
+import net.oppakolba.mana_staffs.ManaStaffs;
 import net.oppakolba.mana_staffs.init.ModEntities;
 import net.oppakolba.mana_staffs.item.misc.StaffsItem;
 import net.oppakolba.mana_staffs.networking.ModMessage;
@@ -27,7 +29,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Random;
 
 
-//Присоединение к игроку(мб звук?)
 
 public class ManaOrb extends Entity {
     private static final int LIFETIME = 6000;
@@ -39,7 +40,6 @@ public class ManaOrb extends Entity {
     public int value = random.nextInt(3, 6);
     private Player followingPlayer;
     private final int POP_STOP_COUNT = 20;
-
     public ManaOrb(EntityType<?> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
     }
@@ -59,15 +59,16 @@ public class ManaOrb extends Entity {
                 this.followingPlayer = null;
             }
 
-            if (this.followingPlayer != null && hasLineOfSight(this.followingPlayer)) {
-                Vec3 vec3 = new Vec3(this.followingPlayer.getX() - this.getX(), this.followingPlayer.getY() + (double) this.followingPlayer.getEyeHeight() / (double) 2.0F - this.getY(), this.followingPlayer.getZ() - this.getZ());
+            if (this.followingPlayer != null && hasLineOfSight(this.followingPlayer) && hasItem(this.followingPlayer)) {
+                    Vec3 vec3 = new Vec3(this.followingPlayer.getX() - this.getX(), this.followingPlayer.getY() + (double) this.followingPlayer.getEyeHeight() / (double) 2.0F - this.getY(), this.followingPlayer.getZ() - this.getZ());
                 double dist = vec3.lengthSqr();
                 if (dist < (double) 64.0F) {
                     double factor = 1.0F - Math.sqrt(dist) / (double) MAX_FOLLOW_DIST;
                     this.setDeltaMovement(this.getDeltaMovement().add(vec3.normalize().scale(factor * factor * 0.1D)));
                 }
+
             }
-            if (!level.isClientSide && followingPlayer instanceof ServerPlayer serverPlayer) {
+            if (!level.isClientSide && followingPlayer instanceof ServerPlayer serverPlayer && hasItem(this.followingPlayer)) {
                 if (this.distanceToSqr(serverPlayer) < 0.31D) {
                     for (int i = 0; i < followingPlayer.getInventory().getContainerSize(); i++) {
                         ItemStack stack = followingPlayer.getInventory().getItem(i);
@@ -133,6 +134,13 @@ public class ManaOrb extends Entity {
                 this
         ));
         return hit.getType() == HitResult.Type.MISS;
+    }
+
+    public static boolean hasItem(Player player) {
+       for(int i = 0; i < player.getInventory().getContainerSize(); i++){
+           if(player.getInventory().getItem(i).getItem() instanceof StaffsItem) return true;
+       }
+       return false;
     }
 
     private void scanForEntities() {
