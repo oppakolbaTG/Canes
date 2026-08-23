@@ -70,7 +70,6 @@ public class ClientEvents {
 
         @SubscribeEvent
         public static void onKeyRegister(RegisterKeyMappingsEvent event) {
-            event.register(KeyBinding.MANA_USING_KEY);
             event.register(KeyBinding.OPENING_GUI_KEY);
         }
     }
